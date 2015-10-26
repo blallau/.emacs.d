@@ -1,0 +1,27 @@
+(defvar launchpad-url "https://bugs.launchpad.net/" "launchpad URL")
+(defvar openstack-review-url "https://review.openstack.org/#q," "Openstack review URL")
+
+(defun open-openstack-ID-at-point ()
+  (interactive)
+  (when (projectile-project-p)
+    (let ((identifiant (thing-at-point 'line))
+          (project-name (projectile-project-name))
+          (case-fold-search t))
+      (cond
+       ((string-match "[[:alpha:]]+-Bug:[[:space:]]*#\\([[:digit:]]+\\)" identifiant)
+;;      (message (concat "ID extract=" (match-string 1 identifiant)))
+        (browse-url (concat launchpad-url project-name "/+bug/" (match-string 1 identifiant)))
+        )
+       ((string-match "Change-Id: \\([[:alnum:]]+\\)" identifiant)
+        ;;      (message (concat "ID extract=" (match-string 1 identifiant)))
+        (browse-url (concat openstack-review-url (match-string 1 identifiant) ",n,z"))
+        )
+       (t
+        (message "Not an Openstack ID (Closes-Bug or Change-Id)")
+        )
+       )
+      )
+    )
+)
+
+(global-set-key (kbd "<f12>") 'open-openstack-ID-at-point)

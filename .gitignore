@@ -1,0 +1,13 @@
+.cask
+*.dat
+*.eld
+*.elc
+ac-comphist.dat
+auto-save-list/
+.cask
+/tramp
+.python-environments/
+elpa/
+eshell/
+/bookmarks
+/url/
