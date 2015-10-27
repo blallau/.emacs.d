@@ -39,8 +39,6 @@
 (depends-on "moe-theme")
 ;(depends-on "package-build")
 (depends-on "pallet")
-(depends-on "perspective")
-(depends-on "persp-projectile")
 (depends-on "pkg-info")
 (depends-on "popup")
 ;(depends-on "powerline")
