@@ -17,7 +17,24 @@
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'forward)
 
-(setq grep-find-command "find . -type f '!' -wholename '*/.git/*' -print0 | xargs -0 -e grep -nH -e ")
+;; customize grep-find command
+;;(setq grep-find-command "find . -type f '!' -wholename '*/.git/*' -print0 | xargs -0 -e grep -nH -e ")
+(defun helm-projectile-grep-ori ()
+  "helm projectile without git"
+  ()
+  (
+   (setq projectile-use-git-grep nil)
+   (eval-after-load 'grep
+  '(progn
+     (add-to-list 'grep-find-ignored-directories ".git")
+     (add-to-list 'grep-find-ignored-directories ".tox")
+     (add-to-list 'grep-find-ignored-directories "tests")))
+   )
+  'helm-projectile-grep
+  )
+
+;(setq grep-find-command "find . -type f '!' -wholename '*/.tox/*' -a '!' -wholename '*/.git/*' -a '!' -wholename '*/.eggs/*' -a '!' -wholename '*/tests/*' -print0 | xargs -0 -e grep -nH -e ")
+(global-set-key (kbd "C-<f4>") 'helm-projectile-grep-ori)
 
 ;; Don't break out a separate frame for ediff
 (setq ediff-window-setup-function 'ediff-setup-windows-plain)
@@ -88,6 +105,10 @@
 
 (global-set-key (kbd "<f11>") 'ome-toggle-fullscreen)
 
+(require 'dired-x)
+(setq-default dired-omit-files-p t) ; this is buffer-local variable
+(setq dired-omit-files
+    (concat dired-omit-files "\\|^\\..+$\\|\\.pyc$"))
 
 ;; checks whether the parent directories exist for a given file
 ;; and offers to create them if they do not exist.
