@@ -24,7 +24,7 @@ Configure emacs for:
 
 ## Configure Emacs
 
-    git clone https://github.com/blallau/emacs-config.git ~/.emacs.d/
+    git clone https://github.com/blallau/.emacs.d ~/.emacs.d/
     cd ~/.emacs.d/; cask install
     emacs
 
