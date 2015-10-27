@@ -1,3 +1,5 @@
+(require 'projectile)
+
 ;; Enable projectile
 (projectile-global-mode t)
 (setq projectile-switch-project-action 'projectile-dired)
@@ -21,19 +23,6 @@
       (helm-projectile)
     (helm-for-files)))
 
-;; The code above is executed after projectile is loaded.
-;; It gets the list of projects known to projectile by doing
-;; iterates through them and adds the projects that have .git/ folder to magit-repo-dirs
-;; it also sets magit-repo-dirs-depth to 1 so magit looks for git repos only in the top directories.
-(eval-after-load "projectile"
-  '(progn (setq magit-repo-dirs (mapcar (lambda (dir) (substring dir 0 -1))
-                                        (remove-if-not (lambda (project) (file-directory-p (concat project "/.git/")))
-                                                       (projectile-relevant-known-projects))
-                                        )
-                )
-          (setq magit-repo-dirs-depth 1)
-          )
-  )
 
 (defun my-projectile-find-test (file-name)
   "Given a FILE-NAME return the matching implementation or test filename."

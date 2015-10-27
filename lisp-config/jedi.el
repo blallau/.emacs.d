@@ -1,3 +1,4 @@
+(require 'jedi)
 ;; Use projectile to detect python project
 (require 'projectile)
 ;; load the known projects

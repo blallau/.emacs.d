@@ -1,3 +1,5 @@
+(require 'magit)
+
 (defvar pc:magit-from-buffer
   "Buffer from where magit-status were last called."
   nil)
@@ -35,4 +37,3 @@ TODO: store the whole frame config instead?"
 ;(global-set-key (kbd "C-x g") 'magit-status)
 (global-set-key (kbd "C-<f5>") 'magit-blame)
 (global-set-key (kbd "<f6>") 'magit-status)
-

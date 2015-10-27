@@ -1,3 +1,5 @@
+(require 'helm)
+
 (helm-mode 1)
 
 (setq helm-split-window-default-side 'same)

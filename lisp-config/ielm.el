@@ -1,3 +1,6 @@
+(require 'ielm)
+(require 'auto-complete)
+
 (defun ielm-auto-complete ()
   "Enables `auto-complete' support in \\[ielm]."
   (setq ac-sources '(ac-source-functions
