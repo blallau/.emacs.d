@@ -29,7 +29,6 @@
           ;; surrounding sexp for a function call.
           ((setq sym (function-at-point)) (describe-function sym)))))
 
-
 (add-hook 'emacs-lisp-mode-hook
           (lambda ()
             (local-set-key (kbd "<f3>") 'elisp-slime-nav-find-elisp-thing-at-point)

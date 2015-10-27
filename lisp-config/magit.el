@@ -19,8 +19,6 @@ TODO: store the whole frame config instead?"
 (add-hook 'magit-commit-mode-hook 'disable-magit-highlight-in-buffer)
 (add-hook 'magit-diff-mode-hook 'disable-magit-highlight-in-buffer)
 
-;(magit-define-popup-switch 'magit-log-popup "nm" "No merges" "--no-merges")
-
 ;; Configure Magit
 (setq git-commit-summary-max-length 50)
 (setq git-commit-fill-column 72)
@@ -38,20 +36,3 @@ TODO: store the whole frame config instead?"
 (global-set-key (kbd "C-<f5>") 'magit-blame)
 (global-set-key (kbd "<f6>") 'magit-status)
 
-;; ;deactive log merges by default
-;; (eval-after-load 'magit-mode
-;;   (progn
-;; ;    '(magit-key-mode-insert-switch 'logging "-nm" "No merges" "--no-merges")
-;;     '(magit-key-mode-insert-switch 'logging "-m" "No merge commits" "--no-merges")
-;;     ))
-
-
-;(lambda nil (interactive)
-;  (magit-key-mode-toggle-option (quote logging) "--no-merges"))
-
-;(advice-add #'magit-key-mode-popup-logging :after
-;            (lambda ()
-;              (magit-key-mode-toggle-option (quote logging) "--verbose")))
-
-;(lambda nil (interactive)
-;  (magit-key-mode-toggle-option (quote logging) "--no-merges"))
