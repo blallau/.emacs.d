@@ -108,7 +108,8 @@
 (require 'dired-x)
 (setq-default dired-omit-files-p t) ; this is buffer-local variable
 (setq dired-omit-files
-    (concat dired-omit-files "\\|^\\..+$\\|\\.pyc$"))
+    (concat dired-omit-files "\\|\\.pyc$"))
+(setq dired-recursive-deletes 'always)
 
 ;; checks whether the parent directories exist for a given file
 ;; and offers to create them if they do not exist.
