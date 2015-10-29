@@ -1,3 +1,5 @@
+(require 'jinja2-mode)
+
 ;; Start autopair to complete brackets and quotes
 (add-hook 'python-mode-hook 'autopair-mode)
 ;; Python hook to Highlight TODO, FIXME, ...
@@ -6,6 +8,7 @@
 ;; Delete trailing whitespace when saving (compliance with PEP8)
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
+(add-to-list 'auto-mode-alist '("\\.j2\\'" . jinja2-mode))
 
 ;; Hook up flymake to use the PEP8 style
 ;(add-hook 'python-mode-hook
