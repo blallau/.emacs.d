@@ -37,3 +37,4 @@ TODO: store the whole frame config instead?"
 ;(global-set-key (kbd "C-x g") 'magit-status)
 (global-set-key (kbd "C-<f5>") 'magit-blame)
 (global-set-key (kbd "<f6>") 'magit-status)
+(global-set-key (kbd "C-<f6>") 'magit-log-buffer-file)
