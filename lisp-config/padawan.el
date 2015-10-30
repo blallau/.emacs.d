@@ -86,6 +86,7 @@ automatically kill buffer and window that run the process."
           (shell-command (concat venv-bin-dir pip-install-jedi-command)))
         (let ((default-directory project-root))
           (shell-command (concat venv-bin-dir pip-install-pylint-command)))
+        (ding)
         (print "Process completed.\nWindow will be closed in 5s."
                current-async-buffer)
         (set-window-point current-async-window (buffer-size current-async-buffer))
