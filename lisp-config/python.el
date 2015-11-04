@@ -1,7 +1,8 @@
 (require 'jinja2-mode)
 
 ;; Start autopair to complete brackets and quotes
-(add-hook 'python-mode-hook 'autopair-mode)
+;(add-hook 'python-mode-hook 'autopair-mode)
+
 ;; Python hook to Highlight TODO, FIXME, ...
 (add-hook 'python-mode-hook 'turn-on-fic-mode)
 
