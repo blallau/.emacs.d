@@ -38,6 +38,7 @@
     )
   )
 
+;; TODO: correct to be PYTHON independant
 (defun my-toggle-src-test ()
   (interactive)
   (if (not (projectile-test-file-p (buffer-file-name)))
