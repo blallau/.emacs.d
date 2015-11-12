@@ -14,6 +14,7 @@
 (depends-on "epl")
 ;(depends-on "f")
 (depends-on "fic-mode")
+(depends-on "fill-column-indicator")
 (depends-on "flycheck")
 ;(depends-on "flymake-coffee")
 ;(depends-on "flymake-easy")

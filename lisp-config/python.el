@@ -11,6 +11,16 @@
 
 (add-to-list 'auto-mode-alist '("\\.j2\\'" . jinja2-mode))
 
+(require 'fill-column-indicator)
+(setq fci-rule-column 79)
+(setq fci-rule-color "DeepSkyBlue4")
+(setq fci-rule-use-dashes t)
+(setq fci-dash-pattern 0.4)
+
+(add-hook 'python-mode-hook 'fci-mode)
+
+;(add-hook 'python-mode-hook 'whitespace-mode)
+
 ;; Hook up flymake to use the PEP8 style
 ;(add-hook 'python-mode-hook
 ;        (lambda ()
