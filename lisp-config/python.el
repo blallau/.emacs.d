@@ -13,9 +13,10 @@
 
 (require 'fill-column-indicator)
 (setq fci-rule-column 79)
-(setq fci-rule-color "DeepSkyBlue4")
+;(setq fci-rule-color "DeepSkyBlue4")
+(setq fci-rule-color "dim gray")
 (setq fci-rule-use-dashes t)
-(setq fci-dash-pattern 0.4)
+(setq fci-dash-pattern 0.3)
 
 (add-hook 'python-mode-hook 'fci-mode)
 
