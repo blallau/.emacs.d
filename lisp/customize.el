@@ -1,6 +1,8 @@
 ;; disable PAGER mode for projectile-git-grep
 (setenv "GIT_PAGER" "/bin/cat")
 
+;; Save for Future Sessions
+;; File used for storing customization information.
 (setq custom-file load-file-name)
 
 ;; Emacs Configure
