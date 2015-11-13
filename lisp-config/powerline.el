@@ -6,3 +6,4 @@
 (setq sml/theme 'light)
 ;;(setq sml/theme 'dark)
 (sml/setup)
+(setq sml/no-confirm-load-theme t)
