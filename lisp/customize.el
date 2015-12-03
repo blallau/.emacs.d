@@ -3,7 +3,8 @@
 
 ;; Save for Future Sessions
 ;; File used for storing customization information.
-(setq custom-file load-file-name)
+(setq custom-file "~/.emacs.d/lisp/custom.el")
+(load custom-file 'noerror)
 
 ;; Emacs Configure
 (setq c-basic-offset 4)
