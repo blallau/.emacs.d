@@ -61,30 +61,6 @@
 ;; activate the advice
 (ad-activate 'previous-buffer)
 
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(expand-region-guess-python-mode nil)
- '(expand-region-preferred-python-mode (quote python))
- '(magit-diff-use-overlays nil)
- '(magit-log-arguments
-   (quote
-    ("--graph" "--color" "--decorate" "++header" "--no-merges" "-n256")))
-; '(magit-log-section-arguments (quote ("--decorate")))
-; '(magit-log-select-arguments (quote ("-n256" "--decorate")))
- '(magit-use-overlays nil)
- '(python-indent-guess-indent-offset nil)
- '(sp-autoescape-string-quote nil))
-
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(default ((t (:family "Ubuntu Mono" :foundry "unknown" :slant normal :weight normal :height 113 :width normal)))))
-
 ;;;;;;;;;;;;
 ;; ShortCuts
 ;;;;;;;;;;;;
@@ -92,8 +68,9 @@
 ;;(global-set-key "\M-\"" 'indent-for-comment)
 (global-set-key "\M-\"" 'comment-dwim)
 (global-set-key (kbd "C-x k") 'kill-this-buffer)
-;; passer d'une fenetre du meme cadre a l'autre.
-(global-set-key [(control tab)] 'other-window)
+
+;; Easier Window Switching using meta key
+(windmove-default-keybindings 'meta)
 
 ;; http://www.emacswiki.org/emacs/FullScreen
 (defun ome-toggle-fullscreen ()
