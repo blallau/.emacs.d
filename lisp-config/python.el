@@ -10,6 +10,7 @@
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 (add-to-list 'auto-mode-alist '("\\.j2\\'" . jinja2-mode))
+(add-to-list 'auto-mode-alist '("\\.template$" . jinja2-mode))
 
 (require 'fill-column-indicator)
 (setq fci-rule-column 79)
