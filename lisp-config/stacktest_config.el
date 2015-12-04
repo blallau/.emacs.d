@@ -6,6 +6,7 @@
 (add-hook 'python-mode-hook
           (lambda ()
             (local-set-key (kbd "<f10>") 'stacktest-one)
-            (local-set-key (kbd "C-<f10>") 'stacktest-module)
-;;            (local-set-key (kbd "<f11>") 'stacktest-again)
-        ))
+            (local-set-key (kbd "<f10>") 'stacktest-pdb-one)
+            (local-set-key (kbd "C-S-<f10>") 'stacktest-module)
+            )
+          )
