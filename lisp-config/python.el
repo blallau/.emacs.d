@@ -27,7 +27,14 @@
   (insert "import ipdb; ipdb.set_trace()")
   (highlight-lines-matching-regexp "^[ ]*import ipdb; ipdb.set_trace()"))
 
-(define-key python-mode-map (kbd "C-c C-t") 'python-add-breakpoint)
+(add-hook 'python-mode-hook
+          (lambda ()
+            (local-set-key (kbd "<f10>") 'stacktest-one)
+            (local-set-key (kbd "<f10>") 'stacktest-pdb-one)
+            (local-set-key (kbd "C-S-<f10>") 'stacktest-module)
+            (local-set-key (kbd "C-c C-t") 'python-add-breakpoint)
+            )
+          )
 
 ;; column witdh indicator
 (require 'fill-column-indicator)
