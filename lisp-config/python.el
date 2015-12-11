@@ -1,7 +1,7 @@
 (require 'jinja2-mode)
 
-;; Start autopair to complete brackets and quotes
-;(add-hook 'python-mode-hook 'autopair-mode)
+(add-to-list 'auto-mode-alist '("\\.j2\\'" . jinja2-mode))
+(add-to-list 'auto-mode-alist '("\\.template$" . jinja2-mode))
 
 ;; Python hook to Highlight TODO, FIXME, ...
 (add-hook 'python-mode-hook 'turn-on-fic-mode)
@@ -9,9 +9,27 @@
 ;; Delete trailing whitespace when saving (compliance with PEP8)
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
-(add-to-list 'auto-mode-alist '("\\.j2\\'" . jinja2-mode))
-(add-to-list 'auto-mode-alist '("\\.template$" . jinja2-mode))
+;;----------------------------------------------------------------------------
+;; ipdb
+;; Highlight ipdb lines:
+(defun annotate-pdb ()
+  (interactive)
+  (highlight-lines-matching-regexp "import pdb")
+  (highlight-lines-matching-regexp "pdb.set_trace()"))
 
+(add-hook 'python-mode-hook 'annotate-pdb)
+
+;;----------
+;; Keybinding to add breakpoint:
+(defun python-add-breakpoint ()
+  (interactive)
+  (newline-and-indent)
+  (insert "import ipdb; ipdb.set_trace()")
+  (highlight-lines-matching-regexp "^[ ]*import ipdb; ipdb.set_trace()"))
+
+(define-key python-mode-map (kbd "C-c C-t") 'python-add-breakpoint)
+
+;; column witdh indicator
 (require 'fill-column-indicator)
 (setq fci-rule-column 79)
 ;(setq fci-rule-color "DeepSkyBlue4")
