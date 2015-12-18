@@ -29,22 +29,19 @@
 
 (add-hook 'python-mode-hook
           (lambda ()
-            (local-set-key (kbd "<f10>") 'stacktest-one)
-            (local-set-key (kbd "<f10>") 'stacktest-pdb-one)
-            (local-set-key (kbd "C-S-<f10>") 'stacktest-module)
             (local-set-key (kbd "C-c C-t") 'python-add-breakpoint)
             )
           )
 
-;; column witdh indicator
-(require 'fill-column-indicator)
-(setq fci-rule-column 79)
-;(setq fci-rule-color "DeepSkyBlue4")
-(setq fci-rule-color "dim gray")
-(setq fci-rule-use-dashes t)
-(setq fci-dash-pattern 0.3)
+;; ;; column witdh indicator
+;; (require 'fill-column-indicator)
+;; (setq fci-rule-column 79)
+;; ;(setq fci-rule-color "DeepSkyBlue4")
+;; (setq fci-rule-color "dim gray")
+;; (setq fci-rule-use-dashes t)
+;; (setq fci-dash-pattern 0.3)
 
-(add-hook 'python-mode-hook 'fci-mode)
+;; (add-hook 'python-mode-hook 'fci-mode)
 
 ;(add-hook 'python-mode-hook 'whitespace-mode)
 
