@@ -28,6 +28,7 @@
 (depends-on "helm-projectile")
 ;(depends-on "helm-projectile-all")
 (depends-on "helm-swoop")
+(depends-on "iedit")
 (depends-on "jedi")
 (depends-on "jinja2-mode")
 (depends-on "magit")
