@@ -3,22 +3,14 @@
 
 (when (require 'elpy nil t)
   (elpy-enable))
+(when (executable-find "ipython")
+  (elpy-use-ipython))
 
 (setq elpy-rpc-backend "jedi")
 (setq elpy-rpc-timeout 1)
 
-(when (executable-find "ipython")
-  (elpy-use-ipython))
-
-;; (when (el-get-package-installed-p 'flycheck)
-;;   (setq elpy-default-minor-modes
-;;         (remove 'flymake-mode
-;;                 elpy-default-minor-modes)))
-
 (define-key python-mode-map (kbd "RET")
   'newline-and-indent)
-
-; elpy-project-ignored-directories
 
 (add-hook 'elpy-mode-hook
           (lambda ()
