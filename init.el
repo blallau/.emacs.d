@@ -16,9 +16,19 @@
 (byte-recompile-directory "~/.emacs.d/lisp" 0)
 (byte-recompile-directory "~/.emacs.d/lisp-config" 0)
 
+;; load proxy conf
 (load-library "proxy")
-(load-library "pre-cask")
-(load-library "customize")
+
+;; customize init
+(load-library "customize-init")
+
+;; customize
+(load-library "customize-appearance")
+(load-library "customize-edition")
+(load-library "customize-navigation")
+(load-library "customize-others")
+(load-library "customize-refresh")
+(load-library "customize-shortcuts")
 
 ;; Init All Plugin with Cask & Pallet
 ;(cask-initialize)

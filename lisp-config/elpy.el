@@ -1,16 +1,13 @@
 ;; disable elpy-module-highlight-indentation
 (remove-hook 'elpy-modules 'elpy-module-highlight-indentation)
 
-(when (require 'elpy nil t)
-  (elpy-enable))
-(when (executable-find "ipython")
-  (elpy-use-ipython))
+;; (when (require 'elpy nil t)
+;;   (elpy-enable))
+;; (when (executable-find "ipython")
+;;   (elpy-use-ipython))
 
 (setq elpy-rpc-backend "jedi")
 (setq elpy-rpc-timeout 1)
-
-(define-key python-mode-map (kbd "RET")
-  'newline-and-indent)
 
 (add-hook 'elpy-mode-hook
           (lambda ()
