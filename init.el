@@ -9,6 +9,7 @@
   (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
   )
 
+;; packages installed via package.el (Cask) MUST be initalized before tweaking them
 (package-initialize)
 
 ;; Recompile .emacs.d/lisp & .emacs.d/lisp-config
