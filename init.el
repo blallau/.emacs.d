@@ -11,7 +11,7 @@
 
 ;; Recompile .emacs.d/lisp & .emacs.d/lisp-config
 (byte-recompile-directory "~/.emacs.d/lisp" 0)
-(byte-recompile-directory "~/.emacs.d/lisp-config" 0)
+(byte-recompile-directory "~/.emacs.d/package-config" 0)
 
 ;; load proxy conf
 (load-library "proxy")
@@ -27,4 +27,4 @@
 (load-library "customize-shortcuts")
 
 ;; Load all files with *.elc in lisp-config
-(mapc 'load-library (directory-files (expand-file-name "lisp-config" user-emacs-directory) t ".elc$"))
+(mapc 'load-library (directory-files (expand-file-name "package-config" user-emacs-directory) t ".elc$"))
