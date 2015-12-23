@@ -5,13 +5,13 @@ Emacs 24.5 Configuration (using Cask)
 # Description
 
 Configure emacs for:
- * Cask & Pallet
- * Markdown
- * Python & Python environment auto
  * Ansible
- * ERC
- * LISP
+ * Cask
  * GIT
+ * IRC
+ * LISP
+ * Markdown
+ * Python
  * ...
 
 # Usage
@@ -26,6 +26,9 @@ Configure emacs for:
 
     git clone https://github.com/blallau/.emacs.d ~/.emacs.d/
     cd ~/.emacs.d/; cask install
+
+## Launch Emacs
+
     emacs
 
 # Language Configuration
@@ -38,13 +41,6 @@ Configure emacs for:
 # Proxy
 
  * Launch Cask with a proxy (cask can't handle proxy user:password)
-
-
-# Links
-
-Inspired by:
-
- * https://github.com/gerchardon/emacs-config
 
 # License
 
