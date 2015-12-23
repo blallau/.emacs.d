@@ -1,7 +1,6 @@
 ;;;;;;;;;;
 ;; GUI
 ;;;;;;;;;;
-
 ;; disable gui crap
 (if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 ;; hide menu and tool bar
@@ -28,7 +27,6 @@
 ;;;;;;;;;;;
 ;; Fringe
 ;;;;;;;;;;;
-
 ;; specify the fringe width for windows
 ;; this sets both the left and right fringes
 (require 'fringe)
@@ -41,14 +39,6 @@
 ;;;;;;;;;;;
 ;; theme
 ;;;;;;;;;;;
-
-(setq sml/no-confirm-load-theme t)
-;;(setq sml/theme 'respectful)
-(setq sml/theme 'light)
-;;(setq sml/theme 'dark)
-(sml/setup)
-(setq sml/no-confirm-load-theme t)
-
 ; color theme
 (require 'moe-theme)
 (moe-dark)
@@ -56,7 +46,6 @@
 ;;;;;;;;;;
 ;; Others
 ;;;;;;;;;;
-
 ;; Don't break out a separate frame for ediff
 (setq ediff-window-setup-function 'ediff-setup-windows-plain)
 
