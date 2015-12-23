@@ -96,6 +96,26 @@
     (projectile-grep)
 ))
 
+;; customize grep-find command
+;;(setq grep-find-command "find . -type f '!' -wholename '*/.git/*' -print0 | xargs -0 -e grep -nH -e ")
+(defun helm-projectile-grep-ori ()
+  "helm projectile without git"
+  ()
+  (
+   (setq projectile-use-git-grep nil)
+   (eval-after-load 'grep
+  '(progn
+     (add-to-list 'grep-find-ignored-directories ".git")
+     (add-to-list 'grep-find-ignored-directories ".tox")
+     (add-to-list 'grep-find-ignored-directories "locale")
+     (add-to-list 'grep-find-ignored-directories "tests")))
+   )
+  'helm-projectile-grep
+  )
+
+;(setq grep-find-command "find . -type f '!' -wholename '*/.tox/*' -a '!' -wholename '*/.git/*' -a '!' -wholename '*/.eggs/*' -a '!' -wholename '*/tests/*' -print0 | xargs -0 -e grep -nH -e ")
+(global-set-key (kbd "C-<f4>") 'helm-projectile-grep-ori)
+
 (global-set-key (kbd "<f4>") 'projectile-grep)
 (global-set-key (kbd "C-<f4>") 'projectile-grep-without-git)
 (global-set-key (kbd "C-S-<f4>") 'grep-find)

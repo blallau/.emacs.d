@@ -1,5 +1,13 @@
+;; Save for Future Sessions
+;; File used for storing customization information.
+(setq custom-file "~/.emacs.d/lisp/custom.el")
+(load custom-file 'noerror)
+
 ;;default to home directory
 (setq default-directory "~/")
+
+;; disable PAGER mode for projectile-git-grep
+(setenv "GIT_PAGER" "/bin/cat")
 
 ; prevent tramp from messing up recentf
 (require 'recentf)
@@ -22,3 +30,12 @@
 
 ;; disable .#foo style symlinks
 (setq create-lockfiles nil)
+
+;; disable ~ files
+(setq make-backup-files nil)
+
+;; To be removed ???
+(setq c-basic-offset 4)
+(setq tab-width 4)
+(setq indent-tabs-mode nil)
+(setq-default indent-tabs-mode nil)
