@@ -1,6 +1,7 @@
-(source "marmalade" "https://marmalade-repo.org/packages/")
-(source gnu)
-(source melpa)
+(source "melpa" "http://melpa.milkbox.net/packages/")
+(source "gnu" "http://elpa.gnu.org/packages/")
+(source "marmalade" "http://marmalade-repo.org/packages/")
+(source "elpy"  "http://jorgenschaefer.github.io/packages/")
 
 (depends-on "ac-helm")
 (depends-on "ansible")
@@ -10,6 +11,7 @@
 (depends-on "autopair")
 (depends-on "cask")
 (depends-on "elisp-slime-nav")
+(depends-on "elpy")
 (depends-on "epc")
 (depends-on "epl")
 ;(depends-on "f")
