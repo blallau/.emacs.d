@@ -9,6 +9,7 @@
 (depends-on "auto-complete")
 ;(depends-on "auto-yasnippet")
 (depends-on "autopair")
+(depends-on "benchmark-init")
 (depends-on "cask")
 (depends-on "elisp-slime-nav")
 (depends-on "elpy")

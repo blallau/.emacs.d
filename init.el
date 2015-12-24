@@ -9,6 +9,8 @@
 ;; packages installed via package.el (Cask) MUST be initalized before tweaking them
 (package-initialize)
 
+(require 'benchmark-init)
+
 ;; Recompile .emacs.d/lisp & .emacs.d/lisp-config
 (byte-recompile-directory "~/.emacs.d/lisp" 0)
 (byte-recompile-directory "~/.emacs.d/package-config" 0)
