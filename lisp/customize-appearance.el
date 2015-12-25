@@ -21,6 +21,7 @@
   (set-frame-parameter
    nil 'fullscreen
    (when (not (frame-parameter nil 'fullscreen)) 'fullboth)))
+(ome-toggle-fullscreen)
 
 (global-set-key (kbd "<f11>") 'ome-toggle-fullscreen)
 
