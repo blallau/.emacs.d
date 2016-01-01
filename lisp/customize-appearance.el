@@ -63,6 +63,7 @@
 ;;;;;;;;;;;;;;;;
 ;; Zoom in/out
 ;;;;;;;;;;;;;;;;
+(require 'face-remap)
 (define-globalized-minor-mode
   global-text-scale-mode
   text-scale-mode
@@ -93,6 +94,7 @@
 ;; Others
 ;;;;;;;;;;
 ;; Don't break out a separate frame for ediff
+(require 'ediff)
 (setq ediff-window-setup-function 'ediff-setup-windows-plain)
 
 (defalias 'yes-or-no-p 'y-or-n-p)
