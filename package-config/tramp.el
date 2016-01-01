@@ -1,2 +1,2 @@
-(setq tramp-debug-buffer t)
+(require 'tramp)
 (setq tramp-default-method "ssh")

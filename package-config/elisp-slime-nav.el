@@ -33,6 +33,4 @@
           (lambda ()
             (local-set-key (kbd "<f3>") 'elisp-slime-nav-find-elisp-thing-at-point)
             (local-set-key (kbd "<f2>") 'pop-tag-mark)
-            (local-set-key (kbd "<f1>") 'describe-foo-at-point)
-            )
-          )
+            (local-set-key (kbd "<f1>") 'describe-foo-at-point)))

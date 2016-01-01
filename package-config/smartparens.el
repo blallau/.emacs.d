@@ -1,4 +1,5 @@
 ;; Highlight matching parenthesis (useful when coding)
+(require 'paren)
 (show-paren-mode t)
 (setq blink-matching-paren t)
 (setq blink-matching-paren-on-screen t)

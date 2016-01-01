@@ -1,4 +1,3 @@
-;;
 (require 'stacktest)
 
 ;; optionally enable for all python files
