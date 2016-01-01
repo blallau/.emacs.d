@@ -35,3 +35,8 @@
           (make-directory parent-directory t))))
 
 (add-to-list 'find-file-not-found-functions #'my-create-non-existent-directory)
+
+;; Save last location in a file
+(require 'saveplace)
+(setq-default save-place t)
+(setq save-place-file (expand-file-name ".places" user-emacs-directory))

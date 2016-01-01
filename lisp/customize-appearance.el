@@ -1,11 +1,17 @@
 ;;;;;;;;;;
 ;; GUI
 ;;;;;;;;;;
+
+(setq frame-title-format
+      '("" invocation-name ": "(:eval (if (buffer-file-name)
+                (abbreviate-file-name (buffer-file-name))
+		"%b"))))
+
 ;; disable gui crap
-(if (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
+(when (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 ;; hide menu and tool bar
-(if (fboundp 'menu-bar-mode) (menu-bar-mode -1))
-(if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
+(when (fboundp 'menu-bar-mode) (menu-bar-mode -1))
+(when (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 ;; disable help popup in modeline
 (setq show-help-function nil)
 ;; disable splash screen
