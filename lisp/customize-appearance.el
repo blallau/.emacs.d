@@ -13,6 +13,29 @@
 ;; disable startup message
 (setq inhibit-startup-message t)
 
+;;;;;;;;;;;
+;; theme
+;;;;;;;;;;;
+; color theme
+(require 'moe-theme)
+(moe-dark)
+(setq moe-theme-mode-line-color 'blue)
+
+;; define theme
+(deftheme my-theme
+  "My theme")
+
+;; Set faces
+(custom-theme-set-faces
+ 'my-theme ;; you must use the same theme name here...
+ '(default ((t (:family "Ubuntu Mono" :foundry "unknown" :slant normal :weight normal :height 113 :width normal))))
+; '(cursor  ((t (:background ,color-4))))
+; '(fringe  ((t (:background ,color-3))))
+       ;;; etc...
+       ;;; don't use these settings of course,
+       ;;; they're horrible.
+ )
+(provide-theme 'my-theme)
 
 ;; http://www.emacswiki.org/emacs/FullScreen
 (defun ome-toggle-fullscreen ()
@@ -36,13 +59,6 @@
 ;;(fringe-mode '(4 . 0))
 
 (column-number-mode 't)
-
-;;;;;;;;;;;
-;; theme
-;;;;;;;;;;;
-; color theme
-(require 'moe-theme)
-(moe-dark)
 
 ;;;;;;;;;;;;;;;;
 ;; Zoom in/out
