@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: python
+# --
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+# Bertrand Lallau <`(yas--magit-email-or-default)`>
+
+$0

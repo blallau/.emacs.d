@@ -42,4 +42,4 @@
 (depends-on "undo-tree")
 (depends-on "which-key")
 (depends-on "yaml-mode")
-;(depends-on "yasnippet")
+(depends-on "yasnippet")

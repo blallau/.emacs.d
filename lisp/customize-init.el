@@ -6,6 +6,8 @@
 ;;default to home directory
 (setq default-directory "~/")
 
+(setq user-mail-address "bertrand.lallau@gmail.com")
+
 ;; disable PAGER mode for projectile-git-grep
 (setenv "GIT_PAGER" "/bin/cat")
 
