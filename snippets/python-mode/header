@@ -2,7 +2,7 @@
 # name: header
 # --
 # -*- coding: utf-8 -*-
-# Author: Bertrand Lallau <`(yas--magit-email-or-default)`>
+# Author: `(yas--magit-user-name)` <`(yas--magit-email-or-default)`>
 #
 # Licensed under the Apache License, Version 2.0 (the "License"); you may
 # not use this file except in compliance with the License. You may obtain
