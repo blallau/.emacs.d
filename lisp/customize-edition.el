@@ -43,3 +43,6 @@
            end do (setf previous (car stop))))
 
 (global-set-key (kbd "<C-f11>") 'my/transpose-args)
+
+(require 're-builder)
+(setq reb-re-syntax 'string)
