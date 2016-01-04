@@ -28,7 +28,7 @@
           (project-name (projectile-project-name))
           (case-fold-search t))
       (cond
-       ((string-match "[[:alpha:]]+-Bug:[[:space:]]*#\\([[:digit:]]+\\)" identifiant)
+       ((string-match "[[:alpha:]]+-Bug:[[:space:]]*#?\\([[:digit:]]+\\)" identifiant)
         (browse-url (concat launchpad-url project-name "/+bug/" (match-string 1 identifiant)))
         )
        ((string-match "Change-Id: \\([[:alnum:]]+\\)" identifiant)
