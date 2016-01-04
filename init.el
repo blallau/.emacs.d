@@ -6,6 +6,11 @@
   (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
   )
 
+;; Keeps ~Cask~ file in sync with packages
+;; install/uninstall via ~M-x list-packages~
+(require 'pallet)
+(pallet-mode t)
+
 ;; packages installed via package.el (Cask) MUST be initalized before tweaking them
 (package-initialize)
 

@@ -34,6 +34,7 @@
 (depends-on "markdown-mode+")
 (depends-on "markdown-toc")
 (depends-on "moe-theme")
+(depends-on "pallet")
 (depends-on "pip-requirements")
 (depends-on "pkg-info")
 (depends-on "popup")
