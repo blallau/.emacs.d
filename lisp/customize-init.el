@@ -1,3 +1,7 @@
+;; allow functions to be redefined with defadvice
+;; ex: ad-handle-definition: `tramp-read-passwd' got redefined
+(setq ad-redefinition-action 'accept)
+
 ;; Save for Future Sessions
 ;; File used for storing customization information.
 (setq custom-file "~/.emacs.d/lisp/custom.el")
