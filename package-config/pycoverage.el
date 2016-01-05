@@ -1,6 +1,5 @@
-(eval-when-compile
-  (require 'linum)
-  (require 'pycoverage))
+(require 'linum)
+(require 'pycoverage)
 
 (defun my-coverage ()
   (interactive)
