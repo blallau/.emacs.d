@@ -1,4 +1,5 @@
-(require 'git-gutter)
+(eval-when-compile
+  (require 'git-gutter))
 
 (custom-set-variables
  '(git-gutter:handled-backends '(git)))

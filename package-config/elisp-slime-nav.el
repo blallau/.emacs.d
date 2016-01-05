@@ -1,6 +1,8 @@
-(require 'elisp-slime-nav)
+(eval-when-compile
+  (require 'elisp-slime-nav))
+
 (dolist (hook '(emacs-lisp-mode-hook ielm-mode-hook))
-(add-hook hook 'elisp-slime-nav-mode))
+  (add-hook hook 'elisp-slime-nav-mode))
 
 ;; describe this point lisp only
 (defun describe-foo-at-point ()

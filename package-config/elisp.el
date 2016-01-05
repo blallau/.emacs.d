@@ -9,5 +9,4 @@
 
 (add-hook 'emacs-lisp-mode-hook
           (lambda ()
-            (local-set-key (kbd "<f1>") 'describe-function)
-        ))
+            (local-set-key (kbd "<f1>") 'describe-function)))

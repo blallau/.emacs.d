@@ -1,1 +1,2 @@
-(require 'iedit)
+(eval-when-compile
+  (require 'iedit))

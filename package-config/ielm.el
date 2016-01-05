@@ -1,4 +1,5 @@
-(require 'ielm)
+(eval-when-compile
+  (require 'ielm))
 (require 'auto-complete)
 
 (defun ielm-auto-complete ()

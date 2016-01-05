@@ -1,4 +1,5 @@
-(require 'jinja2-mode)
+(eval-when-compile
+  (require 'jinja2-mode))
 
 (add-to-list 'auto-mode-alist '("\\.j2\\'" . jinja2-mode))
 (add-to-list 'auto-mode-alist '("\\.template$" . jinja2-mode))

@@ -1,4 +1,5 @@
-(require 'magit)
+(eval-when-compile
+  (require 'magit))
 
 ;; Configure git-commit
 (setq git-commit-summary-max-length 50)

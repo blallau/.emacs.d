@@ -1,4 +1,5 @@
-(require 'git-messenger) ;; You need not to load if you install with package.el
+(require 'git-messenger)
+
 ;(global-set-key (kbd "C-x v p") 'git-messenger:popup-message)
 (global-set-key (kbd "<f5>") 'git-messenger:popup-message)
 

@@ -1,4 +1,5 @@
-(require 'flycheck)
+(eval-when-compile
+  (require 'flycheck))
 
 (setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc))
 
