@@ -6,7 +6,7 @@
 ;; Author: Bertrand LALLAU <bertrand.lallau@gmail.com>
 ;; URL: https://github.com/blallau/emacs-config
 ;; Package-Version:
-;; Package-Requires: ((magit "2.1.0"))
+;; Package-Requires: ((magit "2.1.0") (projectile "0.13.0"))
 ;;
 ;; This program is free software; you can redistribute it and/or
 ;; modify it under the terms of the GNU General Public License as
@@ -97,6 +97,7 @@ automatically kill buffer and window that run the process."
     )
   )
 
+;;;###autoload
 (defun ensure-venv ()
   (interactive)
   (let ((project-root (projectile-project-root))
@@ -140,6 +141,7 @@ automatically kill buffer and window that run the process."
   (jedi:setup)
   )
 
+;;;###autoload
 (defun my-jedi-starter ()
   (interactive)
   (when (and (derived-mode-p 'python-mode) (projectile-project-p))
@@ -194,3 +196,8 @@ automatically kill buffer and window that run the process."
 (add-hook 'python-mode-hook #'my-jedi-starter)
 ;; (add-hook 'python-mode-hook #'set-python-virtualenv-path)
 ;; (add-hook 'python-mode-hook #'flycheck-venv-python-setup)
+
+;;; End padawan.el ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(provide 'padawan)
+;;; padawan.el ends here

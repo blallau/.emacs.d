@@ -19,8 +19,7 @@
 (eval-and-compile
   (require 'cask "~/.cask/cask.el")
   (cask-initialize)
-  (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
-  )
+  (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory)))
 
 ;; Keeps ~Cask~ file in sync with packages
 ;; install/uninstall via ~M-x list-packages~
