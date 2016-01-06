@@ -2,10 +2,13 @@
 ;; ex: ad-handle-definition: `tramp-read-passwd' got redefined
 (setq ad-redefinition-action 'accept)
 
-;; Save for Future Sessions
 ;; File used for storing customization information.
-(setq custom-file "~/.emacs.d/lisp/custom.el")
-(load custom-file 'noerror)
+;;----------------------------------------------------------------------------
+;; Variables configured via the interactive 'customize' interface
+;;----------------------------------------------------------------------------
+(setq custom-file (expand-file-name "lisp/custom.el" user-emacs-directory))
+(when (file-exists-p custom-file)
+  (load custom-file 'noerror))
 
 ;;default to home directory
 (setq default-directory "~/")
@@ -17,8 +20,10 @@
 
 ; prevent tramp from messing up recentf
 (require 'recentf)
-    (setq recentf-auto-cleanup 'never) ;; disable before we start recentf!
+(setq recentf-auto-cleanup 'never) ;; disable before we start recentf!
 (recentf-mode 1)
+(setq recentf-max-saved-items 1000
+      recentf-exclude '("/tmp/" "/ssh:"))
 
 (add-to-list 'auto-mode-alist
              '("\\.emacs\\-[a-z\\-]" . emacs-lisp-mode))

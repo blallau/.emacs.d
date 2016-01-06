@@ -1,4 +1,20 @@
-;; Emacs Config
+;;; This file bootstraps the configuration, which is divided into
+;;; a number of other files.
+
+(let ((minver "24"))
+  (when (version<= emacs-version "24.5")
+    (error "Your Emacs is too old -- this config requires v%s or higher" minver)))
+(when (version<= emacs-version "24.5")
+  (message "Your Emacs is old, and some functionality in this config will be disabled. Please upgrade if possible."))
+
+;;----------------------------------------------------------------------------
+;; Temporarily reduce garbage collection during startup
+;;----------------------------------------------------------------------------
+(defconst sanityinc/initial-gc-cons-threshold gc-cons-threshold
+  "Initial value of `gc-cons-threshold' at start-up time.")
+(setq gc-cons-threshold (* 128 1024 1024))
+(add-hook 'after-init-hook
+          (lambda () (setq gc-cons-threshold sanityinc/initial-gc-cons-threshold)))
 
 (eval-and-compile
   (require 'cask "~/.cask/cask.el")
@@ -35,3 +51,10 @@
 
 ;; Load all files with *.elc in lisp-config
 (mapc 'load-library (directory-files (expand-file-name "package-config" user-emacs-directory) t ".elc$"))
+
+(provide 'init)
+
+;; Local Variables:
+;; coding: utf-8
+;; no-byte-compile: t
+;; End:
