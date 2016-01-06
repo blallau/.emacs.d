@@ -47,6 +47,8 @@
 (load-library "customize-navigation")
 (load-library "customize-refresh")
 (load-library "customize-shortcuts")
+(load-library "stacktest")
+(load-library "magit-review")
 
 ;; Load all files with *.elc in lisp-config
 (mapc 'load-library (directory-files (expand-file-name "package-config" user-emacs-directory) t ".elc$"))

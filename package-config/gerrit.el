@@ -6,7 +6,7 @@
 ;; URL: https://github.com/blallau/gerrit.el
 ;; Version: 0.0.1
 ;; Keywords: tools gerrit git
-;; Package-Requires: ((emacs "25.0") (magit "2.1.0") (projectile "0.13.0"))
+;; Package-Requires: ((emacs "25.0") (magit "2.4.0") (projectile "0.13.0"))
 ;;
 ;;; Commentary:
 
