@@ -58,8 +58,8 @@
   (let ((current-async-buffer (process-buffer process)))
     (let ((current-async-window (get-buffer-window current-async-buffer)))
       (kill-buffer current-async-buffer)
-      (if (not (eq current-async-window nil))
-          (delete-window current-async-window)))))
+      (when (not (eq current-async-window nil))
+	(delete-window current-async-window)))))
 
 (defun async-tox-handler (process event)
   "Handler for window that displays the async process.

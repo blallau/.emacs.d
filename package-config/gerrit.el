@@ -51,15 +51,14 @@
 (defun gerrit-download (review-id)
   (interactive (list (read-string "Review-ID: ")))
   (let* ((project (projectile-project-name))
-	 (local-directory (projectile-project-root))
-         (default-directory local-directory))
+         (default-directory (projectile-project-root)))
     (magit-with-toplevel
       (setq gerrit-project-cwd default-directory)
       (unless (gerrit-check-if-repo-modified)
         (error "%s has changes, not processing" project))
-      (let ((proc (concat "git-review" review-id)))
+      (let ((proc (concat "git-review[" review-id "]")))
         (message "Starting git-review...")
-        (start-process proc "*git review*" gerrit-review-program "-v" "-d" review-id)
+        (start-process proc "*git review*" gerrit-review-program "-d" review-id)
         (set-process-sentinel
          (get-process proc)
          #'(lambda (process event)
@@ -67,8 +66,7 @@
                (message event)
                (if (string= event "finished\n")
                    (magit-show-commit "HEAD")
-                 nil nil t)
-               (error "Error while downloading review, check *git review* buffer."))))))))
+		 (error "Error while downloading review, check *git review* buffer.")))))))))
 
 ;;; End gerrit.el ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
