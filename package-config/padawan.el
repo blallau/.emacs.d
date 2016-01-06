@@ -114,8 +114,7 @@ automatically kill buffer and window that run the process."
             (set-process-sentinel (get-buffer-process tox-output-buffer)
                                   'async-tox-handler)
             ;; switch the the previous window
-            (select-window async-window-before)
-            ))
+            (select-window async-window-before)))
         (puthash project-name "no-venv" padawan-not-jedi-projects-cache)))))
 
 (defun start-jedi-with-venv ()
