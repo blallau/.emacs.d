@@ -51,9 +51,7 @@
   (let ((async-window-height (- (window-total-height (frame-root-window)) 10)))
     (let ((async-window (split-window (frame-root-window) async-window-height 'below)))
       (select-window async-window)
-      (set-window-parameter async-window 'no-other-window t)
-      )
-    ))
+      (set-window-parameter async-window 'no-other-window t))))
 
 (defun kill-async-window (process)
   "Kill async buffer && kill async window"
@@ -61,11 +59,7 @@
     (let ((current-async-window (get-buffer-window current-async-buffer)))
       (kill-buffer current-async-buffer)
       (if (not (eq current-async-window nil))
-          (delete-window current-async-window)
-        )
-      )
-    )
-  )
+          (delete-window current-async-window)))))
 
 (defun async-tox-handler (process event)
   "Handler for window that displays the async process.
@@ -79,23 +73,17 @@ automatically kill buffer and window that run the process."
     ;; get the current async buffer and window
     (let ((current-async-buffer (process-buffer process)))
       (let ((current-async-window (get-buffer-window current-async-buffer))
-            (project-root (projectile-project-root))
-            )
+            (project-root (projectile-project-root)))
         ;; INSTALL emacs-jedi in VirtualEnv (synchro)
         (let ((default-directory project-root))
           (shell-command (concat venv-bin-dir pip-install-jedi-command)))
         (let ((default-directory project-root))
           (shell-command (concat venv-bin-dir pip-install-pylint-command)))
         (ding)
-        (print "Process completed.\nWindow will be closed in 5s."
-               current-async-buffer)
+        (print "Process completed.\nWindow will be closed in 5s." current-async-buffer)
         (set-window-point current-async-window (buffer-size current-async-buffer))
         ;; kill the buffer and window after 5 seconds
-        (run-at-time "5 sec" nil 'kill-async-window process)
-        )
-      )
-    )
-  )
+        (run-at-time "5 sec" nil 'kill-async-window process)))))
 
 ;;;###autoload
 (defun ensure-venv ()
@@ -127,19 +115,13 @@ automatically kill buffer and window that run the process."
                                   'async-tox-handler)
             ;; switch the the previous window
             (select-window async-window-before)
-            )
-          )
-        (puthash project-name "no-venv" padawan-not-jedi-projects-cache)
-        )
-      )
-    )
-  )
+            ))
+        (puthash project-name "no-venv" padawan-not-jedi-projects-cache)))))
 
 (defun start-jedi-with-venv ()
   (set (make-local-variable 'jedi:server-args)
        (list "--virtual-env" (concat (projectile-project-root) ".tox/" python-version)))
-  (jedi:setup)
-  )
+  (jedi:setup))
 
 ;;;###autoload
 (defun my-jedi-starter ()
@@ -158,18 +140,14 @@ automatically kill buffer and window that run the process."
     ;;     )
     ;;   )
 
-    )
-  )
+    ))
 
 (defun set-python-virtualenv-path ()
   "Set `python-shell-virtualenv-path' to the virtualenv directory."
   (when (and (derived-mode-p 'python-mode) (projectile-project-p))
     (let ((virtualenv-path (file-truename (concat (projectile-project-root) venv-dir))))
       (when (file-directory-p virtualenv-path)
-        (setq python-shell-virtualenv-path virtualenv-path))
-      )
-    )
-  )
+        (setq python-shell-virtualenv-path virtualenv-path)))))
 
 (defun flycheck-python-set-executables ()
   "Set flycheck python executables for the current virtualenv."
@@ -180,14 +158,12 @@ automatically kill buffer and window that run the process."
 ;;    (print (format "flake8=%s" (executable-find "flake8")))
     (setq-local flycheck-python-pylint-executable (executable-find "pylint"))
 ;;    (setq-local flycheck-python-flake8-executable (executable-find "flake8"))
-    )
-  )
+    ))
 
 (defun flycheck-venv-python-setup ()
   "Setup flycheck for Python with virtualenvs. "
   ;; flycheck-python-set-executables uses buffer-local variables
-  (add-hook 'hack-local-variables-hook #'flycheck-python-set-executables nil 'local)
-  )
+  (add-hook 'hack-local-variables-hook #'flycheck-python-set-executables nil 'local))
 
 (add-hook 'projectile-switch-project-hook #'my-jedi-starter)
 ;; (add-hook 'projectile-switch-project-hook #'set-python-virtualenv-path)
