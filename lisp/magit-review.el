@@ -6,7 +6,7 @@
 ;; URL: https://github.com/blallau/magit-review
 ;; Version: 0.0.1
 ;; Keywords: tools gerrit git
-;; Package-Requires: ((emacs "25.0") (magit "2.4.0") (projectile "0.13.0"))
+;; Package-Requires: ((emacs "25.0") (magit "2.4.0"))
 ;;
 ;; This program is free software; you can redistribute it and/or
 ;; modify it under the terms of the GNU General Public License as
@@ -54,7 +54,6 @@
 ;;; Code:
 
 (require 'magit)
-(require 'projectile)
 
 (if (locate-library "magit-popup")
     (require 'magit-popup))
@@ -88,8 +87,8 @@
 ;;    (message (format "Using cmd:%s" gcmd))
     gcmd))
 
-(defun gerrit-query (prj &optional status)
-  (gerrit-command "-l" ))
+(defun gerrit-query ()
+  (gerrit-command "-v -l" ))
 
 (defun gerrit-ssh-cmd (cmd &rest args)
   (apply #'call-process
@@ -106,9 +105,6 @@
 
 (defun magit-review-get-remote-url ()
   (magit-git-string "ls-remote" "--get-url" magit-review-remote))
-
-(defun magit-review-get-project ()
-  (projectile-project-name))
 
 (defun magit-review-string-trunc (str maxlen)
   (if (> (length str) maxlen)
@@ -127,48 +123,51 @@ Succeed even if branch already exist
 	 (magit-save-repository-buffers)
 	 (magit-run-git "checkout" "-B" branch parent))))
 
-(defun magit-review-pretty-print-review (num subj owner-name &optional draft)
+(defun magit-review-pretty-print-review (num subj branch topic &optional ins_num del_num)
   ;; window-width - two prevents long line arrow from being shown
   (let* ((wid (- (window-width) 2))
 	 (numstr (propertize (format "%-10s" num) 'face 'magit-hash))
 	 (nlen (length numstr))
-	 (authmaxlen (/ wid 4))
-
-	 (author (propertize (magit-review-string-trunc owner-name authmaxlen)
-			     'face 'magit-log-author))
-
-	 (subjmaxlen (- wid (length author) nlen 6))
-
+	 (subjmaxlen (- wid nlen 6))
 	 (subjstr (propertize (magit-review-string-trunc subj subjmaxlen)
 			      'face
-			      (if draft
-				  'magit-signature-bad
-				'magit-signature-good)))
-	 (authsubjpadding (make-string
-			   (max 0 (- wid (+ nlen 1 (length author) (length subjstr))))
-			   ? )))
-    (format "%s%s%s%s\n"
-	    numstr subjstr authsubjpadding author)))
+			      'magit-signature-good))
+	 )
+    (format "%s%s\n" numstr subjstr)))
 
 (defun magit-review-wash-review ()
-  (let* ((beg (point))
-	 (jobj (json-read))
-	 (end (point))
-	 (num (cdr-safe (assoc 'number jobj)))
-	 (subj (cdr-safe (assoc 'subject jobj)))
-	 (owner (cdr-safe (assoc 'owner jobj)))
-	 (owner-name (cdr-safe (assoc 'name owner)))
-	 (owner-email (cdr-safe (assoc 'email owner))))
-    (if (and beg end)
-	(delete-region beg end))
-    (when (and num subj owner-name)
-      (magit-insert-section (section subj)
-	(insert (propertize
-		 (magit-review-pretty-print-review num subj owner-name isdraft)
-		 'magit-review-jobj
-		 jobj))
-	(add-text-properties beg (point) (list 'magit-review-jobj jobj)))
-      t)))
+  (progn
+    (let ((beg (point)))
+      (search-forward-regexp "^\\[$")
+      (forward-line)
+      (delete-region beg (point-at-bol))
+      )
+    (search-forward-regexp "^\\]$")
+    (delete-region (point-at-bol) (point-max))
+    (goto-char (point-min))
+
+    (let* ((beg (point))
+	   (jobj (json-read))
+	   (end (point))
+	   (branch (cdr-safe (assoc 'branch jobj)))
+	   (topic (cdr-safe (assoc 'topic jobj)))
+	   (change_id (cdr-safe (assoc 'change_id jobj)))
+	   (subj (cdr-safe (assoc 'subject jobj)))
+	   (merg (cdr-safe (assoc 'mergeable jobj)))
+	   (ins_numb (cdr-safe (assoc 'insertions jobj)))
+	   (del_numb (cdr-safe (assoc 'deletions jobj)))
+	   (num (cdr-safe (assoc '_number jobj)))
+	   )
+      (if (and beg end)
+	  (delete-region beg end))
+      (when (and num subj)
+	(magit-insert-section (section subj)
+	  (insert (propertize
+		   (magit-review-pretty-print-review num subj branch topic)
+		   'magit-review-jobj
+		   jobj))
+	  (add-text-properties beg (point) (list 'magit-review-jobj jobj)))
+	t))))
 
 (defun magit-review-wash-reviews (&rest args)
   (magit-wash-sequence #'magit-review-wash-review))
@@ -197,7 +196,7 @@ Succeed even if branch already exist
 (defun magit-insert-gerrit-reviews ()
   (magit-review-section 'gerrit-reviews
 			"Reviews:" 'magit-review-wash-reviews
-			(gerrit-query (magit-review-get-project))))
+			(gerrit-query)))
 
 (defun magit-review-popup-args (&optional something)
   (or (magit-review-arguments) (list "")))
@@ -212,7 +211,6 @@ Succeed even if branch already exist
 			     (cdr-safe (assoc 'currentPatchSet
 					      (magit-review-review-at-point)))))
 		  "--project"
-		  (magit-review-get-project)
 		  "--submit"
 		  args)
   (let* ((branch (or (magit-get-current-branch)
