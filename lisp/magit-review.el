@@ -126,29 +126,44 @@ Succeed even if branch already exist
 (defun magit-review-pretty-print-review (num subj branch topic &optional ins_num del_num)
   ;; window-width - two prevents long line arrow from being shown
   (let* ((wid (- (window-width) 2))
-	 (numstr (propertize (format "%-10s" num) 'face 'magit-hash))
+	 (numstr (propertize (format "%-8s" num) 'face 'magit-hash))
 	 (nlen (length numstr))
+	 (btmaxlen (/ wid 4))
+
+	 (bt (propertize (magit-review-string-trunc (format "%s (%s)" branch topic)
+						    btmaxlen)
+			 'face 'magit-log-author))
+
 	 (subjmaxlen (- wid nlen 6))
+
 	 (subjstr (propertize (magit-review-string-trunc subj subjmaxlen)
 			      'face
 			      'magit-signature-good))
-	 )
-    (format "%s%s\n" numstr subjstr)))
+	 (btpadding (make-string
+		     (max 0 (- wid (+ nlen 1 (length bt) (length subjstr))))
+		     ? )))
+    (format "%s%s%s%s\n" numstr subjstr btpadding bt)))
+
+(defun json-review-list-to-clean ()
+  (if (search-forward-regexp "^)\\]}'$" (point-max) t)
+      t
+    nil))
 
 (defun magit-review-wash-review ()
   (progn
-    (let ((beg (point)))
-      (search-forward-regexp "^\\[$")
-      (forward-line)
-      (delete-region beg (point-at-bol))
-      )
-    (search-forward-regexp "^\\]$")
-    (delete-region (point-at-bol) (point-max))
-    (goto-char (point-min))
-
+    ;; clean review list
+    (let ((json-to-clean (save-excursion (json-review-list-to-clean))))
+      (when json-to-clean
+	(let ((beg (point)))
+	  (search-forward-regexp "^\\[$")
+	  (forward-line)
+	  (delete-region beg (point-at-bol)))
+	(search-forward-regexp "^\\]$")
+	(delete-region (point-at-bol) (point-max))
+	(goto-char (point-min))))
     (let* ((beg (point))
 	   (jobj (json-read))
-	   (end (point))
+	   (end (point-at-eol))
 	   (branch (cdr-safe (assoc 'branch jobj)))
 	   (topic (cdr-safe (assoc 'topic jobj)))
 	   (change_id (cdr-safe (assoc 'change_id jobj)))
@@ -156,8 +171,7 @@ Succeed even if branch already exist
 	   (merg (cdr-safe (assoc 'mergeable jobj)))
 	   (ins_numb (cdr-safe (assoc 'insertions jobj)))
 	   (del_numb (cdr-safe (assoc 'deletions jobj)))
-	   (num (cdr-safe (assoc '_number jobj)))
-	   )
+	   (num (cdr-safe (assoc '_number jobj))))
       (if (and beg end)
 	  (delete-region beg end))
       (when (and num subj)
