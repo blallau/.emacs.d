@@ -130,7 +130,9 @@ Succeed even if branch already exist
 	 (nlen (length numstr))
 	 (btmaxlen (/ wid 4))
 
-	 (bt (propertize (magit-review-string-trunc (format "%s (%s)" branch topic)
+	 (bt (propertize (magit-review-string-trunc (if topic
+							(format "%s (%s)" branch topic)
+						      (format "%s" branch))
 						    btmaxlen)
 			 'face 'magit-log-author))
 
