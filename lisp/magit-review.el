@@ -136,7 +136,7 @@ Succeed even if branch already exist
 						    btmaxlen)
 			 'face 'magit-log-author))
 
-	 (subjmaxlen (- wid nlen 6))
+	 (subjmaxlen (- wid nlen btmaxlen 6))
 
 	 (subjstr (propertize (magit-review-string-trunc subj subjmaxlen)
 			      'face
