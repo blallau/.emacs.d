@@ -123,7 +123,7 @@ Succeed even if branch already exist
 	 (magit-save-repository-buffers)
 	 (magit-run-git "checkout" "-B" branch parent))))
 
-(defun magit-review-pretty-print-review (num subj branch topic &optional ins_num del_num)
+(defun magit-review-pretty-print-review (num subj branch topic merg &optional ins_num del_num)
   ;; window-width - two prevents long line arrow from being shown
   (let* ((wid (- (window-width) 2))
 	 (numstr (propertize (format "%-8s" num) 'face 'magit-hash))
@@ -138,7 +138,9 @@ Succeed even if branch already exist
 
 	 (subjstr (propertize (magit-review-string-trunc subj subjmaxlen)
 			      'face
-			      'magit-signature-good))
+			      (if (equal merg :json-false)
+				  'magit-signature-bad
+				'magit-signature-good)))
 	 (btpadding (make-string
 		     (max 0 (- wid (+ nlen 1 (length bt) (length subjstr))))
 		     ? )))
@@ -177,7 +179,7 @@ Succeed even if branch already exist
       (when (and num subj)
 	(magit-insert-section (section subj)
 	  (insert (propertize
-		   (magit-review-pretty-print-review num subj branch topic)
+		   (magit-review-pretty-print-review num subj branch topic merg)
 		   'magit-review-jobj
 		   jobj))
 	  (add-text-properties beg (point) (list 'magit-review-jobj jobj)))
