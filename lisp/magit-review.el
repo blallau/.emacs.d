@@ -68,6 +68,8 @@
 (defvar-local magit-review-remote "gerrit"
   "Default remote name to use for gerrit (e.g. \"origin\", \"gerrit\")")
 
+(defvar-local git-review-protocol nil "Protocol used for gerrit repository")
+
 (defcustom magit-review-popup-prefix (kbd "R")
   "Key code to open magit-review popup"
   :group 'magit-review
@@ -106,7 +108,7 @@ Succeed even if branch already exist
 	 (magit-save-repository-buffers)
 	 (magit-run-git "checkout" "-B" branch parent))))
 
-(defun magit-review-pretty-print-review (num subj branch topic merg &optional ins_num del_num)
+(defun magit-review-pp-https-review (num subj branch topic merg &optional ins_num del_num)
   ;; window-width - two prevents long line arrow from being shown
   (let* ((wid (- (window-width) 2))
 	 (numstr (propertize (format "%-8s" num) 'face 'magit-hash))
@@ -126,50 +128,158 @@ Succeed even if branch already exist
 			      (if (equal merg :json-false)
 				  'magit-signature-bad
 				'magit-signature-good)))
-	 (btpadding (make-string
+	 (padding (make-string
 		     (max 0 (- wid (+ nlen 1 (length bt) (length subjstr))))
 		     ? )))
-    (format "%s%s%s%s\n" numstr subjstr btpadding bt)))
+    (format "%s%s%s%s\n" numstr subjstr padding bt)))
 
-(defun json-review-list-to-clean ()
+(defun magit-review-pp-ssh-review (num subj branch topic owner)
+  ;; window-width - two prevents long line arrow from being shown
+  (let* ((wid (- (window-width) 2))
+	 (numstr (propertize (format "%-8s" num) 'face 'magit-hash))
+	 (nlen (length numstr))
+	 (btmaxlen (/ wid 5))
+	 (ownermaxlen (/ wid 5))
+
+	 (bt (propertize (magit-review-string-trunc (if topic
+							(format "%s (%s)" branch topic)
+						      (format "%s" branch))
+						    btmaxlen)
+			 'face 'magit-log-author))
+
+	 (owner (propertize (magit-review-string-trunc owner ownermaxlen)
+			    'face 'magit-log-author))
+
+	 (subjmaxlen (- wid nlen ownermaxlen btmaxlen 7))
+
+	 (subjstr (propertize (magit-review-string-trunc subj subjmaxlen)
+			      'face 'magit-signature-good))
+	 (padding (make-string
+		     (max 0 (- wid (+ nlen 1 (length subjstr) 1 (length owner) 1 (length bt))))
+		     ? )))
+    (format "%s%s %s %s%s\n" numstr subjstr owner padding bt)))
+
+(defun json-review-https-list-to-clean ()
   (if (search-forward-regexp "^)\\]}'$" (point-max) t)
       t
     nil))
 
+(defun json-review-ssh-list-to-clean ()
+  (if (search-forward-regexp "^{\"type\":\"stats\",\"rowCount\":[0-9]+,\"runTimeMilliseconds\":[0-9]+,\"moreChanges\":[a-z]+}$" (point-max) t)
+      t
+    nil))
+
 (defun magit-review-wash-review ()
-  (progn
-    ;; clean review list
-    (let ((json-to-clean (save-excursion (json-review-list-to-clean))))
-      (when json-to-clean
-	(let ((beg (point)))
-	  (search-forward-regexp "^\\[$")
-	  (forward-line)
-	  (delete-region beg (point-at-bol)))
-	(search-forward-regexp "^\\]$")
-	(delete-region (point-at-bol) (point-max))
-	(goto-char (point-min))))
-    ;; process JSON
-    (let* ((beg (point))
-	   (jobj (json-read))
-	   (end (point-at-eol))
-	   (branch (cdr-safe (assoc 'branch jobj)))
-	   (topic (cdr-safe (assoc 'topic jobj)))
-	   (change_id (cdr-safe (assoc 'change_id jobj)))
-	   (subj (cdr-safe (assoc 'subject jobj)))
-	   (merg (cdr-safe (assoc 'mergeable jobj)))
-	   (ins_numb (cdr-safe (assoc 'insertions jobj)))
-	   (del_numb (cdr-safe (assoc 'deletions jobj)))
-	   (num (cdr-safe (assoc '_number jobj))))
-      (if (and beg end)
-	  (delete-region beg end))
-      (when (and num subj branch)
-	(magit-insert-section (section subj)
-	  (insert (propertize
-		   (magit-review-pretty-print-review num subj branch topic merg)
-		   'magit-review-jobj
-		   jobj))
-	  (add-text-properties beg (point) (list 'magit-review-jobj jobj)))
-	t))))
+  (cond
+   ((string= git-review-protocol "https")
+    (progn
+      ;; clean review list
+      (let ((json-to-clean (save-excursion (json-review-https-list-to-clean))))
+	(when json-to-clean
+	  (let ((beg (point)))
+	    (search-forward-regexp "^\\[$")
+	    (forward-line)
+	    (delete-region beg (point-at-bol)))
+	  (search-forward-regexp "^\\]$")
+	  (delete-region (point-at-bol) (point-max))
+	  (goto-char (point-min))))
+      ;; process JSON
+
+      ;; "id": "openstack%2Foctavia~master~Ic3d3d1d63a5cc352c5fc00dea58bb16915754a7c",
+      ;; "project": "openstack/octavia",
+      ;; "branch": "master",
+      ;; "topic": "bug/1490033",
+      ;; "hashtags": [
+
+      ;; ],
+      ;; "change_id": "Ic3d3d1d63a5cc352c5fc00dea58bb16915754a7c",
+      ;; "subject": "WIP - Allow health manager to listen on mgmt net",
+      ;; "status": "NEW",
+      ;; "created": "2016-01-08 15:51:46.000000000",
+      ;; "updated": "2016-01-08 17:13:10.000000000",
+      ;; "mergeable": true,
+      ;; "insertions": 15,
+      ;; "deletions": 0,
+      ;; "_number": 265322,
+      ;; "owner": {
+      ;;   "_account_id": 6951
+      ;; }
+
+      (let* ((beg (point))
+	     (jobj (json-read))
+	     (end (point-at-eol))
+	     (branch (cdr-safe (assoc 'branch jobj)))
+	     (topic (cdr-safe (assoc 'topic jobj)))
+	     (change_id (cdr-safe (assoc 'change_id jobj)))
+	     (subj (cdr-safe (assoc 'subject jobj)))
+	     (merg (cdr-safe (assoc 'mergeable jobj)))
+	     (ins_numb (cdr-safe (assoc 'insertions jobj)))
+	     (del_numb (cdr-safe (assoc 'deletions jobj)))
+	     (num (cdr-safe (assoc '_number jobj))))
+	(if (and beg end)
+	    (delete-region beg end))
+	(when (and num subj branch)
+	  (magit-insert-section (section subj)
+	    (insert (propertize
+		     (magit-review-pp-https-review num subj branch topic merg)
+		     'magit-review-jobj
+		     jobj))
+	    (add-text-properties beg (point) (list 'magit-review-jobj jobj)))
+	  t))))
+
+   ((string= git-review-protocol "ssh")
+    (progn
+      ;; clean review list
+      (let ((json-to-clean (save-excursion (json-review-ssh-list-to-clean))))
+	(when json-to-clean
+	  (let ((beg (point)))
+	    (search-forward-regexp (format ".* Running: ssh -x.* %s query --format=JSON project:.* status:open$" magit-review-remote))
+	    (forward-line)
+	    (delete-region beg (point-at-bol)))
+	  (search-forward-regexp "^{\"type\":\"stats\",\"rowCount\":[0-9]+,\"runTimeMilliseconds\":[0-9]+,\"moreChanges\":false}$")
+	  (delete-region (point-at-bol) (point-max))
+	  (goto-char (point-min))))
+
+      ;; process JSON
+
+      ;; "project": "openstack/octavia",
+      ;; "branch": "master",
+      ;; "topic": "bug/1490033",
+      ;; "id": "Ic3d3d1d63a5cc352c5fc00dea58bb16915754a7c",
+      ;; "number": "265322",
+      ;; "subject": "WIP - Allow health manager to listen on mgmt net",
+      ;; "owner": {
+      ;;   "name": "Brandon Logan",
+      ;;   "email": "brandon.logan@rackspace.com",
+      ;;   "username": "brandon-logan"
+      ;; },
+      ;; "url": "https://review.openstack.org/265322",
+      ;; "commitMessage": "WIP - Allow health manager to listen on mgmt net\n\nChange-Id: Ic3d3d1d63a5cc352c5fc00dea58bb16915754a7c\nCloses-Bug: #1490033\n",
+      ;; "createdOn": 1452268306,
+      ;; "lastUpdated": 1452273190,
+      ;; "open": true,
+      ;; "status": "NEW"
+
+      (let* ((beg (point))
+	     (jobj (json-read))
+	     (end (point-at-eol))
+	     (branch (cdr-safe (assoc 'branch jobj)))
+	     (topic (cdr-safe (assoc 'topic jobj)))
+	     (change_id (cdr-safe (assoc 'id jobj)))
+	     (num (cdr-safe (assoc 'number jobj)))
+	     (subj (cdr-safe (assoc 'subject jobj)))
+	     (owner (cdr-safe (assoc 'owner jobj)))
+	     (owner-name (cdr-safe (assoc 'name owner))))
+	(if (and beg end)
+	    (delete-region beg end))
+	(when (and num subj branch)
+	  (magit-insert-section (section subj)
+	    (insert (propertize
+		     (magit-review-pp-ssh-review num subj branch topic owner-name)
+		     'magit-review-jobj
+		     jobj))
+	    (add-text-properties beg (point) (list 'magit-review-jobj jobj)))
+	  t))))))
 
 (defun magit-review-wash-reviews (&rest args)
   (magit-wash-sequence #'magit-review-wash-review))
@@ -364,14 +474,11 @@ Succeed even if branch already exist
 	 (url-type (url-type (url-generic-parse-url remote-url))))
     (cond
      ((string= url-type "ssh")
-      (error "SSH url-type not actually managed"))
-     ;; (when (and (or magit-gerrit-ssh-creds
-     ;; 		 (magit-gerrit-detect-ssh-creds remote-url))
-     ;; 	     (string-match magit-gerrit-ssh-creds remote-url))
-     ;;   ;; update keymap with prefix incase it has changed
-     ;;   (define-key magit-review-mode-map magit-review-popup-prefix 'magit-review-popup)
-     ;;   (magit-review-mode t)))
+      (setq git-review-protocol "ssh")
+      (define-key magit-review-mode-map magit-review-popup-prefix 'magit-review-popup)
+      (magit-review-mode t))
      ((string= url-type "https")
+      (setq git-review-protocol "https")
       ;; update keymap with prefix incase it has changed
       (define-key magit-review-mode-map magit-review-popup-prefix 'magit-review-popup)
       (magit-review-mode t))
