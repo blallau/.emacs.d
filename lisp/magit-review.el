@@ -207,6 +207,57 @@ Succeed even if branch already exist
 (defun magit-review-at-point ()
   (get-text-property (point) 'magit-review-jobj))
 
+;; (defun magit-gerrit-view-patchset-diff ()
+;;   "View the Diff for a Patchset"
+;;   (interactive)
+;;   (let ((jobj (magit-gerrit-review-at-point)))
+;;     (when jobj
+;;       (let ((ref (cdr (assoc 'ref (assoc 'currentPatchSet jobj))))
+;; 	    (dir default-directory))
+;; 	(let* ((magit-proc (magit-fetch magit-gerrit-remote ref)))
+;; 	  (message (format "Waiting a git fetch from %s to complete..."
+;; 			   magit-gerrit-remote))
+;; 	  (magit-process-wait))
+;; 	(message (format "Generating Gerrit Patchset for refs %s dir %s" ref dir))
+;; 	(magit-diff "FETCH_HEAD~1..FETCH_HEAD")))))
+
+(defun magit-gerrit-download-review ()
+  "Download a Gerrit Review"
+  (interactive)
+  (let ((jobj (magit-review-at-point)))
+    (when jobj
+      (let ((ref (number-to-string (cdr (assoc '_number jobj))))
+	    (topic (cdr (assoc 'topic jobj)))
+	    (dir default-directory))
+	(let* ((magit-proc (magit-run-git-async-no-revert "review" "-d" ref)))
+	  (message (format "Waiting git review -d %s to complete..." ref))
+	  (magit-process-wait))
+	(message (format "Checking out to %s in %s" topic dir))))))
+
+;; (defun gerrit-check-if-repo-modified ()
+;;   "Check if current repo has been modified."
+;;   (null (magit-git-items "status" "-z" "-uno" "--porcelain")))
+
+;; (defun magit-gerrit-download ()
+;;   (interactive (list (read-string "Review-ID: ")))
+;;   (let* ((project (projectile-project-name))
+;;          (default-directory (projectile-project-root)))
+;;     (magit-with-toplevel
+;;       (setq gerrit-project-cwd default-directory)
+;;       (unless (gerrit-check-if-repo-modified)
+;;         (error "%s has changes, not processing" project))
+;;       (let ((proc (concat "git-review[" review-id "]")))
+;;         (message "Starting git-review...")
+;;         (start-process proc "*git review*" gerrit-review-program "-d" review-id)
+;;         (set-process-sentinel
+;;          (get-process proc)
+;;          #'(lambda (process event)
+;;              (let ((default-directory gerrit-project-cwd))
+;;                (message event)
+;;                (if (string= event "finished\n")
+;;                    (magit-show-commit "HEAD")
+;; 		 (error "Error while downloading review, check *git review* buffer.")))))))))
+
 (defun magit-review-browse-review ()
   "Browse the Gerrit Review with a browser."
   (interactive)
@@ -297,10 +348,10 @@ Succeed even if branch already exist
   'magit-review
   :actions '((?P "Push Commit For Review"                          magit-review-create-review)
 	     (?W "Push Commit For Draft Review"                    magit-review-create-draft)
-;;	     (?S "Submit Review"                                   magit-review-submit-review)
+	     ;;	     (?S "Submit Review"                                   magit-review-submit-review)
 	     (?b "Browse Review"                                   magit-review-browse-review)
-	     (?A "Add Reviewer"                                    magit-gerrit-add-reviewer)
-	     (?D "Download Patchset"                               magit-gerrit-download-patchset)
+	     ;;	     (?A "Add Reviewer"                                    magit-gerrit-add-reviewer)
+	     (?D "Download Review"                                 magit-gerrit-download-review)
 	     ))
 
 ;; Attach Magit Gerrit to Magit's default help popup
