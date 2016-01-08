@@ -62,13 +62,6 @@
 (eval-when-compile
   (require 'cl-lib))
 
-;; Define a defvar-local macro for Emacs < 24.3
-(unless (fboundp 'defvar-local)
-  (defmacro defvar-local (var val &optional docstring)
-    `(progn
-       (defvar ,var ,val ,docstring)
-       (make-variable-buffer-local ',var))))
-
 (defvar-local gerrit-review-url "https://review.openstack.org/#q,%s,n,z" "Gerrit review URL")
 
 (defvar-local magit-review-remote "gerrit"
@@ -91,19 +84,6 @@
 
 (defun gerrit-query ()
   (gerrit-command "-v -l" ))
-
-(defun gerrit-ssh-cmd (cmd &rest args)
-  (apply #'call-process
-	 "ssh" nil nil nil
-	 (split-string (apply #'gerrit-command cmd args))))
-
-(defun gerrit-review-submit (prj rev &optional msg)
-  (gerrit-ssh-cmd "review" "--project" prj "--submit"
-		  (if msg msg "") rev))
-
-(defun gerrit-code-review (prj rev score &optional msg)
-  (gerrit-ssh-cmd "review" "--project" prj "--code-review" score
-		  (if msg msg "") rev))
 
 (defun magit-review-get-remote-url ()
   (magit-git-string "ls-remote" "--get-url" magit-review-remote))
@@ -273,23 +253,6 @@ Succeed even if branch already exist
 
 (defun magit-review-popup-args (&optional something)
   (or (magit-review-arguments) (list "")))
-
-(defun magit-review-submit-review (args)
-  "Submit a Gerrit Code Review"
-  ;; "ssh -x -p 29418 user@gerrit gerrit review REVISION  -- --project PRJ --submit "
-  (interactive (magit-review-popup-args))
-  (gerrit-ssh-cmd "review"
-		  (cdr-safe (assoc
-			     'revision
-			     (cdr-safe (assoc 'currentPatchSet
-					      (magit-review-at-point)))))
-		  "--project"
-		  "--submit"
-		  args)
-  (let* ((branch (or (magit-get-current-branch)
-		     (error "Don't push a detached head.  That's gross")))
-	 (branch-remote (and branch (magit-get "branch" branch "remote"))))
-    (magit-fetch-from-upstream branch-remote)))
 
 (defun magit-review-push-review (status)
   (let* ((branch (or (magit-get-current-branch)
