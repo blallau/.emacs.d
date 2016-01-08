@@ -6,7 +6,7 @@
 ;; URL: https://github.com/blallau/magit-review
 ;; Version: 0.0.1
 ;; Keywords: tools gerrit git
-;; Package-Requires: ((emacs "25.0") (magit "2.4.0"))
+;; Package-Requires: ((emacs "25.0") (magit "2.4.0") (projectile "0.13.0"))
 ;;
 ;; This program is free software; you can redistribute it and/or
 ;; modify it under the terms of the GNU General Public License as
@@ -54,6 +54,7 @@
 ;;; Code:
 
 (require 'magit)
+(require 'projectile)
 
 (if (locate-library "magit-popup")
     (require 'magit-popup))
@@ -359,11 +360,23 @@ Succeed even if branch already exist
     (magit-refresh)))
 
 (defun magit-review-check-enable ()
-  (let ((remote-url (magit-review-get-remote-url)))
-    (when (boundp 'remote-url)
+  (let* ((remote-url (magit-review-get-remote-url))
+	 (url-type (url-type (url-generic-parse-url remote-url))))
+    (cond
+     ((string= url-type "ssh")
+      (error "SSH url-type not actually managed"))
+     ;; (when (and (or magit-gerrit-ssh-creds
+     ;; 		 (magit-gerrit-detect-ssh-creds remote-url))
+     ;; 	     (string-match magit-gerrit-ssh-creds remote-url))
+     ;;   ;; update keymap with prefix incase it has changed
+     ;;   (define-key magit-review-mode-map magit-review-popup-prefix 'magit-review-popup)
+     ;;   (magit-review-mode t)))
+     ((string= url-type "https")
       ;; update keymap with prefix incase it has changed
       (define-key magit-review-mode-map magit-review-popup-prefix 'magit-review-popup)
-      (magit-review-mode t))))
+      (magit-review-mode t))
+     ((or (not (bound-and-true-p url-type)) (string= url-type ""))
+      (error (format "%s repository url is not set" magit-review-remote))))))
 
 ;; Hack in dir-local variables that might be set for magit gerrit
 (add-hook 'magit-status-mode-hook #'hack-dir-local-variables-non-file-buffer t)
@@ -371,6 +384,20 @@ Succeed even if branch already exist
 ;; Try to auto enable magit-review in the magit-status buffer
 (add-hook 'magit-status-mode-hook #'magit-review-check-enable t)
 (add-hook 'magit-log-mode-hook #'magit-review-check-enable t)
+
+(defun magit-gerrit-switch-project ()
+  (interactive)
+  (when (projectile-project-p)
+    ;; remove previous hook if any
+    (remove-hook 'magit-status-mode-hook #'magit-review-check-enable t)
+    (remove-hook 'magit-log-mode-hook #'magit-review-check-enable t)
+
+    ;; add hook
+    (add-hook 'magit-status-mode-hook #'magit-review-check-enable t)
+    (add-hook 'magit-log-mode-hook #'magit-review-check-enable t)
+    ))
+
+(add-hook 'projectile-switch-project-hook #'magit-gerrit-switch-project)
 
 (provide 'magit-review)
 
