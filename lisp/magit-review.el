@@ -69,6 +69,8 @@
        (defvar ,var ,val ,docstring)
        (make-variable-buffer-local ',var))))
 
+(defvar-local gerrit-review-url "https://review.openstack.org/#q,%s,n,z" "Gerrit review URL")
+
 (defvar-local magit-review-remote "gerrit"
   "Default remote name to use for gerrit (e.g. \"origin\", \"gerrit\")")
 
@@ -165,6 +167,7 @@ Succeed even if branch already exist
 	(search-forward-regexp "^\\]$")
 	(delete-region (point-at-bol) (point-max))
 	(goto-char (point-min))))
+    ;; process JSON
     (let* ((beg (point))
 	   (jobj (json-read))
 	   (end (point-at-eol))
@@ -178,7 +181,7 @@ Succeed even if branch already exist
 	   (num (cdr-safe (assoc '_number jobj))))
       (if (and beg end)
 	  (delete-region beg end))
-      (when (and num subj)
+      (when (and num subj branch)
 	(magit-insert-section (section subj)
 	  (insert (propertize
 		   (magit-review-pretty-print-review num subj branch topic merg)
@@ -201,15 +204,16 @@ Succeed even if branch already exist
 (defun magit-review-remote-update (&optional remote)
   nil)
 
-(defun magit-review-review-at-point ()
+(defun magit-review-at-point ()
   (get-text-property (point) 'magit-review-jobj))
 
 (defun magit-review-browse-review ()
   "Browse the Gerrit Review with a browser."
   (interactive)
-  (let ((jobj (magit-review-review-at-point)))
-    (if jobj
-	(browse-url (cdr (assoc 'url jobj))))))
+  (let ((jobj (magit-review-at-point)))
+    (when jobj
+      (let ((gerrit-url (format gerrit-review-url (cdr (assoc '_number jobj)))))
+	(browse-url gerrit-url)))))
 
 (defun magit-insert-gerrit-reviews ()
   (magit-review-section 'gerrit-reviews
@@ -227,7 +231,7 @@ Succeed even if branch already exist
 		  (cdr-safe (assoc
 			     'revision
 			     (cdr-safe (assoc 'currentPatchSet
-					      (magit-review-review-at-point)))))
+					      (magit-review-at-point)))))
 		  "--project"
 		  "--submit"
 		  args)
@@ -293,8 +297,11 @@ Succeed even if branch already exist
   'magit-review
   :actions '((?P "Push Commit For Review"                          magit-review-create-review)
 	     (?W "Push Commit For Draft Review"                    magit-review-create-draft)
-	     (?S "Submit Review"                                   magit-review-submit-review)
-	     (?b "Browse Review"                                   magit-review-browse-review)))
+;;	     (?S "Submit Review"                                   magit-review-submit-review)
+	     (?b "Browse Review"                                   magit-review-browse-review)
+	     (?A "Add Reviewer"                                    magit-gerrit-add-reviewer)
+	     (?D "Download Patchset"                               magit-gerrit-download-patchset)
+	     ))
 
 ;; Attach Magit Gerrit to Magit's default help popup
 (magit-define-popup-action 'magit-dispatch-popup ?R "Gerrit"
