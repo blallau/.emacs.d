@@ -17,6 +17,7 @@
 ;; You should have received a copy of the GNU General Public License
 ;; along with this program.  If not, see http://www.gnu.org/licenses/.
 
+(require 'projectile)
 
 (defvar-local launchpad-url "https://bugs.launchpad.net/" "launchpad URL")
 (defvar-local openstack-review-url "https://review.openstack.org/#q,%s,n,z" "Openstack review URL")
@@ -29,17 +30,10 @@
           (case-fold-search t))
       (cond
        ((string-match "[[:alpha:]]+-Bug:[[:space:]]*#?\\([[:digit:]]+\\)" identifiant)
-        (browse-url (concat launchpad-url project-name "/+bug/" (match-string 1 identifiant)))
-        )
+        (browse-url (concat launchpad-url project-name "/+bug/" (match-string 1 identifiant))))
        ((string-match "Change-Id: \\([[:alnum:]]+\\)" identifiant)
-        (browse-url (format openstack-review-url (match-string 1 identifiant)))
-        )
+        (browse-url (format openstack-review-url (match-string 1 identifiant))))
        (t
-        (message "Not an Openstack ID (Closes-Bug or Change-Id)")
-        )
-       )
-      )
-    )
-)
+        (message "Not an Openstack ID (Closes-Bug or Change-Id)"))))))
 
 (global-set-key (kbd "<f12>") 'open-openstack-ID-at-point)
