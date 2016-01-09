@@ -23,8 +23,7 @@
 
 ;;; Commentary:
 ;;
-;; Magit plugin to make Gerrit code review easy-to-use from emacs and
-;; without the need for a browser!
+;; Magit plugin for git review command (list, download, browse)
 ;;
 ;;; To Use:
 ;;
@@ -33,14 +32,6 @@
 ;;
 ;; M-x `magit-status'
 ;; h R  <= magit-review uses the R prefix, see help
-;;
-;;; Workflow:
-;;
-;; 1) *check out branch => changes => (ma)git commit*
-;; 2) R P  <= [ger*R*it *P*ush for review]
-;; 3) R A  <= [ger*R*it *A*dd reviewer] (by email address)
-;; 4) *wait for verification/code reviews* [approvals shown in status]
-;; 5) R S  <= [ger*R*it *S*ubmit review]
 ;;
 ;;; Other Comments:
 ;; If your git remote for gerrit is not the default "origin", then
@@ -68,7 +59,7 @@
 (defvar-local magit-review-remote "gerrit"
   "Default remote name to use for gerrit (e.g. \"origin\", \"gerrit\")")
 
-(defvar-local git-review-protocol nil "Protocol used for gerrit repository")
+(defvar-local git-review-protocol nil "Protocol used by project gerrit repository")
 
 (defcustom magit-review-popup-prefix (kbd "R")
   "Key code to open magit-review popup"
@@ -86,7 +77,7 @@
     gcmd))
 
 (defun gerrit-query ()
-  (gerrit-command "-v -l" ))
+  (gerrit-command "-v -l"))
 
 (defun magit-review-get-remote-url ()
   (magit-git-string "ls-remote" "--get-url" magit-review-remote))
@@ -165,7 +156,7 @@ Succeed even if branch already exist
     nil))
 
 (defun json-review-ssh-list-to-clean ()
-  (if (search-forward-regexp "^{\"type\":\"stats\",\"rowCount\":[0-9]+,\"runTimeMilliseconds\":[0-9]+,\"moreChanges\":[a-z]+}$" (point-max) t)
+  (if (search-forward-regexp "^{\"type\":\"stats\",\"rowCount\":[0-9]+.*}$" (point-max) t)
       t
     nil))
 
