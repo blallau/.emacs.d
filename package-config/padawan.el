@@ -34,15 +34,15 @@
        (defvar ,var ,val ,docstring)
        (make-variable-buffer-local ',var))))
 
-(defvar-local pip-install-jedi-command "pip install -U jedi" "Command to install Jedi by PIP")
-(defvar-local pip-install-pylint-command "pip install -U pylint" "Command to install Pylint by PIP")
+(defvar pip-install-jedi-command "pip install -U jedi" "Command to install Jedi by PIP")
+(defvar pip-install-pylint-command "pip install -U pylint" "Command to install Pylint by PIP")
 
-(defvar-local python-version "py27" "python version")
-(defvar-local venv-dir (concat ".tox/" python-version) "venv directory")
-(defvar-local venv-bin-dir (concat venv-dir "/bin/") "venv binary directory")
-(defvar-local launch-tox-command (concat "tox -v -e" python-version " --notest") "tox command")
-(defvar-local venv-activate-script (concat venv-bin-dir "activate") "Bash script file to activate venv")
-(defvar-local padawan-not-jedi-projects-cache (make-hash-table :test 'equal)
+(defvar python-version "py27" "python version")
+(defvar venv-dir (concat ".tox/" python-version) "venv directory")
+(defvar venv-bin-dir (concat venv-dir "/bin/") "venv binary directory")
+(defvar launch-tox-command (concat "tox -v -e" python-version " --notest") "tox command")
+(defvar venv-activate-script (concat venv-bin-dir "activate") "Bash script file to activate venv")
+(defvar padawan-not-jedi-projects-cache (make-hash-table :test 'equal)
   "A hashmap used to cache projects where venv is not wished.")
 
 

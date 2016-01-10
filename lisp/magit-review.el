@@ -54,9 +54,9 @@
 (eval-when-compile
   (require 'cl-lib))
 
-(defvar-local gerrit-review-url "https://review.openstack.org/#q,%s,n,z" "Gerrit review URL")
+(defvar gerrit-review-url "https://review.openstack.org/#q,%s,n,z" "Gerrit review URL")
 
-(defvar-local magit-review-remote "gerrit"
+(defvar magit-review-remote "gerrit"
   "Default remote name to use for gerrit (e.g. \"origin\", \"gerrit\")")
 
 (defvar-local git-review-protocol nil "Protocol used by project gerrit repository")
@@ -440,7 +440,7 @@ Succeed even if branch already exist
     map))
 
 (define-minor-mode magit-review-mode "Gerrit support for Magit"
-  :lighter " Gerrit" :require 'magit-topgit :keymap 'magit-review-mode-map
+  :lighter " Review" :require 'magit-topgit :keymap 'magit-review-mode-map
   (or (derived-mode-p 'magit-mode)
       (error "This mode only makes sense with magit"))
   (or (magit-review-get-remote-url)
