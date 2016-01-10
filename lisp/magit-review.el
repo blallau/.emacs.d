@@ -440,7 +440,9 @@ Succeed even if branch already exist
     map))
 
 (define-minor-mode magit-review-mode "Gerrit support for Magit"
-  :lighter " Review" :require 'magit-topgit :keymap 'magit-review-mode-map
+  :lighter " Review"
+;;  :require 'magit-topgit
+  :keymap 'magit-review-mode-map
   (or (derived-mode-p 'magit-mode)
       (error "This mode only makes sense with magit"))
   (or (magit-review-get-remote-url)
