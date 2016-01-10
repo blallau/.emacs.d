@@ -19,8 +19,8 @@
 
 (require 'projectile)
 
-(defvar-local launchpad-url "https://bugs.launchpad.net/" "launchpad URL")
-(defvar-local openstack-review-url "https://review.openstack.org/#q,%s,n,z" "Openstack review URL")
+(defvar launchpad-url "https://bugs.launchpad.net/" "launchpad URL")
+(defvar openstack-review-url "https://review.openstack.org/#q,%s,n,z" "Openstack review URL")
 
 (defun open-openstack-ID-at-point ()
   (interactive)
