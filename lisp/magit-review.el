@@ -289,6 +289,17 @@ Succeed even if branch already exist
 (defun magit-review-at-point ()
   (get-text-property (point) 'magit-review-jobj))
 
+(defun magit-review-number-at-point ()
+  (let ((jobj (magit-review-at-point)))
+    (if jobj
+	(cond
+	 ((string= git-review-protocol "https")
+	  (number-to-string (cdr (assoc '_number jobj))))
+	 ((string= git-review-protocol "ssh")
+	  (cdr (assoc 'number jobj))))
+      nil
+      )))
+
 ;; (defun magit-gerrit-view-patchset-diff ()
 ;;   "View the Diff for a Patchset"
 ;;   (interactive)
@@ -343,9 +354,9 @@ Succeed even if branch already exist
 (defun magit-review-browse-review ()
   "Browse the Gerrit Review with a browser."
   (interactive)
-  (let ((jobj (magit-review-at-point)))
-    (when jobj
-      (let ((gerrit-url (format gerrit-review-url (cdr (assoc '_number jobj)))))
+  (let ((number (magit-review-number-at-point)))
+    (when number
+      (let ((gerrit-url (format gerrit-review-url number)))
 	(browse-url gerrit-url)))))
 
 (defun magit-insert-gerrit-reviews ()
