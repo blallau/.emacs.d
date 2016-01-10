@@ -319,7 +319,7 @@ Succeed even if branch already exist
   (interactive)
   (let ((jobj (magit-review-at-point)))
     (when jobj
-      (let ((ref (number-to-string (cdr (assoc '_number jobj))))
+      (let ((ref (magit-review-number-at-point))
 	    (topic (cdr (assoc 'topic jobj)))
 	    (dir default-directory))
 	(let* ((magit-proc (magit-run-git-async-no-revert "review" "-d" ref)))
