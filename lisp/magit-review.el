@@ -86,17 +86,6 @@
 	      "...")
     str))
 
-(defun magit-review-create-branch-force (branch parent)
-  "Switch 'HEAD' to new BRANCH at revision PARENT and update working tree.
-Fails if working tree or staging area contain uncommitted changes.
-Succeed even if branch already exist
-\('git checkout -B BRANCH REVISION')."
-  (cond ((run-hook-with-args-until-success
-	  'magit-create-branch-hook branch parent))
-	((and branch (not (string= branch "")))
-	 (magit-save-repository-buffers)
-	 (magit-run-git "checkout" "-B" branch parent))))
-
 (defun magit-review-pp-https-review (num subj branch topic merg &optional ins_num del_num)
   ;; window-width - two prevents long line arrow from being shown
   (let* ((wid (window-width))
@@ -369,7 +358,7 @@ Succeed even if branch already exist
 
 (defun magit-review-push-review (status)
   (let* ((branch (or (magit-get-current-branch)
-		     (error "Don't push a detached head.  That's gross")))
+		     (error "Don't push a detached head. That's gross")))
 	 (commitid (or (when (eq (magit-section-type (magit-current-section))
 				 'commit)
 			 (magit-section-value (magit-current-section)))
@@ -404,7 +393,7 @@ Succeed even if branch already exist
   :actions '((?P "Push Commit For Review"                          magit-review-create-review)
 	     (?W "Push Commit For Draft Review"                    magit-review-create-draft)
 	     (?b "Browse Review"                                   magit-review-browse-review)
-	     ;;	     (?A "Add Reviewer"                                    magit-gerrit-add-reviewer)
+	     ;;	     (?A "Add Reviewer"                                    magit-review-add-reviewer)
 	     (?d "Download Review"                                 magit-review-download-review)
 	     )
   :default-action 'magit-review-browse-review
@@ -415,7 +404,6 @@ Succeed even if branch already exist
   'magit-review-popup)
 
 ;;; Sections
-
 (defvar magit-review-mode-map
   (let ((map (make-sparse-keymap)))
     (define-key map [remap magit-visit-thing] 'magit-review-browse-review)
@@ -438,7 +426,6 @@ Succeed even if branch already exist
 			    'magit-insert-stashes t t)
     (add-hook 'magit-create-branch-command-hook
 	      'magit-review-create-branch nil t)
-    ;(add-hook 'magit-pull-command-hook 'magit-review-pull nil t)
     (add-hook 'magit-remote-update-command-hook
 	      'magit-review-remote-update nil t)
     (add-hook 'magit-push-command-hook
@@ -449,7 +436,6 @@ Succeed even if branch already exist
 		 'magit-insert-gerrit-reviews t)
     (remove-hook 'magit-create-branch-command-hook
 		 'magit-review-create-branch t)
-    ;(remove-hook 'magit-pull-command-hook 'magit-review-pull t)
     (remove-hook 'magit-remote-update-command-hook
 		 'magit-review-remote-update t)
     (remove-hook 'magit-push-command-hook
@@ -475,8 +461,6 @@ Succeed even if branch already exist
      ((string= url-type "https")
       (setq git-review-protocol "https")))
     (magit-review-mode t)))
-    ;; update keymap with prefix incase it has changed
-;;    (define-key magit-review-mode-map magit-review-popup-prefix 'magit-review-popup)))
 
 ;; Hack in dir-local variables that might be set for magit review
 (add-hook 'magit-status-mode-hook #'hack-dir-local-variables-non-file-buffer t)
