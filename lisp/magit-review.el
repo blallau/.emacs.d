@@ -244,9 +244,9 @@ Succeed even if branch already exist
       ;; "number": "265322",
       ;; "subject": "WIP - Allow health manager to listen on mgmt net",
       ;; "owner": {
-      ;;   "name": "Brandon Logan",
-      ;;   "email": "brandon.logan@rackspace.com",
-      ;;   "username": "brandon-logan"
+      ;;   "name": "toto",
+      ;;   "email": "toto@toto.com",
+      ;;   "username": "toto"
       ;; },
       ;; "url": "https://review.openstack.org/265322",
       ;; "commitMessage": "WIP - Allow health manager to listen on mgmt net\n\nChange-Id: Ic3d3d1d63a5cc352c5fc00dea58bb16915754a7c\nCloses-Bug: #1490033\n",
@@ -497,23 +497,23 @@ Succeed even if branch already exist
     ;; update keymap with prefix incase it has changed
     (define-key magit-review-mode-map magit-review-popup-prefix 'magit-review-popup)))
 
-;; Hack in dir-local variables that might be set for magit gerrit
+;; Hack in dir-local variables that might be set for magit review
 (add-hook 'magit-status-mode-hook #'hack-dir-local-variables-non-file-buffer t)
 
 ;; Try to auto enable magit-review in the magit-status buffer
 (add-hook 'magit-status-mode-hook #'magit-review-enable t)
-(add-hook 'magit-log-mode-hook #'magit-review-enable t)
+;(add-hook 'magit-log-mode-hook #'magit-review-enable t)
 
 (defun magit-review-switch-project ()
   (interactive)
     ;; remove previous hook if any
     (remove-hook 'magit-status-mode-hook #'magit-review-enable t)
-    (remove-hook 'magit-log-mode-hook #'magit-review-enable t)
+;    (remove-hook 'magit-log-mode-hook #'magit-review-enable t)
 
     (when (and (projectile-project-p) (magit-review-check-gerrit-enabled))
       ;; add hook
-      (add-hook 'magit-status-mode-hook #'magit-review-enable t)
-      (add-hook 'magit-log-mode-hook #'magit-review-enable t)))
+      (add-hook 'magit-status-mode-hook #'magit-review-enable t)))
+;      (add-hook 'magit-log-mode-hook #'magit-review-enable t)))
 
 (add-hook 'projectile-switch-project-hook #'magit-review-switch-project)
 
