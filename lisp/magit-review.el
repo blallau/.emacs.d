@@ -172,10 +172,10 @@ Succeed even if branch already exist
       (let ((json-to-clean (save-excursion (json-review-https-list-to-clean))))
 	(when json-to-clean
 	  (let ((beg (point)))
-	    (search-forward-regexp "^\\[$")
+	    (search-forward-regexp "^\\[.+$")
 	    (forward-line)
 	    (delete-region beg (point-at-bol)))
-	  (search-forward-regexp "^\\]$")
+	  (search-forward-regexp "^.+\\]$")
 	  (delete-region (point-at-bol) (point-max))
 	  (goto-char (point-min))))
       ;; process JSON
@@ -493,9 +493,9 @@ Succeed even if branch already exist
       (setq git-review-protocol "ssh"))
      ((string= url-type "https")
       (setq git-review-protocol "https")))
-    (magit-review-mode t)
+    (magit-review-mode t)))
     ;; update keymap with prefix incase it has changed
-    (define-key magit-review-mode-map magit-review-popup-prefix 'magit-review-popup)))
+;;    (define-key magit-review-mode-map magit-review-popup-prefix 'magit-review-popup)))
 
 ;; Hack in dir-local variables that might be set for magit review
 (add-hook 'magit-status-mode-hook #'hack-dir-local-variables-non-file-buffer t)
