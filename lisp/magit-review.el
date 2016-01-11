@@ -101,10 +101,10 @@ Succeed even if branch already exist
 
 (defun magit-review-pp-https-review (num subj branch topic merg &optional ins_num del_num)
   ;; window-width - two prevents long line arrow from being shown
-  (let* ((wid (- (window-width) 2))
+  (let* ((wid (window-width))
 	 (numstr (propertize (format "%-8s" num) 'face 'magit-hash))
 	 (nlen (length numstr))
-	 (btmaxlen (/ wid 4))
+	 (btmaxlen (/ wid 3))
 
 	 (bt (propertize (magit-review-string-trunc (if topic
 							(format "%s (%s)" branch topic)
@@ -112,7 +112,7 @@ Succeed even if branch already exist
 						    btmaxlen)
 			 'face 'magit-log-author))
 
-	 (subjmaxlen (- wid nlen btmaxlen 6))
+	 (subjmaxlen (min 50 (- wid nlen btmaxlen 5)))
 
 	 (subjstr (propertize (magit-review-string-trunc subj subjmaxlen)
 			      'face
@@ -126,11 +126,11 @@ Succeed even if branch already exist
 
 (defun magit-review-pp-ssh-review (num subj branch topic owner)
   ;; window-width - two prevents long line arrow from being shown
-  (let* ((wid (- (window-width) 2))
+  (let* ((wid (window-width))
 	 (numstr (propertize (format "%-8s" num) 'face 'magit-hash))
 	 (nlen (length numstr))
-	 (btmaxlen (/ wid 5))
-	 (ownermaxlen (/ wid 5))
+	 (btmaxlen (/ wid 3))
+	 (ownermaxlen (/ wid 4))
 
 	 (bt (propertize (magit-review-string-trunc (if topic
 							(format "%s (%s)" branch topic)
@@ -141,7 +141,7 @@ Succeed even if branch already exist
 	 (owner (propertize (magit-review-string-trunc owner ownermaxlen)
 			    'face 'magit-log-author))
 
-	 (subjmaxlen (- wid nlen ownermaxlen btmaxlen 7))
+	 (subjmaxlen (min 50 (- wid nlen ownermaxlen btmaxlen 6)))
 
 	 (subjstr (propertize (magit-review-string-trunc subj subjmaxlen)
 			      'face 'magit-signature-good))
