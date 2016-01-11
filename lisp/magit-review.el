@@ -47,8 +47,6 @@
 (require 'magit)
 (require 'projectile)
 
-(if (locate-library "magit-popup")
-    (require 'magit-popup))
 (require 'json)
 
 (eval-when-compile
@@ -172,10 +170,10 @@ Succeed even if branch already exist
       (let ((json-to-clean (save-excursion (json-review-https-list-to-clean))))
 	(when json-to-clean
 	  (let ((beg (point)))
-	    (search-forward-regexp "^\\[.+$")
+	    (search-forward-regexp "^\\[.?$")
 	    (forward-line)
 	    (delete-region beg (point-at-bol)))
-	  (search-forward-regexp "^.+\\]$")
+	  (search-forward-regexp "^.?\\]$")
 	  (delete-region (point-at-bol) (point-max))
 	  (goto-char (point-min))))
       ;; process JSON
@@ -318,6 +316,7 @@ Succeed even if branch already exist
 ;; 	(message (format "Generating Gerrit Patchset for refs %s dir %s" ref dir))
 ;; 	(magit-diff "FETCH_HEAD~1..FETCH_HEAD")))))
 
+;;;###autoload
 (defun magit-review-download-review ()
   "Download a Gerrit Review"
   (interactive)
@@ -355,6 +354,7 @@ Succeed even if branch already exist
 ;;                    (magit-show-commit "HEAD")
 ;; 		 (error "Error while downloading review, check *git review* buffer.")))))))))
 
+;;;###autoload
 (defun magit-review-browse-review ()
   "Browse the Gerrit Review with a browser."
   (interactive)
@@ -423,25 +423,33 @@ Succeed even if branch already exist
 
 (defun magit-review-create-branch (branch parent))
 
+;;;###autoload (autoload 'magit-review-popup "magit-review" nil t)
 (magit-define-popup magit-review-popup
   "Popup console for magit review commands."
   'magit-review
+  :man-page "git-review"
   :actions '((?P "Push Commit For Review"                          magit-review-create-review)
 	     (?W "Push Commit For Draft Review"                    magit-review-create-draft)
 	     ;;	     (?S "Submit Review"                                   magit-review-submit-review)
 	     (?b "Browse Review"                                   magit-review-browse-review)
 	     ;;	     (?A "Add Reviewer"                                    magit-gerrit-add-reviewer)
 	     (?D "Download Review"                                 magit-review-download-review)
-	     ))
+	     )
+  :default-action 'magit-review-browse-review
+  :max-action-columns 3)
 
 ;; Attach Magit Review to Magit's default help popup
 (magit-define-popup-action 'magit-dispatch-popup ?R "Review"
   'magit-review-popup)
 
+;;; Sections
+
 (defvar magit-review-mode-map
   (let ((map (make-sparse-keymap)))
+    (define-key map [remap magit-visit-thing] 'magit-review-browse-review)
     (define-key map magit-review-popup-prefix 'magit-review-popup)
-    map))
+    map)
+  "Keymap for `Reviews' section.")
 
 (define-minor-mode magit-review-mode "Review support for Magit"
   :lighter " Review"
@@ -452,6 +460,7 @@ Succeed even if branch already exist
       (error "You *must* set `magit-review-remote' to a valid Gerrit remote"))
   (cond
    (magit-review-mode
+    ;; add magit-insert-gerrit-reviews section next to magit-insert-stashes section
     (magit-add-section-hook 'magit-status-sections-hook
 			    'magit-insert-gerrit-reviews
 			    'magit-insert-stashes t t)
