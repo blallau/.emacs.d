@@ -1,4 +1,4 @@
-;;; magit-review.el --- Magit plugin for Gerrit Code Review
+;;; magit-review.el --- Magit plugin for git review command
 ;;
 ;; Copyright (C) 2015 Bertrand Lallau
 ;;
@@ -61,12 +61,16 @@
 
 (defvar-local git-review-protocol nil "Protocol used by project gerrit repository")
 
+(defgroup magit-review nil
+  "magit review custom group"
+  :group 'magit-review)
+
 (defcustom magit-review-popup-prefix (kbd "R")
   "Key code to open magit-review popup"
   :group 'magit-review
   :type 'key-sequence)
 
-(defun gerrit-command (cmd &rest args)
+(defun review-command (cmd &rest args)
   (let ((gcmd (concat
 	       " "
 	       cmd
@@ -76,8 +80,8 @@
 ;;    (message (format "Using cmd:%s" gcmd))
     gcmd))
 
-(defun gerrit-query ()
-  (gerrit-command "-v -l"))
+(defun review-query ()
+  (review-command "-v -l"))
 
 (defun magit-review-get-remote-url ()
   (magit-git-string "ls-remote" "--get-url" magit-review-remote))
@@ -314,7 +318,7 @@ Succeed even if branch already exist
 ;; 	(message (format "Generating Gerrit Patchset for refs %s dir %s" ref dir))
 ;; 	(magit-diff "FETCH_HEAD~1..FETCH_HEAD")))))
 
-(defun magit-gerrit-download-review ()
+(defun magit-review-download-review ()
   "Download a Gerrit Review"
   (interactive)
   (let ((jobj (magit-review-at-point)))
@@ -362,7 +366,7 @@ Succeed even if branch already exist
 (defun magit-insert-gerrit-reviews ()
   (magit-review-section 'gerrit-reviews
 			"Reviews:" 'magit-review-wash-reviews
-			(gerrit-query)))
+			(review-query)))
 
 (defun magit-review-popup-args (&optional something)
   (or (magit-review-arguments) (list "")))
@@ -420,18 +424,18 @@ Succeed even if branch already exist
 (defun magit-review-create-branch (branch parent))
 
 (magit-define-popup magit-review-popup
-  "Popup console for magit gerrit commands."
+  "Popup console for magit review commands."
   'magit-review
   :actions '((?P "Push Commit For Review"                          magit-review-create-review)
 	     (?W "Push Commit For Draft Review"                    magit-review-create-draft)
 	     ;;	     (?S "Submit Review"                                   magit-review-submit-review)
 	     (?b "Browse Review"                                   magit-review-browse-review)
 	     ;;	     (?A "Add Reviewer"                                    magit-gerrit-add-reviewer)
-	     (?D "Download Review"                                 magit-gerrit-download-review)
+	     (?D "Download Review"                                 magit-review-download-review)
 	     ))
 
-;; Attach Magit Gerrit to Magit's default help popup
-(magit-define-popup-action 'magit-dispatch-popup ?R "Gerrit"
+;; Attach Magit Review to Magit's default help popup
+(magit-define-popup-action 'magit-dispatch-popup ?R "Review"
   'magit-review-popup)
 
 (defvar magit-review-mode-map
@@ -439,9 +443,8 @@ Succeed even if branch already exist
     (define-key map magit-review-popup-prefix 'magit-review-popup)
     map))
 
-(define-minor-mode magit-review-mode "Gerrit support for Magit"
+(define-minor-mode magit-review-mode "Review support for Magit"
   :lighter " Review"
-;;  :require 'magit-topgit
   :keymap 'magit-review-mode-map
   (or (derived-mode-p 'magit-mode)
       (error "This mode only makes sense with magit"))
@@ -487,14 +490,12 @@ Succeed even if branch already exist
 	 (url-type (url-type (url-generic-parse-url remote-url))))
     (cond
      ((string= url-type "ssh")
-      (setq git-review-protocol "ssh")
-      (define-key magit-review-mode-map magit-review-popup-prefix 'magit-review-popup)
-      (magit-review-mode t))
+      (setq git-review-protocol "ssh"))
      ((string= url-type "https")
-      (setq git-review-protocol "https")
-      ;; update keymap with prefix incase it has changed
-      (define-key magit-review-mode-map magit-review-popup-prefix 'magit-review-popup)
-      (magit-review-mode t)))))
+      (setq git-review-protocol "https")))
+    (magit-review-mode t)
+    ;; update keymap with prefix incase it has changed
+    (define-key magit-review-mode-map magit-review-popup-prefix 'magit-review-popup)))
 
 ;; Hack in dir-local variables that might be set for magit gerrit
 (add-hook 'magit-status-mode-hook #'hack-dir-local-variables-non-file-buffer t)
@@ -503,7 +504,7 @@ Succeed even if branch already exist
 (add-hook 'magit-status-mode-hook #'magit-review-enable t)
 (add-hook 'magit-log-mode-hook #'magit-review-enable t)
 
-(defun magit-gerrit-switch-project ()
+(defun magit-review-switch-project ()
   (interactive)
     ;; remove previous hook if any
     (remove-hook 'magit-status-mode-hook #'magit-review-enable t)
@@ -514,7 +515,7 @@ Succeed even if branch already exist
       (add-hook 'magit-status-mode-hook #'magit-review-enable t)
       (add-hook 'magit-log-mode-hook #'magit-review-enable t)))
 
-(add-hook 'projectile-switch-project-hook #'magit-gerrit-switch-project)
+(add-hook 'projectile-switch-project-hook #'magit-review-switch-project)
 
 (provide 'magit-review)
 
