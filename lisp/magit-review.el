@@ -44,13 +44,9 @@
 ;;
 ;;; Code:
 
+(require 'json)
 (require 'magit)
 (require 'projectile)
-
-(require 'json)
-
-(eval-when-compile
-  (require 'cl-lib))
 
 (defvar gerrit-review-url "https://review.openstack.org/#q,%s,n,z" "Gerrit review URL")
 
@@ -380,43 +376,20 @@ Succeed even if branch already exist
 		       (error "Couldn't find a commit at point")))
 	 (rev (magit-rev-parse (or commitid
 				   (error "Select a commit for review"))))
-
 	 (branch-remote (and branch (magit-get "branch" branch "remote"))))
-
-    ;; (message "Args: %s "
-    ;;	     (concat rev ":" branch-pub))
-
-    (let* ((branch-merge (if (string= branch-remote ".")
-			     (completing-read
-			      "Remote Branch: "
-			      (let ((rbs (magit-list-remote-branch-names)))
-				(mapcar
-				 #'(lambda (rb)
-				     (and (string-match (rx bos
-							    (one-or-more (not (any "/")))
-							    "/"
-							    (group (one-or-more any))
-							    eos)
-							rb)
-					  (concat "refs/heads/" (match-string 1 rb))))
-				 rbs)))
-			   (and branch (magit-get "branch" branch "merge"))))
-	   (branch-pub (progn
-			 (string-match (rx "refs/heads" (group (one-or-more any)))
-				       branch-merge)
-			 (format "refs/%s%s/%s" status (match-string 1 branch-merge) branch))))
-
 
       (when (string= branch-remote ".")
 	(setq branch-remote magit-review-remote))
+      (if (string= status "draft")
+	  (magit-run-git-async "review -D")
+	(magit-run-git-async "review"))))
 
-      (magit-run-git-async "push" "-v" branch-remote
-			   (concat rev ":" branch-pub)))))
-
+;;;###autoload
 (defun magit-review-create-review ()
   (interactive)
   (magit-review-push-review 'publish))
 
+;;;###autoload
 (defun magit-review-create-draft ()
   (interactive)
   (magit-review-push-review 'drafts))
@@ -430,10 +403,9 @@ Succeed even if branch already exist
   :man-page "git-review"
   :actions '((?P "Push Commit For Review"                          magit-review-create-review)
 	     (?W "Push Commit For Draft Review"                    magit-review-create-draft)
-	     ;;	     (?S "Submit Review"                                   magit-review-submit-review)
 	     (?b "Browse Review"                                   magit-review-browse-review)
 	     ;;	     (?A "Add Reviewer"                                    magit-gerrit-add-reviewer)
-	     (?D "Download Review"                                 magit-review-download-review)
+	     (?d "Download Review"                                 magit-review-download-review)
 	     )
   :default-action 'magit-review-browse-review
   :max-action-columns 3)
@@ -511,18 +483,18 @@ Succeed even if branch already exist
 
 ;; Try to auto enable magit-review in the magit-status buffer
 (add-hook 'magit-status-mode-hook #'magit-review-enable t)
-;(add-hook 'magit-log-mode-hook #'magit-review-enable t)
+(add-hook 'magit-log-mode-hook #'magit-review-enable t)
 
 (defun magit-review-switch-project ()
   (interactive)
-    ;; remove previous hook if any
-    (remove-hook 'magit-status-mode-hook #'magit-review-enable t)
-;    (remove-hook 'magit-log-mode-hook #'magit-review-enable t)
+  ;; remove previous hook if any
+  (remove-hook 'magit-status-mode-hook #'magit-review-enable t)
+  (remove-hook 'magit-log-mode-hook #'magit-review-enable t)
 
-    (when (and (projectile-project-p) (magit-review-check-gerrit-enabled))
-      ;; add hook
-      (add-hook 'magit-status-mode-hook #'magit-review-enable t)))
-;      (add-hook 'magit-log-mode-hook #'magit-review-enable t)))
+  (when (and (projectile-project-p) (magit-review-check-gerrit-enabled))
+    ;; add hook
+    (add-hook 'magit-status-mode-hook #'magit-review-enable t)
+    (add-hook 'magit-log-mode-hook #'magit-review-enable t)))
 
 (add-hook 'projectile-switch-project-hook #'magit-review-switch-project)
 
