@@ -44,5 +44,6 @@
 (depends-on "which-key")
 (depends-on "yaml-mode")
 (depends-on "yasnippet")
-(depends-on "pycoverage" :git "https://github.com/blallau/pycoverage")
 (depends-on "magit-review" :git "https://github.com/blallau/magit-review")
+(depends-on "padawan" :git "https://github.com/blallau/padawan")
+(depends-on "pycoverage" :git "https://github.com/blallau/pycoverage")
