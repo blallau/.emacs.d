@@ -164,7 +164,7 @@ automatically kill buffer and window that run the process."
   ;; flycheck-python-set-executables uses buffer-local variables
   (add-hook 'hack-local-variables-hook #'flycheck-python-set-executables nil 'local))
 
-(add-hook 'projectile-switch-project-hook #'my-jedi-starter)
+(add-hook 'projectile-after-switch-project-hook #'my-jedi-starter)
 ;; (add-hook 'projectile-switch-project-hook #'set-python-virtualenv-path)
 ;; (add-hook 'projectile-switch-project-hook #'flycheck-venv-python-setup)
 
