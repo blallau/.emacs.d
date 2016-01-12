@@ -27,15 +27,8 @@
 (require 'flycheck)
 (declare-function python-shell-calculate-exec-path "python")
 
-;; Define a defvar-local macro for Emacs < 24.3
-(unless (fboundp 'defvar-local)
-  (defmacro defvar-local (var val &optional docstring)
-    `(progn
-       (defvar ,var ,val ,docstring)
-       (make-variable-buffer-local ',var))))
-
-(defvar pip-install-jedi-command "pip install -U jedi" "Command to install Jedi by PIP")
-(defvar pip-install-pylint-command "pip install -U pylint" "Command to install Pylint by PIP")
+(defconst pip-install-jedi-command "pip install -U jedi" "Command to install Jedi by PIP")
+(defconst pip-install-pylint-command "pip install -U pylint" "Command to install Pylint by PIP")
 
 (defvar python-version "py27" "python version")
 (defvar venv-dir (concat ".tox/" python-version) "venv directory")
