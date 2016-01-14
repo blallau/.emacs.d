@@ -1,6 +1,3 @@
-;; start in the home directory
-(setq initial-buffer-choice "~/")
-
 ;;
 ;; Next and previous buffer ignore *...* buffer
 ;;
