@@ -1,3 +1,6 @@
+;; start in the home directory
+(setq initial-buffer-choice "~/")
+
 ;;
 ;; Next and previous buffer ignore *...* buffer
 ;;
@@ -40,3 +43,9 @@
 (require 'saveplace)
 (setq-default save-place t)
 (setq save-place-file (expand-file-name ".places" user-emacs-directory))
+
+;; Scroll one line at a time (less "jumpy" than defaults)
+(setq mouse-wheel-scroll-amount '(1 ((shift) . 1))) ;; one line at a time
+(setq mouse-wheel-progressive-speed nil) ;; don't accelerate scrolling
+(setq mouse-wheel-follow-mouse 't) ;; scroll window under mouse
+(setq scroll-step 1) ;; keyboard scroll one line at a time
