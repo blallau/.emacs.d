@@ -40,6 +40,7 @@
 (depends-on "popup")
 (depends-on "projectile")
 (depends-on "python-environment")
+(depends-on "rainbow-delimiters")
 (depends-on "undo-tree")
 (depends-on "which-key")
 (depends-on "yaml-mode")
