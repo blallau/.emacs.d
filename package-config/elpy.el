@@ -19,8 +19,7 @@
             (local-set-key (kbd "<f8>") 'elpy-flymake-next-error)
             ; narrow the current buffer to the current function
             ; using C-x n d to restrict where this matches.
-            (local-set-key (kbd "C-c C-e") 'elpy-multiedit-python-symbol-at-point)
+            (local-set-key (kbd "C-c C-e") 'elpy-multiedit-python-symbol-at-point)))
             ; formats code using yapf or autopep8 formatter
             ;(local-set-key (kbd "C-c C-r f") 'elpy-format-code)
             ;(local-set-key (kbd "C-c C-r i") 'elpy-importmagic-fixup)
-        ))

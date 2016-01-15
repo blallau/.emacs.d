@@ -15,5 +15,4 @@
           (lambda ()
             (local-set-key (kbd "<f3>") 'jedi:goto-definition)
             (local-set-key (kbd "<f2>") 'jedi:goto-definition-pop-marker)
-            (local-set-key (kbd "<f1>") 'jedi:show-doc)
-        ))
+            (local-set-key (kbd "<f1>") 'jedi:show-doc)))

@@ -21,8 +21,8 @@
                                 "353" ; Names notice
                                 "324" ; modes
                                 "329" ; channel creation date
-                                "477"
-                                ))
+                                "477"))
+
 ;; don't show any of this
 (setq erc-hide-list '("JOIN" "PART" "QUIT" "NICK"))
 

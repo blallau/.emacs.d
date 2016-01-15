@@ -30,9 +30,7 @@
 
 (add-hook 'python-mode-hook
           (lambda ()
-            (local-set-key (kbd "C-c C-t") 'python-add-breakpoint)
-            )
-          )
+            (local-set-key (kbd "C-c C-t") 'python-add-breakpoint)))
 
 ;; ;; column witdh indicator
 ;; (require 'fill-column-indicator)

@@ -32,11 +32,7 @@
     (let ((test-file (projectile-find-matching-test file-name)))
       (if test-file
           (projectile-expand-root test-file)
-        (error "No matching test file found")
-        )
-      )
-    )
-  )
+        (error "No matching test file found")))))
 
 ;; TODO: correct to be PYTHON independant
 (defun my-toggle-src-test ()
@@ -55,12 +51,8 @@
               (switch-to-prev-buffer)
               )
           (highlight-regexp test_to_find)
-          (recenter)
-          )
-        )
-    (error " not a PYTHON source file.")
-    )
-  )
+          (recenter)))
+    (error " not a PYTHON source file.")))
 
 (defun my-testable ()
   (let* ((inner-obj (inner-testable))
@@ -84,7 +76,6 @@
      "^\\(class\\|def\\)[ \t]+\\([a-zA-Z0-9_]+\\)" nil t)
     (let ((result
             (buffer-substring-no-properties (match-beginning 2) (match-end 2))))
-
       (cons
        (buffer-substring-no-properties (match-beginning 1) (match-end 1))
        result))))
@@ -93,8 +84,7 @@
   "projectile grep with git grep disabled"
   (interactive)
   (let ((projectile-use-git-grep nil))
-    (projectile-grep)
-))
+    (projectile-grep)))
 
 ;; customize grep-find command
 ;;(setq grep-find-command "find . -type f '!' -wholename '*/.git/*' -print0 | xargs -0 -e grep -nH -e ")
@@ -108,10 +98,8 @@
      (add-to-list 'grep-find-ignored-directories ".git")
      (add-to-list 'grep-find-ignored-directories ".tox")
      (add-to-list 'grep-find-ignored-directories "locale")
-     (add-to-list 'grep-find-ignored-directories "tests")))
-   )
-  'helm-projectile-grep
-  )
+     (add-to-list 'grep-find-ignored-directories "tests"))))
+  'helm-projectile-grep)
 
 ;(setq grep-find-command "find . -type f '!' -wholename '*/.tox/*' -a '!' -wholename '*/.git/*' -a '!' -wholename '*/.eggs/*' -a '!' -wholename '*/tests/*' -print0 | xargs -0 -e grep -nH -e ")
 (global-set-key (kbd "C-<f4>") 'helm-projectile-grep-ori)
@@ -128,5 +116,4 @@
     "Find default test files prefix based on PROJECT-TYPE."
     (cond
      ((member project-type '(django python python-tox)) "test_")
-     ((member project-type '(lein-midje)) "t_")))
-  )
+     ((member project-type '(lein-midje)) "t_"))))

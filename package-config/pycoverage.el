@@ -6,9 +6,6 @@
   (when (derived-mode-p 'python-mode)
     (progn
       (linum-mode)
-      (pycoverage-mode)
-      )
-    )
-  )
+      (pycoverage-mode))))
 
 (add-hook 'python-mode-hook 'my-coverage)
