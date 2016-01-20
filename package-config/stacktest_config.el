@@ -1,5 +1,4 @@
-(eval-when-compile
-  (require 'stacktest))
+(require 'stacktest)
 
 ;; optionally enable for all python files
 (add-hook 'python-mode-hook 'stacktest-mode)
