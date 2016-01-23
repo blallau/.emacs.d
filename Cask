@@ -14,7 +14,7 @@
 (depends-on "elisp-slime-nav")
 ;(depends-on "elpy")
 (depends-on "epc")
-(depends-on "epl")
+(depends-on "fancy-narrow")
 (depends-on "fic-mode")
 (depends-on "flycheck")
 (depends-on "git-gutter")
