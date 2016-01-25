@@ -1,10 +1,10 @@
 (require 'dim)
 (dim-major-names
- '((java-mode "Ⓙ")
-   (python-mode "Ⓟ")
-   (ruby-mode "Ⓡ")
-   (shell-mode "Ⓢ")
-   (emacs-lisp-mode "Ⓔ")))
+ '((java-mode "ⒿⒶ")
+   (python-mode "ⓅⓎ")
+   (ruby-mode "ⓇⓊ")
+   (sh-mode "ⓈⒽ")
+   (emacs-lisp-mode "ⒺⓁ")))
 
 (dim-minor-names
  '(
