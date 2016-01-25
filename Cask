@@ -11,6 +11,7 @@
 (depends-on "benchmark-init")
 (depends-on "cask")
 (depends-on "circe")
+(depends-on "dim")
 (depends-on "elisp-slime-nav")
 ;(depends-on "elpy")
 (depends-on "epc")
