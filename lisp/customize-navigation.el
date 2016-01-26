@@ -46,3 +46,50 @@
 (setq mouse-wheel-progressive-speed nil) ;; don't accelerate scrolling
 (setq mouse-wheel-follow-mouse 't) ;; scroll window under mouse
 (setq scroll-step 1) ;; keyboard scroll one line at a time
+
+;; scroll 2 windows with mouse
+(defun my-scroll-down (arg)
+  "scroll-down all visible windows."
+  (interactive "P")
+  (let ((num-windows (count-windows))
+        (count 0))
+    (while (< count num-windows)
+      (scroll-down 1)
+      (other-window 1)
+      (setq count (1+ count)))))
+
+(defun my-scroll-up (arg)
+  "scroll-up all visible windows."
+  (interactive "P")
+  (let ((num-windows (count-windows))
+  (count 0))
+    (while (< count num-windows)
+    (scroll-up 1)
+    (other-window 1)
+    (setq count (1+ count)))))
+
+(defun my-scroll-down-all (arg)
+  "scroll-down all visible windows."
+  (interactive "P")
+  (let ((num-windows (count-windows))
+  (count 0))
+    (while (< count num-windows)
+    (scroll-down)
+    (other-window 1)
+    (setq count (1+ count)))))
+
+(defun my-scroll-up-all (arg)
+  "scroll-up all visible windows."
+  (interactive "P")
+  (let ((num-windows (count-windows))
+  (count 0))
+    (while (< count num-windows)
+    (scroll-up)
+    (other-window 1)
+    (setq count (1+ count)))))
+
+(global-set-key [C-mouse-5] 'my-scroll-up)
+(global-set-key [C-mouse-4] 'my-scroll-down)
+
+(global-set-key [S-mouse-5] 'my-scroll-up-all)
+(global-set-key [S-mouse-4] 'my-scroll-down-all)
