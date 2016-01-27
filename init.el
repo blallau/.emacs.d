@@ -51,6 +51,9 @@
 ;; Load all files with *.elc in lisp-config
 (mapc 'load-library (directory-files (expand-file-name "package-config" user-emacs-directory) t ".elc$"))
 
+;; Start Emacs in server mode
+(server-start)
+
 (provide 'init)
 
 ;; Local Variables:
