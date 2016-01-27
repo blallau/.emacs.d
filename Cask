@@ -52,5 +52,4 @@
 (depends-on "couette" :git "https://github.com/blallau/couette")
 (depends-on "magit-review" :git "https://github.com/blallau/magit-review")
 (depends-on "padawan" :git "https://github.com/blallau/padawan")
-(depends-on "pycoverage" :git "https://github.com/blallau/pycoverage")
 (depends-on "stacktest" :git "https://github.com/sdague/stacktest")
