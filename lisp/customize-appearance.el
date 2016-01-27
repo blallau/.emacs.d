@@ -127,6 +127,9 @@
 
 (require 'dired-x)
 (setq-default dired-omit-files-p t)
+;; To toggle the mode
+(define-key dired-mode-map (kbd "C-o") 'dired-omit-mode)
+
 (setq-default dired-omit-verbose nil)
 (setq dired-omit-files (concat dired-omit-files "\\|\\.pyc$"))
 
