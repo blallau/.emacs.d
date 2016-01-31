@@ -46,10 +46,3 @@
 
 (require 're-builder)
 (setq reb-re-syntax 'string)
-
-(defun show-file-name ()
-  "Show the full path file name in the minibuffer."
-  (interactive)
-  (message (buffer-file-name)))
-
-(global-set-key [C-f1] 'show-file-name)
