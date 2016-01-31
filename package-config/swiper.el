@@ -21,6 +21,9 @@
 ;; but also the index of the current one
 (setq ivy-count-format "(%d/%d) ")
 
+;; sets the colours of the swiper results display to be a bit more, well, fancy!
+(setq ivy-display-style 'fancy)
+
 (use-package recentf
   :config
   (setq recentf-exclude
