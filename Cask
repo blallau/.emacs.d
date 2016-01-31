@@ -53,3 +53,5 @@
 (depends-on "magit-review" :git "https://github.com/blallau/magit-review")
 (depends-on "padawan" :git "https://github.com/blallau/padawan")
 (depends-on "stacktest" :git "https://github.com/sdague/stacktest")
+(depends-on "swiper" :git "https://github.com/abo-abo/swiper")
+(depends-on "swiper-helm" :git "https://github.com/abo-abo/swiper-helm")
