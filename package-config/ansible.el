@@ -3,5 +3,4 @@
 (add-hook 'yaml-mode-hook
           (lambda ()
             (local-set-key (kbd "<f1>") 'ansible-doc)
-            (ansible 1)
-        ))
+            (ansible 1)))
