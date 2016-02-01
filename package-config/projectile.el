@@ -105,7 +105,7 @@
 (global-set-key (kbd "C-<f4>") 'helm-projectile-grep-ori)
 
 (global-set-key (kbd "<f4>") 'projectile-grep)
-(global-set-key (kbd "C-<f4>") 'projectile-grep-without-git)
+;(global-set-key (kbd "C-<f4>") 'projectile-grep-without-git)
 (global-set-key (kbd "C-S-<f4>") 'grep-find)
 (global-set-key (kbd "C-<f9>") 'projectile-toggle-between-implementation-and-test)
 (global-set-key (kbd "<f9>") 'my-toggle-src-test)

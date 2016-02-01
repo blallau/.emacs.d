@@ -8,10 +8,12 @@
 		"%b"))))
 
 ;; disable gui crap
-(when (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
-;; hide menu and tool bar
-(when (fboundp 'menu-bar-mode) (menu-bar-mode -1))
-(when (fboundp 'tool-bar-mode) (tool-bar-mode -1))
+(when window-system
+  (menu-bar-mode -1)
+  (scroll-bar-mode -1)
+  (tooltip-mode -1)
+  (tool-bar-mode -1))
+
 ;; disable help popup in modeline
 (setq show-help-function nil)
 ;; disable splash screen

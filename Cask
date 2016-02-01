@@ -46,6 +46,7 @@
 (depends-on "rainbow-delimiters")
 (depends-on "rainbow-mode")
 (depends-on "undo-tree")
+(depends-on "use-package" :git "https://github.com/jwiegley/use-package")
 (depends-on "which-key")
 (depends-on "yaml-mode")
 (depends-on "yasnippet")
