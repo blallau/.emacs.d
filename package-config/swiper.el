@@ -1,5 +1,5 @@
 ;; IVY-MODE
-(require 'ivy-mode)
+(require 'ivy)
 (setq ivy-mode t)
 
 (setq magit-completing-read-function 'ivy-completing-read)
