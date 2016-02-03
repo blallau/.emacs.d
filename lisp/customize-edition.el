@@ -49,3 +49,8 @@
 
 ;; warn when opening files bigger than 100MB
 (setq large-file-warning-threshold 100000000)
+
+;; to setup spaces instead of tab
+(setq-default c-basic-offset 4
+	      tab-width 4
+	      indent-tabs-mode nil)
