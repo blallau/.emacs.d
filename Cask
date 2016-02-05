@@ -3,6 +3,7 @@
 (source "marmalade" "http://marmalade-repo.org/packages/")
 (source "elpy"  "http://jorgenschaefer.github.io/packages/")
 
+(depends-on "adoc-mode")
 (depends-on "ac-helm")
 (depends-on "ansible")
 (depends-on "ansible-doc")
