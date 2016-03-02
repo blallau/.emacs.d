@@ -6,3 +6,4 @@
 (add-to-list 'auto-mode-alist '("\\.plantuml\\'" . puml-mode))
 
 (setq puml-output-type "svg")
+(setq puml-plantuml-jar-path "~/plantuml.jar")
