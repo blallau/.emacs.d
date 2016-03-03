@@ -1,6 +1,7 @@
 (require 'dim)
 (dim-major-names
  '((java-mode "ⒿⒶ")
+   (org-mode "Ⓞ")
    (python-mode "ⓅⓎ")
    (ruby-mode "ⓇⓊ")
    (sh-mode "ⓈⒽ")
