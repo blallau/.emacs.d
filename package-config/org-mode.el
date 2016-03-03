@@ -8,8 +8,16 @@
 
 (setq org-startup-indented t)
 
+;; Tags
+(setq org-tag-alist '((:startgroup . nil)
+                      ("@work" . ?w) ("@home" . ?h)
+                      (:endgroup . nil)
+                      ("laptop" . ?l) ("pc" . ?p)))
+
 ;; Information to record when a task moves to the DONE state
-(setq org-log-done t)
+(setq org-log-done t
+      org-todo-keywords '((sequence "TODO" "INPROGRESS" "DONE"))
+      org-todo-keyword-faces '(("INPROGRESS" . (:foreground "blue" :weight bold))))
 
 ;; Org directory config
 (setq org-directory "~/work/org")
