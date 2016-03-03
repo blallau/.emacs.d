@@ -11,6 +11,7 @@ Configure emacs for:
  * IRC
  * LISP
  * Markdown
+ * Org mode
  * PlantUML
  * Python
  * ...
