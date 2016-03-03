@@ -66,6 +66,22 @@
       '(("jira" . "http://pegjira.pegasus.theresis.org/browse/")
         ("launchpad" . "https://bugs.launchpad.net/bugs/")))
 
+;; Source code block
+;;
+;; Don't ask before every code block evaluation
+(setq org-confirm-babel-evaluate nil)
+
+(setq org-ditaa-jar-path "~/ditaa0_9.jar")
+(setq org-plantuml-jar-path "~/plantuml.jar")
+
+(defun shk-fix-inline-images ()
+  (when org-inline-image-overlays
+    (org-redisplay-inline-images)))
+
+;; permit inline image display in the Emacs buffer.
+(add-hook 'org-mode-hook 'org-display-inline-images)
+(add-hook 'org-babel-after-execute-hook 'shk-fix-inline-images)
+
 ;; Babel
 ;;
 ;; Some initial languages we want org-babel to support
@@ -75,6 +91,7 @@
    (ditaa . t)
    (emacs-lisp . t)
    (perl . t)
+   (plantuml . t)
    (python . t)
    (ruby . t)
    (sh . t)))
