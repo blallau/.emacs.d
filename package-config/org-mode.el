@@ -41,12 +41,6 @@
 ;; prevent demoting heading also shifting text inside sections
 (setq org-adapt-indentation nil)
 
-;; Src
-;;
-;; syntax highlight code blocks
-(setq org-src-fontify-natively t)
-(setq org-src-preserve-indentation t)
-
 ;; Footnode
 ;;
 (setq org-footnote-section nil)
@@ -57,7 +51,7 @@
 ;; open agenda in current window
 (setq org-agenda-window-setup (quote current-window))
 
-;; LINKs
+;; Links
 ;;
 ;; follow the link at point with <RET>
 (setq org-return-follows-link t)
@@ -71,7 +65,13 @@
 ;; Don't ask before every code block evaluation
 (setq org-confirm-babel-evaluate nil)
 
+;; syntax highlight code blocks
+(setq org-src-fontify-natively t)
+(setq org-src-preserve-indentation t)
+
+;; Ditaa
 (setq org-ditaa-jar-path "~/ditaa0_9.jar")
+;; plantUML
 (setq org-plantuml-jar-path "~/plantuml.jar")
 
 (defun shk-fix-inline-images ()
