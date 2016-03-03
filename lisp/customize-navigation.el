@@ -94,6 +94,9 @@
 (global-set-key [S-mouse-5] 'my-scroll-up-all)
 (global-set-key [S-mouse-4] 'my-scroll-down-all)
 
+;; cursor is always given 3 lines of context before the top or bottom of the window
+(setq scroll-margin 3)
+
 (defun show-file-name ()
   "Show the full path file name in the minibuffer."
   (interactive)
