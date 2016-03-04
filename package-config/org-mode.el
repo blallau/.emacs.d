@@ -10,7 +10,7 @@
                       ("laptop" . ?l) ("pc" . ?p)))
 
 ;; Information to record when a task moves to the DONE state
-(setq org-log-done t
+(setq org-log-done 'time
       org-todo-keywords '((sequence "TODO" "INPROGRESS" "DONE"))
       org-todo-keyword-faces '(("INPROGRESS" . (:foreground "blue" :weight bold))))
 
