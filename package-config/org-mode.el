@@ -1,5 +1,10 @@
 (require 'org)
 
+;; Hook to update all blocks before saving
+(add-hook 'org-mode-hook
+          (lambda() (add-hook 'before-save-hook
+                              'org-update-all-dblocks t t)))
+
 (setq org-startup-indented t)
 (setq org-hide-leading-stars nil)
 
@@ -104,6 +109,8 @@
  'org-babel-load-languages
  '((ditaa . t)
    (emacs-lisp . t)
+   (gnuplot . t)
+   (org . t)
    (perl . t)
    (plantuml . t)
    (python . t)
