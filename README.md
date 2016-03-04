@@ -7,6 +7,7 @@ Emacs 24.5 Configuration (using Cask)
 Configure emacs for:
  * Ansible
  * Cask
+ * Ditaa
  * GIT
  * IRC
  * LISP
