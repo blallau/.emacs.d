@@ -1,0 +1,5 @@
+# name : PlantUML
+# --
+#+BEGIN_SRC plantuml :file ${1:export-file-name}
+${0}
+#+END_SRC
