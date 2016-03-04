@@ -1,12 +1,7 @@
 (require 'org)
 
-(global-set-key (kbd "C-c l") 'org-store-link)
-;; set key for agenda
-(global-set-key (kbd "C-c a") 'org-agenda)
-;;(define-key global-map "\C-cl" 'org-store-link)
-;;(define-key global-map "\C-ca" 'org-agenda)
-
 (setq org-startup-indented t)
+(setq org-hide-leading-stars nil)
 
 ;; Tags
 (setq org-tag-alist '((:startgroup . nil)
@@ -20,28 +15,35 @@
       org-todo-keyword-faces '(("INPROGRESS" . (:foreground "blue" :weight bold))))
 
 ;; Org directory config
-(setq org-directory "~/work/org")
-(setq org-default-notes-file (concat org-directory "/notes.org"))
-(setq org-agenda-files (list (concat org-directory "/TODO-work.org")
+(setq org-directory "~/work/org"
+      org-default-notes-file (concat org-directory "/notes.org")
+      org-agenda-files (list (concat org-directory "/TODO-work.org")
                              (concat org-directory "/TODO-home.org")))
 
+;; Priorities
+;;
 ;; set priority range from A to C with default A
-(setq org-highest-priority ?A)
-(setq org-lowest-priority ?C)
-(setq org-default-priority ?A)
-
-;; set colours for priorities
+(setq org-highest-priority ?A
+      org-lowest-priority ?C
+      org-default-priority ?A)
+;; set colours
 (setq org-priority-faces '((?A . (:foreground "#F0DFAF" :weight bold))
                            (?B . (:foreground "LightSteelBlue"))
                            (?C . (:foreground "OliveDrab"))))
 
+;; Todo
+;;
 (setq org-enforce-todo-dependencies t)
 
-;; ;; capture todo items using C-c c t
-;; (define-key global-map (kbd "C-c c") 'org-capture)
-;; (setq org-capture-templates
-;;       '(("t" "todo" entry (file+headline "/work/TODO.org" "Tasks")
-;;          "* TODO [#A] %?")))
+;; Capture
+;;
+(setq org-capture-templates
+      '(("t" "Todo" entry
+         (file+headline (concat org-directory "/gtd.org") "Tasks")
+         "* TODO %?\n %i\n %a")
+        ("l" "Link" entry
+         (file+headline (concat org-directory "/links.org") "Links to Read")
+         "* %?\n %i")))
 
 ;; set maximum indentation for description lists
 (setq org-list-description-max-indent 5)
@@ -51,13 +53,13 @@
 
 ;; Footnode
 ;;
-(setq org-footnote-section nil)
-(setq org-footnote-auto-adjust t)
+(setq org-footnote-section nil
+      org-footnote-auto-adjust t)
 
 ;; Agenda
 ;;
 ;; open agenda in current window
-(setq org-agenda-window-setup (quote current-window))
+;;(setq org-agenda-window-setup (quote current-window))
 
 ;; Links
 ;;
@@ -95,14 +97,14 @@
 ;; Some initial languages we want org-babel to support
 (org-babel-do-load-languages
  'org-babel-load-languages
- '(
-   (ditaa . t)
+ '((ditaa . t)
    (emacs-lisp . t)
    (perl . t)
    (plantuml . t)
    (python . t)
    (ruby . t)
-   (sh . t)))
+   (sh . t)
+   (sql . t)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; function to wrap blocks of text in org templates                       ;;
@@ -147,5 +149,9 @@
               (insert "#+BEGIN_" choice "\n")
               (save-excursion (insert "#+END_" choice))))))))))
 
-;;bind to key
+;;bind to keys
 (define-key org-mode-map (kbd "C-<") 'org-begin-template)
+
+(global-set-key (kbd "C-c l") 'org-store-link)
+(global-set-key (kbd "C-c a") 'org-agenda)
+(global-set-key (kbd "C-c c") 'org-capture)
