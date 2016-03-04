@@ -1,0 +1,5 @@
+# name : DITAA
+# --
+#+BEGIN_DITAA ${1:export-file-name} -r
+${0}
+#+END_DITAA
