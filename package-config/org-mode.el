@@ -66,9 +66,14 @@
 ;; follow the link at point with <RET>
 (setq org-return-follows-link t)
 
+;; With the following settings, you could link to a specific bug with
+;; `[[jira:1234]]'
+;; `[[lp:14134]]'
+;; `[[review:14134/1]]'
 (setq org-link-abbrev-alist
       '(("jira" . "http://pegjira.pegasus.theresis.org/browse/")
-        ("launchpad" . "https://bugs.launchpad.net/bugs/")))
+        ("lp" . "https://bugs.launchpad.net/bugs/")
+        ("review" . "https://review.openstack.org/#/c/")))
 
 ;; Source code block
 ;;
