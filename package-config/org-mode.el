@@ -16,8 +16,10 @@
 
 ;; Information to record when a task moves to the DONE state
 (setq org-log-done 'time
-      org-todo-keywords '((sequence "TODO" "INPROGRESS" "DONE"))
-      org-todo-keyword-faces '(("INPROGRESS" . (:foreground "blue" :weight bold))))
+      org-todo-keywords '((sequence "TODO(t)" "INPROGRESS(i)" "|" "DONE(d)")
+                          (sequence "BUG(b)" "REVIEW(r)" "|" "FIXED(f)"))
+      org-todo-keyword-faces '(("INPROGRESS" . (:foreground "blue" :weight bold))
+                               ("REVIEW" . (:foreground "blue" :weight bold))))
 
 ;; Org directory config
 (setq org-directory "~/work/org"
