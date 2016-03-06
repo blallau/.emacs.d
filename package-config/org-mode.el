@@ -68,6 +68,10 @@
 ;; open agenda in current window
 ;;(setq org-agenda-window-setup (quote current-window))
 
+;; Table
+;;
+(setq org-table-use-standard-references t)
+
 ;; Links
 ;;
 ;; follow the link at point with <RET>
