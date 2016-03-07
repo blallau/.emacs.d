@@ -45,10 +45,10 @@
 ;; Capture
 ;;
 (setq org-capture-templates
-      '(("t" "Todo" entry
+      '(("t" "todo" entry
          (file+headline (concat org-directory "/gtd.org") "Tasks")
-         "* TODO %?\n %i\n %a")
-        ("l" "Link" entry
+         "* TODO %?\nSCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+0d\"))\n")
+        ("l" "link" entry
          (file+headline (concat org-directory "/links.org") "Links to Read")
          "* %?\n %i")))
 
@@ -65,11 +65,32 @@
 
 ;; Agenda
 ;;
-;; open agenda in current window
-;;(setq org-agenda-window-setup (quote current-window))
+;;open agenda in current window
+(setq org-agenda-window-setup (quote current-window))
+;;warn me of any deadlines in next 7 days
+(setq org-deadline-warning-days 7)
+;;show me tasks scheduled or due in next fortnight (14 days)
+(setq org-agenda-span (quote fortnight))
+;;don't show tasks as scheduled if they are already shown as a deadline
+(setq org-agenda-skip-scheduled-if-deadline-is-shown t)
+;;don't give awarning colour to tasks with impending deadlines
+;;if they are scheduled to be done
+(setq org-agenda-skip-deadline-prewarning-if-scheduled (quote pre-scheduled))
+;;don't show tasks that are scheduled or have deadlines in the
+;;normal todo list
+(setq org-agenda-todo-ignore-deadlines (quote all))
+(setq org-agenda-todo-ignore-scheduled (quote all))
+;;sort tasks in order of when they are due and then by priority
+(setq org-agenda-sorting-strategy
+  (quote
+   ((agenda deadline-up priority-down)
+    (todo priority-down category-keep)
+    (tags priority-down category-keep)
+    (search category-keep))))
 
 ;; Table
 ;;
+;; only work with the internal format (like @3$2 or $4)
 (setq org-table-use-standard-references t)
 
 ;; Links
