@@ -13,6 +13,7 @@ Configure emacs for:
  * LISP
  * Markdown
  * Org mode
+   * export Reveal.js
  * PlantUML
  * Python
  * ...
@@ -40,6 +41,20 @@ Configure emacs for:
 
     sudo apt-get install python-flake8 python-virtualenv
     # On Emacs M-X jedi:install-server
+
+## Reveal.js
+
+    wget https://github.com/hakimel/reveal.js/archive/3.2.0.tar.gz
+    tar zxvf 3.2.0.tar.gz
+    mv reveal.js-3.2.0 reveal.js
+
+    sudo apt-get install python-software-properties
+    sudo add-apt-repository ppa:chris-lea/node.js
+    sudo apt-get update
+    sudo apt-get install nodejs nodejs-dev npm
+
+    cd reveal.js
+    sudo npm install
 
 # Proxy
 
