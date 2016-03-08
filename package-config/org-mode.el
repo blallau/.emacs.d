@@ -91,7 +91,7 @@
 ;; Table
 ;;
 ;; only work with the internal format (like @3$2 or $4)
-(setq org-table-use-standard-references t)
+(setq org-table-use-standard-references nil)
 
 ;; Links
 ;;
