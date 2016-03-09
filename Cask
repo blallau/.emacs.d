@@ -43,7 +43,6 @@
 (depends-on "pkg-info")
 (depends-on "popup")
 (depends-on "projectile")
-(depends-on "puml-mode")
 (depends-on "python-environment")
 (depends-on "rainbow-delimiters")
 (depends-on "rainbow-mode")

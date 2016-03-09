@@ -7,14 +7,15 @@ Emacs 24.5 Configuration (using Cask)
 Configure emacs for:
  * Ansible
  * Cask
- * Ditaa
+ * Dropbox
  * GIT
  * IRC
  * LISP
  * Markdown
  * Org mode
+   * Ditaa
+   * PlantUML
    * export Reveal.js
- * PlantUML
  * Python
  * ...
 
@@ -44,19 +45,9 @@ Configure emacs for:
 
 ## Reveal.js
 
-    Install Node.js
-
-    Install Grunt
-
     wget https://github.com/hakimel/reveal.js/archive/3.2.0.tar.gz
     tar zxvf 3.2.0.tar.gz
     mv reveal.js-3.2.0 reveal.js
-
-    sudo apt-get update
-    sudo apt-get install nodejs nodejs-dev npm
-
-    cd reveal.js
-    sudo npm install
 
 # Proxy
 
