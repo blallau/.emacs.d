@@ -8,7 +8,9 @@
 (setq org-startup-indented t)
 (setq org-hide-leading-stars nil)
 
+;;
 ;; Tags
+;;
 (setq org-tag-alist '((:startgroup . nil)
                       ("@work" . ?w) ("@home" . ?h)
                       (:endgroup . nil)
@@ -24,8 +26,10 @@
 ;; Org directory config
 (setq org-directory "~/work/org"
       org-default-notes-file (concat org-directory "/notes.org")
+      ;; all files to include in order to compose agenda
       org-agenda-files (list (concat org-directory "/gtd.org")))
 
+;;
 ;; Priorities
 ;;
 ;; set priority range from A to C with default A
@@ -36,11 +40,14 @@
 (setq org-priority-faces '((?A . (:foreground "#F0DFAF" :weight bold))
                            (?B . (:foreground "LightSteelBlue"))
                            (?C . (:foreground "OliveDrab"))))
-
+;;
 ;; Todo
 ;;
+
+;; forces to mark all child tasks as “DONE” before you can mark the parent as “DONE”
 (setq org-enforce-todo-dependencies t)
 
+;;
 ;; Capture
 ;;
 (setq org-capture-templates
@@ -51,19 +58,29 @@
          (file+headline (concat org-directory "/links.org") "Links to Read")
          "* %?\n %i")))
 
+;; leave a blank line at the end of the content of each task entry
+(setq org-blank-before-new-entry (quote ((heading) (plain-list-item))))
+
 ;; set maximum indentation for description lists
 (setq org-list-description-max-indent 5)
 
 ;; prevent demoting heading also shifting text inside sections
 (setq org-adapt-indentation nil)
 
+;;
 ;; Footnode
 ;;
 (setq org-footnote-section nil
       org-footnote-auto-adjust t)
 
+;;
 ;; Agenda
 ;;
+
+;; When perform a text search (the “s” selection from the org-agenda pop-up)
+;; include the archives for all of the files in Org’s agenda files list
+(setq org-agenda-text-search-extra-files '(agenda-archives))
+
 ;;open agenda in current window
 (setq org-agenda-window-setup (quote current-window))
 ;;warn me of any deadlines in next 7 days
@@ -87,6 +104,7 @@
     (tags priority-down category-keep)
     (search category-keep))))
 
+;;
 ;; Table
 ;;
 ;; only work with the internal format (like @3$2 or $4)
@@ -126,8 +144,10 @@
 
 ;; permit inline image display in the Emacs buffer.
 (add-hook 'org-mode-hook 'org-display-inline-images)
+
 (add-hook 'org-babel-after-execute-hook 'shk-fix-inline-images)
 
+;;
 ;; Babel
 ;;
 ;; Some initial languages we want org-babel to support
