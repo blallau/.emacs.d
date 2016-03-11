@@ -18,8 +18,8 @@
 
 ;; Information to record when a task moves to the DONE state
 (setq org-log-done 'time
-      org-todo-keywords '((sequence "TODO(t)" "INPROGRESS(i)" "|" "DONE(d)")
-                          (sequence "BUG(b)" "REVIEW(r)" "|" "FIXED(f)"))
+      org-todo-keywords '((sequence "☛ TODO(t)" "○ IN-PROGRESS(i)" "⚑ WAITING(w)" "|" "✓ DONE(d)" "✗ CANCELED(c)")
+                          (sequence "BUG(b)" "REVIEW(r)" "|" "FIXED(f)" "NOT FIXED(n)"))
       org-todo-keyword-faces '(("INPROGRESS" . (:foreground "blue" :weight bold))
                                ("REVIEW" . (:foreground "blue" :weight bold))))
 
