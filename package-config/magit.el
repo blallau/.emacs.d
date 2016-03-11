@@ -17,6 +17,9 @@
 (setq magit-revert-buffers t)
 (setq magit-save-repository-buffers t)
 
+;; follow symlinks without querying user
+(setq vc-follow-symlinks t)
+
 ;(global-set-key (kbd "C-x g") 'magit-status)
 (global-set-key (kbd "C-<f5>") 'magit-blame)
 (global-set-key (kbd "<f6>") 'magit-status)
