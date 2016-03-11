@@ -24,8 +24,7 @@
 ;; Org directory config
 (setq org-directory "~/work/org"
       org-default-notes-file (concat org-directory "/notes.org")
-      org-agenda-files (list (concat org-directory "/TODO-work.org")
-                             (concat org-directory "/TODO-home.org")))
+      org-agenda-files (list (concat org-directory "/gtd.org")))
 
 ;; Priorities
 ;;
