@@ -20,7 +20,8 @@
 (setq org-log-done 'time
       org-todo-keywords '((sequence "☛ TODO(t)" "○ IN-PROGRESS(i)" "⚑ WAITING(w)" "|" "✓ DONE(d)" "✗ CANCELED(c)")
                           (sequence "BUG(b)" "REVIEW(r)" "|" "FIXED(f)" "NOT FIXED(n)"))
-      org-todo-keyword-faces '(("INPROGRESS" . (:foreground "blue" :weight bold))
+      org-todo-keyword-faces '(("○ IN-PROGRESS" . (:foreground "blue" :weight bold))
+                               ("⚑ WAITING" . (:foreground "blue" :weight bold))
                                ("REVIEW" . (:foreground "blue" :weight bold))))
 
 ;; Org directory config
