@@ -53,6 +53,11 @@ Configure emacs for:
 
  * Launch Cask with a proxy (cask can't handle proxy user:password)
 
+# Todo
+
+ * Fix Tramp
+ * Use use-package
+
 # License
 
 Emacs-config is licensed under the [MIT License](http://www.opensource.org/licenses/mit-license.php).
