@@ -42,6 +42,10 @@
 (setq org-priority-faces '((?A . (:foreground "#F0DFAF" :weight bold))
                            (?B . (:foreground "LightSteelBlue"))
                            (?C . (:foreground "OliveDrab"))))
+
+;; %25ITEM %TODO %3PRIORITY %TAGS
+(setq org-columns-default-format "%25ITEM(Task) %TODO(State) %3PRIORITY %TAGS(Tags)")
+
 ;;
 ;; Todo
 ;;
