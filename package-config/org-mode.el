@@ -162,6 +162,7 @@
  '((ditaa . t)
    (emacs-lisp . t)
    (gnuplot . t)
+   (restclient . t)
    (org . t)
    (perl . t)
    (plantuml . t)
