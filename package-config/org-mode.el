@@ -57,10 +57,10 @@
 ;; Capture
 ;;
 (setq org-capture-templates
-      '(("t" "todo" entry
+      '(("t" "Todo" entry
          (file+headline (concat org-directory "/gtd.org") "Tasks")
          "* TODO %?\nSCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+0d\"))\n")
-        ("l" "link" entry
+        ("l" "Link" entry
          (file+headline (concat org-directory "/links.org") "Links to Read")
          "* %?\n %i")))
 
