@@ -40,6 +40,7 @@
 (depends-on "markdown-mode+")
 (depends-on "markdown-toc")
 (depends-on "moe-theme")
+(depends-on "multi-term")
 (depends-on "ob-http")
 (depends-on "ob-ipython")
 (depends-on "ob-restclient")
