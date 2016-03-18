@@ -22,8 +22,8 @@
 (require 'recentf)
 (setq recentf-auto-cleanup 'never) ;; disable before we start recentf!
 (recentf-mode 1)
-(setq recentf-max-saved-items 200
-      recentf-max-menu-items 15
+(setq recentf-max-saved-items 50
+      recentf-max-menu-items 25
       recentf-save-file (expand-file-name ".recentf" user-emacs-directory)
       recentf-exclude '("/tmp/" "/ssh:"))
 
