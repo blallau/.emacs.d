@@ -20,10 +20,10 @@
 (setq org-log-done 'time
       org-todo-keywords '((sequence "☛ TODO(t)" "➱ IN-PROGRESS(i)" "⚑ WAITING(w)" "|" "✔ DONE(d)" "✘ CANCELED(c)")
                           (sequence "☠ BUG(b)" "➱ INPROGRESS(p)" "⚑ REVIEW(r)" "|" "✔ FIXED(f)" "✘ NOT FIXED(n)"))
-      org-todo-keyword-faces '(("➱ IN-PROGRESS" . (:foreground "blue" :weight bold))
-                               ("➱ INPROGRESS" . (:foreground "blue" :weight bold))
-                               ("⚑ WAITING" . (:foreground "blue" :weight bold))
-                               ("⚑ REVIEW" . (:foreground "blue" :weight bold))))
+      org-todo-keyword-faces '(("➱ IN-PROGRESS" . (:background "DeepSkyBlue" :foreground "blue" :weight bold))
+                               ("➱ INPROGRESS" . (:background "DeepSkyBlue" :foreground "blue" :weight bold))
+                               ("⚑ WAITING" . (:background "DeepSkyBlue" :foreground "blue" :weight bold))
+                               ("⚑ REVIEW" . (:background "DeepSkyBlue" :foreground "blue" :weight bold))))
 
 ;; Org directory config
 (setq org-directory "~/work/org"
