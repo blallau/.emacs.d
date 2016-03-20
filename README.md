@@ -9,6 +9,7 @@ Configure emacs for:
  * Cask
  * Dropbox
  * GIT
+ * GoLang
  * IRC
  * LISP
  * Markdown
