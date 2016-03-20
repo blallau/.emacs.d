@@ -1,4 +1,6 @@
 (require 'go-mode)
+;; go get -u github.com/nsf/gocode
+;; go get -u github.com/rogpeppe/godef
 
 (add-hook 'before-save-hook 'gofmt-before-save)
 
@@ -17,6 +19,5 @@
 
 ;; autocomplete
 ;;
-;; go get -u github.com/nsf/gocode
 (require 'auto-complete-config)
 (require 'go-autocomplete)
