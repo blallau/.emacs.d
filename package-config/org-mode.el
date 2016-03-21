@@ -164,6 +164,7 @@
  '((ditaa . t)
    (emacs-lisp . t)
    (gnuplot . t)
+   (go . t)
    (restclient . t)
    (org . t)
    (perl . t)
