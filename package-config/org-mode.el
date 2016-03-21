@@ -95,9 +95,13 @@
 (setq org-deadline-warning-days 7)
 ;;show me tasks scheduled or due in next fortnight (14 days)
 (setq org-agenda-span (quote fortnight))
+
+(setq org-agenda-skip-deadline-if-done t)
+(setq org-agenda-skip-scheduled-if-done t)
+
 ;;don't show tasks as scheduled if they are already shown as a deadline
 (setq org-agenda-skip-scheduled-if-deadline-is-shown t)
-;;don't give awarning colour to tasks with impending deadlines
+;;don't give a warning colour to tasks with impending deadlines
 ;;if they are scheduled to be done
 (setq org-agenda-skip-deadline-prewarning-if-scheduled (quote pre-scheduled))
 ;;don't show tasks that are scheduled or have deadlines in the
