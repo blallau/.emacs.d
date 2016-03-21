@@ -91,8 +91,8 @@
 
 ;;open agenda in current window
 (setq org-agenda-window-setup (quote current-window))
-;;warn me of any deadlines in next 7 days
-(setq org-deadline-warning-days 7)
+;;warn me of any deadlines in next 3 days
+(setq org-deadline-warning-days 3)
 ;;show me tasks scheduled or due in next fortnight (14 days)
 (setq org-agenda-span (quote fortnight))
 
@@ -101,9 +101,8 @@
 
 ;;don't show tasks as scheduled if they are already shown as a deadline
 (setq org-agenda-skip-scheduled-if-deadline-is-shown t)
-;;don't give a warning colour to tasks with impending deadlines
-;;if they are scheduled to be done
-(setq org-agenda-skip-deadline-prewarning-if-scheduled (quote pre-scheduled))
+;;skip deadline prewarning when entry is also scheduled
+(setq org-agenda-skip-deadline-prewarning-if-scheduled nil)
 ;;don't show tasks that are scheduled or have deadlines in the
 ;;normal todo list
 (setq org-agenda-todo-ignore-deadlines (quote all))
