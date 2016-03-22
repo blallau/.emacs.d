@@ -11,10 +11,10 @@
 ;;
 ;; Tags
 ;;
+(setq org-group-tags t)
 (setq org-tag-alist '((:startgroup . nil)
                       ("@work" . ?w) ("@home" . ?h)
-                      (:endgroup . nil)
-                      ("laptop" . ?l) ("pc" . ?p)))
+                      (:endgroup . nil)))
 
 ;; Information to record when a task moves to the DONE state
 (setq org-log-done 'time
@@ -114,6 +114,9 @@
     (todo priority-down category-keep)
     (tags priority-down category-keep)
     (search category-keep))))
+
+;; How to identify stuck projects
+(setq org-stuck-projects '("+project/-✔ DONE-✘ CANCELED-✔ FIXED-✘ NOT FIXED" ("☛ TODO" "☠ BUG") nil "\\<IGNORE\\>"))
 
 ;;
 ;; Table
