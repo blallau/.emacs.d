@@ -11,13 +11,15 @@
 ;;
 ;; Tags
 ;;
-(setq org-group-tags t)
-(setq org-tag-alist '((:startgroup . nil)
+(setq org-group-tags t
+      org-tag-alist '((:startgroup . nil)
                       ("@work" . ?w) ("@home" . ?h)
                       (:endgroup . nil)))
 
 ;; Information to record when a task moves to the DONE state
 (setq org-log-done 'time
+      ;; Enable task switching shortcuts
+      org-use-fast-todo-selection t
       org-todo-keywords '((sequence "☛ TODO(t)" "➱ IN-PROGRESS(i)" "⚑ WAITING(w)" "|" "✔ DONE(d)" "✘ CANCELED(c)")
                           (sequence "☠ BUG(b)" "➱ INPROGRESS(p)" "⚑ REVIEW(r)" "|" "✔ FIXED(f)" "✘ NOT FIXED(n)"))
       org-todo-keyword-faces '(("➱ IN-PROGRESS" . (:background "DeepSkyBlue" :foreground "blue" :weight bold))
@@ -39,9 +41,9 @@
 ;; set priority range from A to C with default A
 (setq org-highest-priority ?A
       org-lowest-priority ?C
-      org-default-priority ?A)
-;; set colours
-(setq org-priority-faces '((?A . (:foreground "#F0DFAF" :weight bold))
+      org-default-priority ?A
+      ;; set colours
+      org-priority-faces '((?A . (:foreground "#F0DFAF" :weight bold))
                            (?B . (:foreground "LightSteelBlue"))
                            (?C . (:foreground "OliveDrab"))))
 
@@ -84,39 +86,38 @@
 ;;
 ;; Agenda
 ;;
-
 ;; visual aid telling me which line I’m in
 (add-hook 'org-agenda-finalize-hook (lambda () (hl-line-mode)))
 
 ;; When perform a text search (the “s” selection from the org-agenda pop-up)
 ;; include the archives for all of the files in Org’s agenda files list
-(setq org-agenda-text-search-extra-files '(agenda-archives))
+(setq org-agenda-text-search-extra-files '(agenda-archives)
 
-;;open agenda in current window
-(setq org-agenda-window-setup (quote current-window))
-;;warn me of any deadlines in next 3 days
-(setq org-deadline-warning-days 3)
-;;show me tasks scheduled or due in next fortnight (14 days)
-(setq org-agenda-span (quote fortnight))
+      ;;open agenda in current window
+      org-agenda-window-setup (quote current-window)
+      ;;warn me of any deadlines in next 3 days
+      org-deadline-warning-days 3
+      ;;show me tasks scheduled or due in next fortnight (14 days)
+      org-agenda-span (quote fortnight)
 
-(setq org-agenda-skip-deadline-if-done t)
-(setq org-agenda-skip-scheduled-if-done t)
+      org-agenda-skip-deadline-if-done t
+      org-agenda-skip-scheduled-if-done t
 
-;;don't show tasks as scheduled if they are already shown as a deadline
-(setq org-agenda-skip-scheduled-if-deadline-is-shown t)
-;;skip deadline prewarning when entry is also scheduled
-(setq org-agenda-skip-deadline-prewarning-if-scheduled nil)
-;;don't show tasks that are scheduled or have deadlines in the
-;;normal todo list
-(setq org-agenda-todo-ignore-deadlines (quote all))
-(setq org-agenda-todo-ignore-scheduled (quote all))
-;;sort tasks in order of when they are due and then by priority
-(setq org-agenda-sorting-strategy
-  (quote
-   ((agenda deadline-up priority-down)
-    (todo priority-down category-keep)
-    (tags priority-down category-keep)
-    (search category-keep))))
+      ;;don't show tasks as scheduled if they are already shown as a deadline
+      org-agenda-skip-scheduled-if-deadline-is-shown t
+      ;;skip deadline prewarning when entry is also scheduled
+      org-agenda-skip-deadline-prewarning-if-scheduled nil
+      ;;don't show tasks that are scheduled or have deadlines in the
+      ;;normal todo list
+      org-agenda-todo-ignore-deadlines (quote all)
+      org-agenda-todo-ignore-scheduled (quote all)
+      ;;sort tasks in order of when they are due and then by priority
+      org-agenda-sorting-strategy
+      (quote
+       ((agenda deadline-up priority-down)
+        (todo priority-down category-keep)
+        (tags priority-down category-keep)
+        (search category-keep))))
 
 ;; How to identify stuck projects
 (setq org-tags-exclude-from-inheritance '("prj")
