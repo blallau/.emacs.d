@@ -60,10 +60,10 @@
 ;;
 (setq org-capture-templates
       '(("t" "Todo" entry
-         (file+headline (concat org-directory "/gtd.org") "Tasks")
+         (file+headline "gtd.org" "Tasks")
          "* TODO %?\nSCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+0d\"))\n")
         ("l" "Link" entry
-         (file+headline (concat org-directory "/links.org") "Links to Read")
+         (file+headline "links.org" "Links to Read")
          "* %?\n %i")))
 
 ;; leave a blank line at the end of the content of each task entry
@@ -84,6 +84,9 @@
 ;;
 ;; Agenda
 ;;
+
+;; visual aid telling me which line I’m in
+(add-hook 'org-agenda-finalize-hook (lambda () (hl-line-mode)))
 
 ;; When perform a text search (the “s” selection from the org-agenda pop-up)
 ;; include the archives for all of the files in Org’s agenda files list
@@ -116,7 +119,9 @@
     (search category-keep))))
 
 ;; How to identify stuck projects
-(setq org-stuck-projects '("+project/-✔ DONE-✘ CANCELED-✔ FIXED-✘ NOT FIXED" ("☛ TODO" "☠ BUG") nil "\\<IGNORE\\>"))
+(setq org-tags-exclude-from-inheritance '("prj")
+      org-stuck-projects '("+prj/-✔ DONE-✘ CANCELED-✔ FIXED-✘ NOT FIXED"
+                           ("☛ TODO" "☠ BUG") nil "\\<IGNORE\\>"))
 
 ;;
 ;; Table
