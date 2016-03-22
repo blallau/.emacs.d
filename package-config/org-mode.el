@@ -92,6 +92,11 @@
 ;; When perform a text search (the “s” selection from the org-agenda pop-up)
 ;; include the archives for all of the files in Org’s agenda files list
 (setq org-agenda-text-search-extra-files '(agenda-archives)
+      ;;tag searches ignore tasks with scheduled and deadline dates
+      org-agenda-tags-todo-honor-ignore-options t
+
+      ;;compact the block agenda view
+      org-agenda-compact-blocks t
 
       ;;open agenda in current window
       org-agenda-window-setup (quote current-window)
