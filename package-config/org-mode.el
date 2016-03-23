@@ -170,8 +170,10 @@
 
 ;; permit inline image display in the Emacs buffer.
 (add-hook 'org-mode-hook 'org-display-inline-images)
-
 (add-hook 'org-babel-after-execute-hook 'shk-fix-inline-images)
+
+;; turn on auto-fill
+(add-hook 'org-mode-hook 'turn-on-auto-fill)
 
 ;;
 ;; Babel
