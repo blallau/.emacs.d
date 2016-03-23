@@ -136,12 +136,11 @@
                                     (search category-keep))))
 
 (setq org-agenda-category-icon-alist
-      '((".[Ee]macs" "/usr/share/icons/hicolor/16x16/apps/emacs.png" nil nil :ascent center)
+      '((".[Ee]macs.*" "/usr/share/icons/hicolor/16x16/apps/emacs.png" nil nil :ascent center)
         ("[Oo]rg" "~/.emacs.d/icons/org/org.png" nil nil :ascent center)
         ("[Tr]rip" "~/.emacs.d/icons/org/trip.png" nil nil :ascent center)
         ("[Aa]nniv" "~/.emacs.d/icons/org/anniversary.png" nil nil :ascent center)
         ("\\([Hh]olidays\\|[Vv]acation\\)" "~/.emacs.d/icons/org/holidays.png" nil nil :ascent center)
-
         (".*cinder" "~/.emacs.d/icons/org/openstack.png" nil nil :ascent center)
         ("designate" "~/.emacs.d/icons/org/openstack.png" nil nil :ascent center)
         ("glance" "~/.emacs.d/icons/org/openstack.png" nil nil :ascent center)
@@ -150,7 +149,6 @@
         (".*neutron" "~/.emacs.d/icons/org/openstack.png" nil nil :ascent center)
         (".*nova" "~/.emacs.d/icons/org/openstack.png" nil nil :ascent center)
         ("octavia" "~/.emacs.d/icons/org/openstack.png" nil nil :ascent center)
-
         (".*" '(space . (:width (16))))))
 
 ;; How to identify stuck projects
