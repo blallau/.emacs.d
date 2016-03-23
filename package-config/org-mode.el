@@ -28,7 +28,7 @@
                                ("⚑ REVIEW" . (:background "DeepSkyBlue" :foreground "blue" :weight bold))))
 
 ;; Org directory config
-(setq org-directory "~/work/org"
+(setq org-directory "~/org"
       org-default-notes-file (concat org-directory "/notes.org")
       ;; all files to include in order to compose agenda
       org-agenda-files (list (concat org-directory "/gtd.org")
