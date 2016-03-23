@@ -30,9 +30,11 @@
                                                            :box (:line-width 1 :color nil :style none)))
                                ("⚑ REVIEW" . (:background "DeepSkyBlue" :foreground "blue" :weight bold
                                                           :box (:line-width 1 :color nil :style none)))
-                               ("✘ CANCELED" . (:background "#d7ff5f" :foreground "#008700" :weight bold :strike-through t
-                                                             :box (:line-width 1 :color nil :style none)))
-                               ("✘ NOT FIXED" . (:background "#d7ff5f" :foreground "#008700" :weight bold :strike-through t
+                               ("✘ CANCELED" . (:background "#d7ff5f" :foreground "#008700" :weight bold
+                                                            :strike-through t
+                                                            :box (:line-width 1 :color nil :style none)))
+                               ("✘ NOT FIXED" . (:background "#d7ff5f" :foreground "#008700" :weight bold
+                                                             :strike-through t
                                                              :box (:line-width 1 :color nil :style none)))))
 
 ;; Org directory config
