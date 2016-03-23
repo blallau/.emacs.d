@@ -1,8 +1,8 @@
 (require 'org-projectile)
 (setq org-projectile:projects-file "~/org/projects.org")
 (setq org-agenda-files (append org-agenda-files (org-projectile:todo-files)))
-(setq org-projectile:capture-template "* TODO %? :prj:\n"
-      org-projectile:linked-capture-template "* TODO %? %A :prj:\n")
+(setq org-projectile:capture-template "* ☛ TODO %? :prj:\n"
+      org-projectile:linked-capture-template "* %? %A :prj:\n")
 
 (add-to-list 'org-capture-templates (org-projectile:project-todo-entry))
 
