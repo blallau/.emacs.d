@@ -7,6 +7,13 @@
 (add-to-list 'org-capture-templates (org-projectile:project-todo-entry))
 
 (global-set-key (kbd "C-c c") 'org-capture)
-(global-set-key (kbd "C-c n p") 'org-projectile:project-todo-completing-read)
 ;; disable prompt
 (setq org-confirm-elisp-link-function nil)
+
+(defun org-projectile:capture-for-current-project (&optional capture-template)
+  (interactive)
+  (let ((project-name (projectile-project-name)))
+    (if (projectile-project-p)
+        (org-projectile:capture-for-project project-name capture-template)
+      (error (format "%s is not a recognized projectile project." project-name)))))
+(global-set-key (kbd "C-c n p") 'org-projectile:capture-for-current-project)
