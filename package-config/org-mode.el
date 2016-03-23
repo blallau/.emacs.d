@@ -105,6 +105,8 @@
       ;;show me tasks scheduled or due in next fortnight (14 days)
       org-agenda-span (quote fortnight)
 
+      org-agenda-skip-additional-timestamps-same-entry t
+
       org-agenda-skip-deadline-if-done t
       org-agenda-skip-scheduled-if-done t
 
@@ -117,17 +119,16 @@
       org-agenda-todo-ignore-deadlines (quote all)
       org-agenda-todo-ignore-scheduled (quote all)
       ;;sort tasks in order of when they are due and then by priority
-      org-agenda-sorting-strategy
-      (quote
-       ((agenda deadline-up priority-down)
-        (todo priority-down category-keep)
-        (tags priority-down category-keep)
-        (search category-keep))))
+      org-agenda-sorting-strategy (quote
+                                   ((agenda deadline-up priority-down)
+                                    (todo priority-down category-keep)
+                                    (tags priority-down category-keep)
+                                    (search category-keep))))
 
 ;; How to identify stuck projects
 (setq org-tags-exclude-from-inheritance '("prj")
       org-stuck-projects '("+prj/-✔ DONE-✘ CANCELED-✔ FIXED-✘ NOT FIXED"
-                           ("☛ TODO" "☠ BUG") nil "\\<IGNORE\\>"))
+                           ("☛ TODO" "☠ BUG") nil ""))
 
 ;;
 ;; Table
