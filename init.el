@@ -57,6 +57,11 @@
 ;; Start Emacs in server mode
 (server-start)
 
+;; Start emacs on org-agenda
+(add-hook 'after-init-hook '(lambda ()
+                              (org-agenda-list)
+                              (get-buffer "*Org Agenda*")))
+
 (provide 'init)
 
 ;; Local Variables:
