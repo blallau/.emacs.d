@@ -4,9 +4,8 @@
 (setq org-projectile:capture-template "* ☛ TODO %? :prj:\n"
       org-projectile:linked-capture-template "* %? %A :prj:\n")
 
-(add-to-list 'org-capture-templates (org-projectile:project-todo-entry))
+;;(add-to-list 'org-capture-templates (org-projectile:project-todo-entry))
 
-(global-set-key (kbd "C-c c") 'org-capture)
 ;; disable prompt
 (setq org-confirm-elisp-link-function nil)
 
