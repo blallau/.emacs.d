@@ -22,10 +22,18 @@
       org-use-fast-todo-selection t
       org-todo-keywords '((sequence "☛ TODO(t)" "➱ IN-PROGRESS(i)" "⚑ WAITING(w)" "|" "✔ DONE(d)" "✘ CANCELED(c)")
                           (sequence "☠ BUG(b)" "➱ INPROGRESS(p)" "⚑ REVIEW(r)" "|" "✔ FIXED(f)" "✘ NOT FIXED(n)"))
-      org-todo-keyword-faces '(("➱ IN-PROGRESS" . (:background "DeepSkyBlue" :foreground "blue" :weight bold))
-                               ("➱ INPROGRESS" . (:background "DeepSkyBlue" :foreground "blue" :weight bold))
-                               ("⚑ WAITING" . (:background "DeepSkyBlue" :foreground "blue" :weight bold))
-                               ("⚑ REVIEW" . (:background "DeepSkyBlue" :foreground "blue" :weight bold))))
+      org-todo-keyword-faces '(("➱ IN-PROGRESS" . (:background "DeepSkyBlue" :foreground "blue" :weight bold
+                                                               :box (:line-width 1 :color nil :style none)))
+                               ("➱ INPROGRESS" . (:background "DeepSkyBlue" :foreground "blue" :weight bold
+                                                              :box (:line-width 1 :color nil :style none)))
+                               ("⚑ WAITING" . (:background "DeepSkyBlue" :foreground "blue" :weight bold
+                                                           :box (:line-width 1 :color nil :style none)))
+                               ("⚑ REVIEW" . (:background "DeepSkyBlue" :foreground "blue" :weight bold
+                                                          :box (:line-width 1 :color nil :style none)))
+                               ("✘ CANCELED" . (:background "#d7ff5f" :foreground "#008700" :weight bold :strike-through t
+                                                             :box (:line-width 1 :color nil :style none)))
+                               ("✘ NOT FIXED" . (:background "#d7ff5f" :foreground "#008700" :weight bold :strike-through t
+                                                             :box (:line-width 1 :color nil :style none)))))
 
 ;; Org directory config
 (setq org-directory "~/org"
