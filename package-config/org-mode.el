@@ -11,8 +11,8 @@
 ;; render text with delimiters
 (setq org-hide-emphasis-markers t)
 
-;; want links to be explicit most of the time
-(setq org-descriptive-links nil)
+;; don't want links to be explicit
+(setq org-descriptive-links t)
 
 ;;
 ;; Tags
