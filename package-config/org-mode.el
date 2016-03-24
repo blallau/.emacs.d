@@ -8,6 +8,12 @@
 (setq org-startup-indented t)
 (setq org-hide-leading-stars nil)
 
+;; render text with delimiters
+(setq org-hide-emphasis-markers t)
+
+;; want links to be explicit most of the time
+(setq org-descriptive-links nil)
+
 ;;
 ;; Tags
 ;;
@@ -101,6 +107,9 @@
 ;; When perform a text search (the “s” selection from the org-agenda pop-up)
 ;; include the archives for all of the files in Org’s agenda files list
 (setq org-agenda-text-search-extra-files '(agenda-archives)
+      ;;blocked tasks hidden
+      org-agenda-dim-blocked-tasks t
+
       ;;tag searches ignore tasks with scheduled and deadline dates
       org-agenda-tags-todo-honor-ignore-options t
 
@@ -121,8 +130,11 @@
 
       ;;don't show tasks as scheduled if they are already shown as a deadline
       org-agenda-skip-scheduled-if-deadline-is-shown t
+      org-agenda-skip-timestamp-if-deadline-is-shown t
       ;;skip deadline prewarning when entry is also scheduled
       org-agenda-skip-deadline-prewarning-if-scheduled nil
+
+      org-agenda-skip-archived-trees nil
 
       ;;
       ;; Agenda/Todo
