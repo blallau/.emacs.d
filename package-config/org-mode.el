@@ -42,8 +42,7 @@
       org-default-notes-file (concat org-directory "/notes.org")
       ;; all files to include in order to compose agenda
       org-agenda-files (list (concat org-directory "/gtd.org")
-                             (concat org-directory "/notes.org")
-                             (concat org-directory "/projects.org")))
+                             (concat org-directory "/notes.org")))
 
 ;;
 ;; Priorities
