@@ -123,10 +123,15 @@
       org-agenda-skip-scheduled-if-deadline-is-shown t
       ;;skip deadline prewarning when entry is also scheduled
       org-agenda-skip-deadline-prewarning-if-scheduled nil
+
+      ;;
+      ;; Agenda/Todo
+
       ;;don't show tasks that are scheduled or have deadlines in the
       ;;normal todo list
-      org-agenda-todo-ignore-deadlines (quote all)
-      org-agenda-todo-ignore-scheduled (quote all)
+      org-agenda-todo-ignore-deadlines nil
+      org-agenda-todo-ignore-scheduled nil
+
       ;;sort tasks in order of when they are due and then by priority
       org-agenda-sorting-strategy (quote
                                    ((agenda deadline-up priority-down)
