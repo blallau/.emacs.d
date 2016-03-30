@@ -50,6 +50,18 @@ Configure emacs for:
     tar zxvf 3.2.0.tar.gz
     mv reveal.js-3.2.0 reveal.js
 
+## GoLang
+
+    sudo tar -C /usr/local -xzf go<version>.linux-amd64.tar.gz
+    export PATH=$PATH:/usr/local/go/bin
+
+    export GOPATH=$HOME/work/go
+    export PATH=$PATH:$GOPATH/bin
+
+    # install gocode, godef
+    go get -u github.com/nsf/gocode
+    go get -u github.com/rogpeppe/godef
+
 # Proxy
 
  * Launch Cask with a proxy (cask can't handle proxy user:password)

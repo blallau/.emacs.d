@@ -5,6 +5,7 @@
 (add-hook 'before-save-hook 'gofmt-before-save)
 
 (add-hook 'go-mode-hook '(lambda ()
+                           (local-set-key (kbd "<f2>") 'pop-tag-mark)
                            (local-set-key (kbd "<f3>") 'godef-jump)
                            (local-set-key (kbd "C-c C-r") 'go-remove-unused-imports)
                            (local-set-key (kbd "C-c C-g") 'go-goto-imports)
@@ -21,3 +22,4 @@
 ;;
 (require 'auto-complete-config)
 (require 'go-autocomplete)
+(ac-config-default)
