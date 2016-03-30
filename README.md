@@ -58,9 +58,10 @@ Configure emacs for:
     export GOPATH=$HOME/work/go
     export PATH=$PATH:$GOPATH/bin
 
-    # install gocode, godef
+    # install gocode, godef, go oracle
     go get -u github.com/nsf/gocode
     go get -u github.com/rogpeppe/godef
+    go get -u golang.org/x/tools/cmd/oracle
 
 # Proxy
 
