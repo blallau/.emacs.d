@@ -7,10 +7,11 @@
 
 (eval-after-load 'go-mode
   '(progn
-    ;; Set $GOPATH
-    (go-projectile-set-gopath)
-    ;; Set $PATH to $PATH:~/.emacs.d/gotools/bin
-    (go-projectile-tools-add-path)))
+     (setq go-projectile-switch-gopath 'never)
+     ;; Set $GOPATH
+     (go-projectile-set-gopath)
+     ;; Set $PATH to $PATH:~/.emacs.d/gotools/bin
+     (go-projectile-tools-add-path)))
 
 
 (add-hook 'before-save-hook 'gofmt-before-save)
