@@ -1,7 +1,3 @@
-;; go get -u github.com/nsf/gocode
-;; go get -u github.com/rogpeppe/godef
-;; go get golang.org/x/tools/cmd/oracle
-
 (require 'go-mode)
 (require 'go-projectile)
 
