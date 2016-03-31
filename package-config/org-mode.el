@@ -111,7 +111,7 @@
 (setq org-capture-templates
       '(("t" "Todo" entry
          (file+headline "gtd.org" "Tasks")
-         "* TODO %?\nSCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+0d\"))\n")
+         "* ☛ TODO %?\nSCHEDULED: %(org-insert-time-stamp (org-read-date nil t \"+0d\"))\n")
         ("l" "Link" entry
          (file+headline "links.org" "Links to Read")
          "* %?\n %i")))
