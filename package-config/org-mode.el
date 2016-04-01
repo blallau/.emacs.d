@@ -102,9 +102,9 @@
       org-lowest-priority ?C
       org-default-priority ?A
       ;; set colours
-      org-priority-faces '((?A . (:foreground "#F0DFAF" :weight bold))
-                           (?B . (:foreground "LightSteelBlue"))
-                           (?C . (:foreground "OliveDrab"))))
+      org-priority-faces '((?A . (:foreground "red" :weight bold))
+                           (?B . (:foreground "DarkOrange" :weight bold))
+                           (?C . (:foreground "gold" :weight bold))))
 ;;
 ;; Capture
 ;;
