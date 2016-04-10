@@ -41,7 +41,7 @@ Configure emacs for:
 
 ## Python
 
-    sudo apt-get install python-flake8 python-virtualenv
+    sudo apt-get install python-jedi python-flake8 python-virtualenv
     # On Emacs M-X jedi:install-server
 
 ## Reveal.js
