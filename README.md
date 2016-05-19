@@ -17,7 +17,10 @@ Configure emacs for:
    * Ditaa
    * PlantUML
    * export Reveal.js
+ * Puppet
  * Python
+ * Ruby
+ * The Silver Searcher (Ag)
  * ...
 
 # Usage
@@ -36,6 +39,12 @@ Configure emacs for:
 ## Launch Emacs
 
     emacs
+
+# Tools configuration
+
+## Ag
+
+    sudo apt-get install silversearcher-ag
 
 # Language Configuration
 
