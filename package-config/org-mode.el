@@ -104,7 +104,7 @@
       ;; set colours
       org-priority-faces '((?A . (:foreground "red" :weight bold))
                            (?B . (:foreground "DarkOrange" :weight bold))
-                           (?C . (:foreground "gold" :weight bold))))
+                           (?C . (:foreground "yellow" :weight bold))))
 ;;
 ;; Capture
 ;;
