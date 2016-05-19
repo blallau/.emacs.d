@@ -20,6 +20,9 @@
   (add-to-list 'auto-mode-alist '("Vagrantfile\\'" . ruby-mode)))
 (ome-ruby-mode-setup)
 
+(require 'flymake-ruby)
+(add-hook 'ruby-mode-hook 'flymake-ruby-load)
+
 ;; ROBE: code assistance tool that uses a Ruby REPL subprocess
 ;; with your application or gem code loaded, to provide information
 ;; about loaded classes and modules, and where each method is defined.
@@ -30,3 +33,9 @@
 
 (when (require 'smartparens nil 'noerror)
   (require 'smartparens-ruby))
+
+(add-hook 'ruby-mode-hook
+          (lambda ()
+            (local-set-key (kbd "<f3>") 'robe-jump)
+            (local-set-key (kbd "<f2>") 'pop-tag-mark)
+            (local-set-key (kbd "<f1>") 'robe-doc)))
