@@ -11,6 +11,7 @@ Configure emacs for:
  * GIT
  * GoLang
  * IRC
+ * JSON
  * LISP
  * Markdown
  * Org mode
