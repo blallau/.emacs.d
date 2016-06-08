@@ -3,6 +3,7 @@
 (defun ome-ruby-mode-setup ()
   ;; Ah, this huge auto-mode-alist list comes from emacs prelude
   (add-to-list 'auto-mode-alist '("\\.cap\\'" . ruby-mode))
+  (add-to-list 'auto-mode-alist '("\\.erb\\'" . ruby-mode))
   (add-to-list 'auto-mode-alist '("\\.gemspec\\'" . ruby-mode))
   (add-to-list 'auto-mode-alist '("\\.gemrc\\'" . ruby-mode))
   (add-to-list 'auto-mode-alist '("\\.irbrc\\'" . ruby-mode))
