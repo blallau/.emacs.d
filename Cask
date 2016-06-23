@@ -74,6 +74,7 @@
 (depends-on "swiper-helm" :git "https://github.com/abo-abo/swiper-helm")
 (depends-on "undo-tree")
 (depends-on "use-package")
+(depends-on "weather-metno")
 (depends-on "which-key")
 (depends-on "wttrin")
 (depends-on "yaml-mode")
