@@ -1,5 +1,8 @@
 (require 'org)
 
+;; activate ODT export
+(require 'ox-odt)
+
 ;; Org directory config
 (setq org-directory "~/org"
       org-default-notes-file (concat org-directory "/notes.org")
