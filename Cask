@@ -10,6 +10,7 @@
 (depends-on "ansible-doc")
 (depends-on "anzu")
 (depends-on "auto-complete")
+(depends-on "avy")
 (depends-on "benchmark-init")
 (depends-on "cask")
 (depends-on "circe")
