@@ -36,11 +36,6 @@
 
 (add-to-list 'find-file-not-found-functions #'my-create-non-existent-directory)
 
-;; Save last location in a file
-(require 'saveplace)
-(setq-default save-place t)
-(setq save-place-file (expand-file-name ".places" user-emacs-directory))
-
 ;; Scroll one line at a time (less "jumpy" than defaults)
 (setq mouse-wheel-scroll-amount '(1 ((shift) . 1))) ;; one line at a time
 (setq mouse-wheel-progressive-speed nil) ;; don't accelerate scrolling
