@@ -1,4 +1,5 @@
-(eval-when-compile
-  (require 'anzu))
-
-(global-anzu-mode +1)
+(use-package anzu
+  :defer t
+  :bind
+  (("M-%" . anzu-query-replace)
+   ("C-M-%" . anzu-query-replace-regexp)))
