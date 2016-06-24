@@ -3,7 +3,7 @@
   :ensure t
   :commands (wttrin)
   :init
-  (setq wttrin-default-cities '("Versailles")))
+  (setq wttrin-default-cities '("Jouy-en-josas")))
 
 ;; function to open wttrin with first city on list
 (defun my-wttrin ()
