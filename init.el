@@ -32,6 +32,9 @@
 ;; packages installed via package.el (Cask) MUST be initalized before tweaking them
 (package-initialize)
 
+;; Load use-package, used for loading packages
+(require 'use-package)
+
 (require 'benchmark-init)
 
 ;; Recompile .emacs.d/lisp & .emacs.d/lisp-config

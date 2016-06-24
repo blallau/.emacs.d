@@ -121,9 +121,15 @@
 ;;;;;;;;;;
 ;; Others
 ;;;;;;;;;;
-;; Don't break out a separate frame for ediff
-(require 'ediff)
-(setq ediff-window-setup-function 'ediff-setup-windows-plain)
+(use-package ediff
+  :defer t
+  :config
+  (progn
+    (setq
+     ;; Don't break out a separate frame for ediff
+     ediff-window-setup-function 'ediff-setup-windows-plain
+     ;; Ignore whitespace
+     ediff-diff-options "-w")))
 
 (defalias 'yes-or-no-p 'y-or-n-p)
 

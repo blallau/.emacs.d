@@ -1,2 +1,2 @@
-(eval-when-compile
-  (require 'iedit))
+(use-package iedit
+  :bind ("C-;" . iedit-mode))
