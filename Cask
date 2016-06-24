@@ -56,7 +56,7 @@
 (depends-on "org-download")
 (depends-on "org-mode-jira")
 (depends-on "org-projectile")
-(depends-on "org-weather" :git "http://github.com/kautsig/org-weather")
+(depends-on "org-weather" :git "https://github.com/kautsig/org-weather")
 (depends-on "ox-reveal")
 (depends-on "padawan" :git "https://github.com/blallau/padawan")
 (depends-on "pallet")
