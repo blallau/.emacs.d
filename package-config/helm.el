@@ -67,7 +67,7 @@
           ;; helm-idle-delay 0.01
           ;; be idle for this many seconds, before updating candidate buffer
           helm-input-idle-delay 0.01
-          ;; open helm buffer in another window
+          ;; open helm buffer in same window
           helm-split-window-default-side 'same
           ;; open helm buffer inside current window, don't occupy whole other window
           helm-split-window-in-side-p t
