@@ -1,8 +1,9 @@
 ;;; This file bootstraps the configuration, which is divided into
 ;;; a number of other files.
 
-;; Let's get a backtrace when errors are
-(setq debug-on-error t)
+;; Turn on debugging, it will be turned off at the end.
+(setq debug-on-error t
+      debug-on-quit t)
 
 (let ((minver "24"))
   (when (version<= emacs-version "24.5")
@@ -66,6 +67,12 @@
                               (get-buffer "*Org Agenda*")))
 
 (provide 'init)
+
+;; Finalizers
+
+;; Turn off debugging, now that initialization has ended
+(setq debug-on-error nil
+      debug-on-quit nil)
 
 ;; Local Variables:
 ;; coding: utf-8
