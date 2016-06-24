@@ -18,14 +18,6 @@
 ;; disable PAGER mode for projectile-git-grep
 (setenv "GIT_PAGER" "/bin/cat")
 
-; prevent tramp from messing up recentf
-(require 'recentf)
-(setq recentf-auto-cleanup 'never) ;; disable before we start recentf!
-(recentf-mode 1)
-(setq recentf-max-saved-items 50
-      recentf-max-menu-items 25
-      recentf-save-file (expand-file-name ".recentf" user-emacs-directory)
-      recentf-exclude '("/tmp/" "/ssh:"))
 
 (add-to-list 'auto-mode-alist
              '("\\.emacs\\-[a-z\\-]" . emacs-lisp-mode))
