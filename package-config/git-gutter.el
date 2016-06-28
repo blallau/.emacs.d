@@ -1,20 +1,16 @@
-(eval-when-compile
-  (require 'git-gutter))
-
-(custom-set-variables
- '(git-gutter:handled-backends '(git)))
-(global-git-gutter-mode +1)
-
-(custom-set-variables
- '(git-gutter:hide-gutter t))
-;(add-hook 'python-mode-hook 'git-gutter-mode)
-
-;; Jump to next/previous hunk
-(global-set-key (kbd "C-x p") 'git-gutter:previous-hunk)
-(global-set-key (kbd "C-x n") 'git-gutter:next-hunk)
-
-;; Stage current hunk
-(global-set-key (kbd "C-x v s") 'git-gutter:stage-hunk)
-
-;; Revert current hunk
-(global-set-key (kbd "C-x v r") 'git-gutter:revert-hunk)
+(use-package git-gutter
+  :defer t
+  :config
+  (progn
+    (setq git-gutter:handled-backends '(git)
+          git-gutter:hide-gutter t)
+    (global-git-gutter-mode +1))
+  :bind
+  (
+   ;; Jump to next/previous hunk
+   ("C-x p" . git-gutter:previous-hunk)
+   ("C-x n" . git-gutter:next-hunk)
+   ;; Stage current hunk
+   ("C-x v s" . git-gutter:stage-hunk)
+   ;; Revert current hunk
+   ("C-x v r" . git-gutter:revert-hunk)))
