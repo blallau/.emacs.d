@@ -1,10 +1,9 @@
 (use-package git-gutter
   :defer t
   :config
-  (progn
-    (setq git-gutter:handled-backends '(git)
-          git-gutter:hide-gutter t)
-    (global-git-gutter-mode +1))
+  (setq git-gutter:handled-backends '(git)
+        git-gutter:hide-gutter t)
+  (global-git-gutter-mode +1)
   :bind
   (
    ;; Jump to next/previous hunk

@@ -1,7 +1,10 @@
 ;; Highlight matching parenthesis (useful when coding)
-(require 'paren)
-(show-paren-mode t)
-(setq blink-matching-paren t)
-(setq blink-matching-paren-on-screen t)
-(setq show-paren-style 'mixed)
-(setq blink-matching-paren-dont-ignore-comments t)
+(use-package paren
+  :defer t
+  :config
+  (progn
+    (show-paren-mode t)
+    (setq show-paren-style 'mixed
+          blink-matching-paren t
+          blink-matching-paren-on-screen t
+          blink-matching-paren-dont-ignore-comments t)))
