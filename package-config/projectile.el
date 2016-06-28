@@ -2,15 +2,15 @@
 
 ;; Enable projectile
 (projectile-global-mode t)
-(setq projectile-switch-project-action 'projectile-dired)
-(setq projectile-indexing-method 'git)
-(setq projectile-enable-caching nil)
-(setq projectile-require-project-root t)
 
-(setq projectile-use-git-grep t)
-
-(setq projectile-globally-ignored-files (append '("*.pyc" "*._flymake.*") projectile-globally-ignored-files))
-(setq projectile-globally-ignored-directories (append '("doc" ".testrepository" "*.egg-info" "specs" "tests")
+(setq projectile-switch-project-action 'projectile-dired
+      projectile-indexing-method 'git
+      projectile-enable-caching nil
+      projectile-require-project-root t
+      projectile-use-git-grep t
+      projectile-completion-system 'ido
+      projectile-globally-ignored-files (append '("*.pyc" "*._flymake.*") projectile-globally-ignored-files)
+      projectile-globally-ignored-directories (append '("doc" ".testrepository" "*.egg-info" "specs" "tests")
                                                       projectile-globally-ignored-directories))
 
 ;; find-file
