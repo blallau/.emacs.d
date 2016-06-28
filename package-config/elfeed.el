@@ -1,8 +1,7 @@
-(require 'elfeed)
-
-(global-set-key (kbd "C-x w") 'elfeed)
-;; Somewhere in your .emacs file
-(setq elfeed-feeds
+(use-package elfeed
+  :defer t
+  :config
+  (setq elfeed-feeds
       '(
         ("http://assafmuller.com/feed" openstack neutron)
         ("http://galsagie.github.iois/atom.xml" openstack neutron)
@@ -15,13 +14,13 @@
         "https://dague.net/feed/"
         ("http://www.danplanet.com/blog/feed/" openstack nova)
         "https://kimizhang.wordpress.com/feed/"
-        ))
+        )
+      url-queue-timeout 30)
 
-(setf url-queue-timeout 30)
+  (defface openstack-elfeed-entry
+    '((t :foreground "#f77"))
+    "Marks an Openstack Elfeed entry.")
 
-(defface openstack-elfeed-entry
-  '((t :foreground "#f77"))
-  "Marks an Openstack Elfeed entry.")
-
-(push '(openstack openstack-elfeed-entry)
-      elfeed-search-face-alist)
+  (push '(openstack openstack-elfeed-entry)
+        elfeed-search-face-alist)
+  :bind (("C-x w" . elfeed)))

@@ -2,9 +2,8 @@
 (use-package paren
   :defer t
   :config
-  (progn
-    (show-paren-mode t)
-    (setq show-paren-style 'mixed
-          blink-matching-paren t
-          blink-matching-paren-on-screen t
-          blink-matching-paren-dont-ignore-comments t)))
+  (show-paren-mode t)
+  (setq show-paren-style 'mixed
+        blink-matching-paren t
+        blink-matching-paren-on-screen t
+        blink-matching-paren-dont-ignore-comments t))
