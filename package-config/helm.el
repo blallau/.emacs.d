@@ -2,14 +2,14 @@
 
 (use-package helm
   :bind
-  (   ("C-x C-f" . helm-find-files)
-      ("C-h b" . helm-descbinds)
-      ("C-x M-o" . helm-occur)
-      ("M-y" . helm-show-kill-ring)
-      ("C-h a" . helm-apropos)
-      ("M-x" . helm-M-x)
-      ("C-x C-b" . helm-buffers-list)
-      ("C-x b" . helm-mini))
+  (("C-x C-f" . helm-find-files)
+   ("C-h b" . helm-descbinds)
+   ("C-x M-o" . helm-occur)
+   ("M-y" . helm-show-kill-ring)
+   ("C-h a" . helm-apropos)
+   ("M-x" . helm-M-x)
+   ("C-x C-b" . helm-buffers-list)
+   ("C-x b" . helm-mini))
   :init (progn
           ;;(helm-autoresize-mode 1)
           (helm-mode 1))
