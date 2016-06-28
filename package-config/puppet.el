@@ -1,2 +1,3 @@
-(require 'puppet-mode)
-(add-to-list 'auto-mode-alist '("\\.pp\\'" . puppet-mode))
+(use-package puppet-mode
+  :defer t
+  :mode ("\\.pp\\'" . puppet-mode))

@@ -1,1 +1,1 @@
-(require 'magit-review)
+(use-package magit-review)
