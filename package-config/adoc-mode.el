@@ -1,1 +1,2 @@
-(require 'adoc-mode)
+(use-package adoc-mode
+  :defer t)
