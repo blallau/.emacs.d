@@ -1,6 +1,5 @@
 ;; Highlight matching parenthesis (useful when coding)
 (use-package paren
-  :defer t
   :config
   (show-paren-mode t)
   (setq show-paren-style 'mixed

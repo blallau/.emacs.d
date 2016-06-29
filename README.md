@@ -78,7 +78,7 @@ Configure emacs for:
 # Todo
 
  * Fix Tramp
- * Use use-package
+ * Use use-package (in progress)
 
 # License
 
