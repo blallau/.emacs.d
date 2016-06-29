@@ -41,5 +41,5 @@
             (local-set-key (kbd "<f2>") 'pop-tag-mark)
             (local-set-key (kbd "<f1>") 'robe-doc)))
 
-(setq ruby-indent-level 4
+(setq ruby-indent-level 2
       ruby-indent-tabs-mode nil)
