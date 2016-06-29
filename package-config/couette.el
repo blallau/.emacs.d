@@ -18,4 +18,4 @@
 	(linum-mode t)
 	(couette-mode)))))
 
-(add-hook 'python-mode-hook 'my-couette)
+(add-hook 'python-mode-hook #'my-couette)

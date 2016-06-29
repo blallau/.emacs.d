@@ -8,9 +8,9 @@
   ;; Disable the `highlight` face that Magit uses to highlight diffs. It's unreadable with my color scheme.
   ;; An unreadable highlight face is a common issue on the Magit tracker.
   (defun disable-magit-highlight-in-buffer () (face-remap-add-relative 'magit-item-highlight '()))
-  (add-hook 'magit-status-mode-hook 'disable-magit-highlight-in-buffer)
-  (add-hook 'magit-commit-mode-hook 'disable-magit-highlight-in-buffer)
-  (add-hook 'magit-diff-mode-hook 'disable-magit-highlight-in-buffer)
+  (add-hook 'magit-status-mode-hook #'disable-magit-highlight-in-buffer)
+  (add-hook 'magit-commit-mode-hook #'disable-magit-highlight-in-buffer)
+  (add-hook 'magit-diff-mode-hook #'disable-magit-highlight-in-buffer)
 
   (setq magit-log-arguments (quote ("--graph" "--color" "--decorate" "++header" "--no-merges" "-n256"))
         magit-revert-buffers t

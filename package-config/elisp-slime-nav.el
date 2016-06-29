@@ -2,7 +2,7 @@
   (require 'elisp-slime-nav))
 
 (dolist (hook '(emacs-lisp-mode-hook ielm-mode-hook))
-  (add-hook hook 'elisp-slime-nav-mode))
+  (add-hook hook #'elisp-slime-nav-mode))
 
 ;; describe this point lisp only
 (defun describe-foo-at-point ()
@@ -31,8 +31,9 @@
           ;; surrounding sexp for a function call.
           ((setq sym (function-at-point)) (describe-function sym)))))
 
-(add-hook 'emacs-lisp-mode-hook
-          (lambda ()
-            (local-set-key (kbd "<f3>") 'elisp-slime-nav-find-elisp-thing-at-point)
-            (local-set-key (kbd "<f2>") 'pop-tag-mark)
-            (local-set-key (kbd "<f1>") 'describe-foo-at-point)))
+(defun my-keybindings-lisp-hook ()
+  (local-set-key (kbd "<f3>") 'elisp-slime-nav-find-elisp-thing-at-point)
+  (local-set-key (kbd "<f2>") 'pop-tag-mark)
+  (local-set-key (kbd "<f1>") 'describe-foo-at-point))
+
+(add-hook 'emacs-lisp-mode-hook #'my-keybindings-lisp-hook)

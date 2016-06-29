@@ -17,8 +17,8 @@
 (add-hook 'org-mode-hook
           (lambda() (add-hook 'before-save-hook
                               'org-update-all-dblocks t t)))
-(add-hook 'org-mode-hook 'org-display-inline-images)
-(add-hook 'org-mode-hook 'turn-on-auto-fill)
+(add-hook 'org-mode-hook #'org-display-inline-images)
+(add-hook 'org-mode-hook #'turn-on-auto-fill)
 
 ;;
 ;; Appearance
@@ -206,7 +206,7 @@
     (org-redisplay-inline-images)))
 
 ;; permit inline image display in the Emacs buffer.
-(add-hook 'org-babel-after-execute-hook 'shk-fix-inline-images)
+(add-hook 'org-babel-after-execute-hook #'shk-fix-inline-images)
 
 ;;
 ;; Babel

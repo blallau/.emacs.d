@@ -22,10 +22,10 @@
 (add-to-list 'auto-mode-alist '("\\.template$" . jinja2-mode))
 
 ;; Python hook to Highlight TODO, FIXME, ...
-(add-hook 'python-mode-hook 'fic-mode)
+(add-hook 'python-mode-hook #'fic-mode)
 
 ;; Delete trailing whitespace when saving (compliance with PEP8)
-(add-hook 'before-save-hook 'delete-trailing-whitespace)
+(add-hook 'before-save-hook #'delete-trailing-whitespace)
 
 ;;----------------------------------------------------------------------------
 ;; ipdb

@@ -10,7 +10,7 @@
      (go-projectile-tools-add-path)))
 
 
-(add-hook 'before-save-hook 'gofmt-before-save)
+(add-hook 'before-save-hook #'gofmt-before-save)
 
 (add-hook 'go-mode-hook '(lambda ()
                            (local-set-key (kbd "<f1>") 'godoc-at-point)
@@ -22,7 +22,7 @@
                            (local-set-key (kbd "C-c C-k") 'godoc)))
 
 ;; eldoc
-(add-hook 'go-mode-hook 'go-eldoc-setup)
+(add-hook 'go-mode-hook #'go-eldoc-setup)
 
 ;; oracle
 (defvar oracle-file (concat go-projectile-tools-path "/src/"

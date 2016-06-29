@@ -12,4 +12,4 @@
   (add-to-list 'ac-modes 'inferior-emacs-lisp-mode)
   (auto-complete-mode 1))
 
-(add-hook 'ielm-mode-hook 'ielm-auto-complete)
+(add-hook 'ielm-mode-hook #'ielm-auto-complete)

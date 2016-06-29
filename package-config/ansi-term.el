@@ -33,12 +33,12 @@
 ;; Issue displaying of certain characters and control codes
 (defun my-term-use-utf8 ()
   (set-buffer-process-coding-system 'utf-8-unix 'utf-8-unix))
-(add-hook 'term-exec-hook 'my-term-use-utf8)
+(add-hook 'term-exec-hook #'my-term-use-utf8)
 
 ;; clickable URLs
 (defun my-term-hook ()
   (goto-address-mode))
-(add-hook 'term-mode-hook 'my-term-hook)
+(add-hook 'term-mode-hook #'my-term-hook)
 
 (defun my-term-paste (&optional string)
   (interactive)
