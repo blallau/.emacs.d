@@ -2,7 +2,6 @@
   :defer t
   :mode
   (("\\.cap\\'" . ruby-mode)
-   ("\\.erb\\'" . ruby-mode)
    ("\\.gemspec\\'" . ruby-mode)
    ("\\.gemrc\\'" . ruby-mode)
    ("\\.irbrc\\'" . ruby-mode)

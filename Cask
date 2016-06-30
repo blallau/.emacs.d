@@ -20,6 +20,7 @@
 (depends-on "elfeed")
 (depends-on "elisp-slime-nav")
 (depends-on "epc")
+(depends-on "eruby-mode" :git "https://github.com/petere/emacs-eruby-mode")
 (depends-on "fancy-narrow")
 (depends-on "fic-mode")
 (depends-on "flycheck")
