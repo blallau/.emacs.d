@@ -1,5 +1,4 @@
 (use-package git-gutter
-  :defer t
   :config
   (setq git-gutter:handled-backends '(git)
         git-gutter:hide-gutter t)
