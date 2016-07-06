@@ -1,5 +1,5 @@
 (use-package anzu
   :defer t
   :bind
-  (("M-%" . anzu-query-replace)
-   ("C-M-%" . anzu-query-replace-regexp)))
+  (([remap query-replace] . anzu-replace-at-cursor-thing)
+   ([remap query-replace-regexp] . anzu-query-replace-regexp)))
