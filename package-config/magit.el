@@ -12,7 +12,12 @@
   (add-hook 'magit-commit-mode-hook #'disable-magit-highlight-in-buffer)
   (add-hook 'magit-diff-mode-hook #'disable-magit-highlight-in-buffer)
 
-  (setq magit-log-arguments (quote ("--graph" "--color" "--decorate" "++header" "--no-merges" "-n256"))
+  (setq magit-log-arguments (quote ("--graph"
+                                    "--color"
+                                    "--decorate"
+                                    ;; "++header"
+                                    "--no-merges"
+                                    "-n256"))
         magit-revert-buffers t
         magit-save-repository-buffers t)
 
