@@ -65,6 +65,7 @@
 (depends-on "pkg-info")
 (depends-on "popup")
 (depends-on "projectile")
+(depends-on "puml-mode")
 (depends-on "puppet-mode" :git "https://github.com/smoeding/puppet-syntax-emacs")
 (depends-on "python-environment")
 (depends-on "rainbow-delimiters")
