@@ -58,7 +58,7 @@ Configure emacs for:
 
     wget https://github.com/hakimel/reveal.js/archive/<version>.tar.gz
     tar zxvf <version>.tar.gz
-    mv reveal.js-<version> reveal.js
+    mv reveal.js-<version> ~/work/pres/reveal.js
 
 ## GoLang
 
