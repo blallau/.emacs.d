@@ -1,5 +1,5 @@
 (use-package git-gutter
-  :config
+  :init
   (setq git-gutter:handled-backends '(git)
         git-gutter:hide-gutter t)
   (global-git-gutter-mode +1)
