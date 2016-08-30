@@ -47,6 +47,10 @@ Configure emacs for:
 
     sudo apt-get install silversearcher-ag
 
+## PlantUML
+
+    http://sourceforge.net/projects/plantuml/files/plantuml.jar
+
 # Language Configuration
 
 ## Python
