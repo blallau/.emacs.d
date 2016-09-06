@@ -57,3 +57,6 @@
 
 ;; re-enable narrow-to-region by default
 (put 'narrow-to-region 'disabled nil)
+
+;; Automatically copy text selected with the mouse
+(setq mouse-drag-copy-region t)
