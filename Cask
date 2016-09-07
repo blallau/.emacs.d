@@ -46,6 +46,7 @@
 (depends-on "jedi")
 (depends-on "jinja2-mode")
 (depends-on "json-mode")
+(depends-on "lua-mode")
 (depends-on "magit")
 (depends-on "magit-filenotify")
 (depends-on "magit-review" :git "https://github.com/blallau/magit-review")
