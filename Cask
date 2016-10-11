@@ -50,6 +50,7 @@
 (depends-on "magit")
 (depends-on "magit-filenotify")
 (depends-on "magit-review" :git "https://github.com/blallau/magit-review")
+(depends-on "magithub")
 (depends-on "markdown-mode")
 (depends-on "markdown-mode+")
 (depends-on "markdown-toc")
