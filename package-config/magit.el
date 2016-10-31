@@ -27,4 +27,5 @@
   :bind
   (("C-<f5>" . magit-blame)
    ("<f6>" . magit-status)
-   ("C-<f6>" . magit-log-buffer-file)))
+   ("C-<f6>" . magit-checkout)
+   ("S-<f6>" . magit-log-buffer-file)))
