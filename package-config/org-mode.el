@@ -276,8 +276,14 @@
 ;;bind to keys
 (define-key org-mode-map (kbd "C-<") 'org-begin-template)
 
-(global-set-key (kbd "C-c l") 'org-store-link)
-(global-set-key (kbd "C-c a") 'org-agenda)
-(global-set-key (kbd "C-c c") 'org-capture)
-(global-set-key (kbd "<f2>") 'outline-previous-visible-heading)
-(global-set-key (kbd "<f3>") 'outline-next-visible-heading)
+
+(defun my-keybindings-org-hook ()
+  (local-set-key (kbd "C-c l") 'org-store-link)
+  (local-set-key (kbd "C-c a") 'org-agenda)
+  (local-set-key (kbd "C-c c") 'org-capture)
+
+  (local-set-key (kbd "<f3>") 'outline-next-visible-heading)
+  (local-set-key (kbd "<f2>") 'outline-previous-visible-heading)
+  (local-set-key (kbd "<f1>") 'rst-toc))
+
+(add-hook 'org-mode-hook #'my-keybindings-org-hook)
