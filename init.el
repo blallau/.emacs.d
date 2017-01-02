@@ -51,6 +51,7 @@
 ;; customize
 (load-library "customize-appearance")
 (load-library "customize-edition")
+(load-library "customize-functions")
 (load-library "customize-navigation")
 (load-library "customize-refresh")
 (load-library "customize-shortcuts")
