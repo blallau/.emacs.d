@@ -7,7 +7,7 @@
 (defun couette-enabled ()
   (let ((project-root (magit-toplevel)))
     (if (file-exists-p (concat project-root coverage-results-file))
-	t
+        t
       nil)))
 
 (defun my-couette ()
@@ -15,7 +15,7 @@
   (when (derived-mode-p 'python-mode)
     (progn
       (when (couette-enabled)
-	(linum-mode t)
-	(couette-mode)))))
+        (linum-mode t)
+        (couette-mode)))))
 
 (add-hook 'python-mode-hook #'my-couette)
