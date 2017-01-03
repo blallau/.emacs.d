@@ -45,9 +45,16 @@
   (insert "import ipdb; ipdb.set_trace()")
   (highlight-lines-matching-regexp "^[ ]*import ipdb; ipdb.set_trace()"))
 
+(defun python-add-stacktrace ()
+  (interactive)
+  (newline-and-indent)
+  (insert "import traceback; traceback.print_stack()")
+  (highlight-lines-matching-regexp "^[ ]*import traceback; traceback.print_stack()"))
+
 (add-hook 'python-mode-hook
           (lambda ()
-            (local-set-key (kbd "C-c C-t") 'python-add-breakpoint)))
+            (local-set-key (kbd "C-c C-b") 'python-add-breakpoint)
+            (local-set-key (kbd "C-c C-t") 'python-add-stacktrace)))
 
 ;; ;; column witdh indicator
 ;; (require 'fill-column-indicator)
