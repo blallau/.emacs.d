@@ -27,6 +27,7 @@
 (depends-on "eruby-mode" :git "https://github.com/petere/emacs-eruby-mode")
 (depends-on "fancy-narrow")
 (depends-on "fic-mode")
+(depends-on "find-file-in-repository")
 (depends-on "flycheck")
 (depends-on "flymake-ruby")
 (depends-on "frame-cmds")
