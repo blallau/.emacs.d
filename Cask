@@ -31,6 +31,7 @@
 (depends-on "flymake-ruby")
 (depends-on "frame-cmds")
 (depends-on "git-gutter")
+(depends-on "git-link")
 (depends-on "git-messenger")
 (depends-on "git-timemachine")
 (depends-on "go-autocomplete")
