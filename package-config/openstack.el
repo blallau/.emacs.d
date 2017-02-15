@@ -21,6 +21,7 @@
 
 (defvar launchpad-url "https://bugs.launchpad.net/" "launchpad URL")
 (defvar openstack-review-url "https://review.openstack.org/#q,%s,n,z" "Openstack review URL")
+(defvar openstack-irc-logs-url "http://eavesdrop.openstack.org/irclogs/%23openstack-" "Openstack irc logs URL")
 
 (defun open-openstack-ID-at-point ()
   (interactive)
@@ -37,3 +38,16 @@
         (message "Not an Openstack ID (Closes-Bug or Change-Id)"))))))
 
 (global-set-key (kbd "<f12>") 'open-openstack-ID-at-point)
+
+(defun open-openstack-irc-logs-on-project ()
+  (interactive)
+  (when (projectile-project-p)
+    (let ((project-name (projectile-project-name)))
+      (cond
+       ((string-match "[[:alpha:]]+-\\([[:alpha:]]+\\)" project-name)
+        (browse-url (concat openstack-irc-logs-url (match-string 1 project-name) "/latest.log.html")))
+       (t
+        (browse-url (concat openstack-irc-logs-url project-name "/latest.log.html")))))))
+
+
+(global-set-key (kbd "<C-f12>") 'open-openstack-irc-logs-on-project)
