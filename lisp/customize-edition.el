@@ -60,3 +60,11 @@
 
 ;; Automatically copy text selected with the mouse
 (setq mouse-drag-copy-region t)
+
+;; Copy the path to your kill ring instead of placing it into your buffer
+(defun my/filename ()
+    "Copy the full path of the current buffer."
+    (interactive)
+    (kill-new (buffer-file-name (window-buffer (minibuffer-selected-window)))))
+
+(global-set-key (kbd "<C-S-f1>") 'my/filename)
