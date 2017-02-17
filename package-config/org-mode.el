@@ -276,9 +276,9 @@
 ;;bind to keys
 (define-key org-mode-map (kbd "C-<") 'org-begin-template)
 
+(global-set-key (kbd "C-c l") 'org-store-link)
 
 (defun my-keybindings-org-hook ()
-  (local-set-key (kbd "C-c l") 'org-store-link)
   (local-set-key (kbd "C-c a") 'org-agenda)
   (local-set-key (kbd "C-c c") 'org-capture)
 
