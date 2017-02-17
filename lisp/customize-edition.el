@@ -60,3 +60,14 @@
 
 ;; Automatically copy text selected with the mouse
 (setq mouse-drag-copy-region t)
+
+;; When you end Isearch, its normal highlighting remains.
+(setq lazy-highlight-cleanup nil)
+
+;; Copy the path to your kill ring instead of placing it into your buffer
+(defun my/filename ()
+    "Copy the full path of the current buffer."
+    (interactive)
+    (kill-new (buffer-file-name (window-buffer (minibuffer-selected-window)))))
+
+(global-set-key (kbd "<C-S-f1>") 'my/filename)
