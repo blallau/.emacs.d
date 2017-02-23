@@ -50,6 +50,7 @@
 (depends-on "jedi")
 (depends-on "jinja2-mode")
 (depends-on "json-mode")
+(depends-on "logview" :git "https://github.com/doublep/logview")
 (depends-on "lua-mode")
 (depends-on "magit")
 (depends-on "magit-filenotify")
