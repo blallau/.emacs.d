@@ -19,6 +19,7 @@
 (depends-on "circe")
 (depends-on "couette" :git "https://github.com/blallau/couette")
 (depends-on "dim")
+(depends-on "dired-quick-sort")
 (depends-on "dired-ranger")
 (depends-on "dropbox")
 (depends-on "elfeed")
