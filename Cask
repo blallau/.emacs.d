@@ -47,6 +47,7 @@
 (depends-on "helm-projectile")
 (depends-on "helm-swoop")
 (depends-on "htmlize")
+(depends-on "image+")
 (depends-on "iedit")
 (depends-on "jedi")
 (depends-on "jinja2-mode")
