@@ -75,6 +75,7 @@
 (depends-on "ox-reveal")
 (depends-on "padawan" :git "https://github.com/blallau/padawan")
 (depends-on "pallet")
+(depends-on "peep-dired")
 (depends-on "persistent-scratch")
 (depends-on "pip-requirements")
 (depends-on "pkg-info")
