@@ -42,6 +42,12 @@
        ;;; etc...
        ;;; don't use these settings of course,
        ;;; they're horrible.
+ '(dired-subtree-depth-1-face ((t (:background "gray21"))))
+ '(dired-subtree-depth-2-face ((t (:background "gray24"))))
+ '(dired-subtree-depth-3-face ((t (:background "gray27"))))
+ '(dired-subtree-depth-4-face ((t (:background "gray30"))))
+ '(dired-subtree-depth-5-face ((t (:background "gray33"))))
+ '(dired-subtree-depth-6-face ((t (:background "gray36"))))
  )
 (provide-theme 'my-theme)
 
