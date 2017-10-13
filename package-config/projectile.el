@@ -11,8 +11,10 @@
       projectile-completion-system 'ido
       projectile-globally-ignored-files (append '("*.pyc" "*._flymake.*") projectile-globally-ignored-files)
       projectile-globally-ignored-directories (append '("doc" ".testrepository" "*.egg-info" "specs" "tests")
-                                                      projectile-globally-ignored-directories))
-
+                                                      projectile-globally-ignored-directories)
+      ;; Fix https://github.com/bbatsov/projectile/issues/1183
+      projectile-mode-line '(:eval (format " Projectile[%s]"
+                                           (projectile-project-name))))
 ;; find-file
 ;; if current working drectory is project => use helm-projectile
 ;; else use find-file
