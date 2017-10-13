@@ -8,7 +8,7 @@
   ;; name can be be a bit different, which would screw up autoconnect
   (erc-autojoin-mode t)
   (setq erc-autojoin-channels-alist
-        '((".*\\.freenode.net" "#openstack-lbaas" "#openstack-meeting-alt")))
+        '((".*\\.freenode.net" "#openstack-kolla" "#openstack-meeting-4")))
 
   ;; check channels
   (erc-track-mode t)
