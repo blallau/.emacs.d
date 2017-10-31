@@ -21,7 +21,9 @@ Configure emacs for:
  * Puppet
  * Python
  * Ruby
+ * SaltStack
  * The Silver Searcher (Ag)
+ * Terraform
  * ...
 
 # Usage
@@ -81,7 +83,6 @@ Configure emacs for:
 
 # Todo
 
- * Fix Tramp
  * Use use-package (in progress)
 
 # License
