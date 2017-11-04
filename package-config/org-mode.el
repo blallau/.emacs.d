@@ -9,6 +9,7 @@
 (require 'org-pdfview)
 (add-to-list 'org-file-apps '("\\.pdf\\'" . (lambda (file link) (org-pdfview-open link))))
 (add-to-list 'org-file-apps '("\\.pdf\\'" . org-pdfview-open))
+(pdf-tools-install)
 
 ;; Org directory config
 (setq org-directory "~/org"
