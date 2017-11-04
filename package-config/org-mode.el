@@ -3,6 +3,13 @@
 ;; activate ODT export
 (require 'ox-odt)
 
+;; activate PDF view on page
+;; [[pdfview:file.pdf::52]]
+;; install pdf-tools-install: M-x pdf-tools-install
+(require 'org-pdfview)
+(add-to-list 'org-file-apps '("\\.pdf\\'" . (lambda (file link) (org-pdfview-open link))))
+(add-to-list 'org-file-apps '("\\.pdf\\'" . org-pdfview-open))
+
 ;; Org directory config
 (setq org-directory "~/org"
       org-default-notes-file (concat org-directory "/notes.org")
