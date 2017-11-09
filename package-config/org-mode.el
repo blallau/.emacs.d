@@ -9,7 +9,34 @@
 (require 'org-pdfview)
 (add-to-list 'org-file-apps '("\\.pdf\\'" . (lambda (file link) (org-pdfview-open link))))
 (add-to-list 'org-file-apps '("\\.pdf\\'" . org-pdfview-open))
+
 (pdf-tools-install)
+;; turn off cua so copy works
+(add-hook 'pdf-view-mode-hook (lambda () (cua-mode 0)))
+
+;; more fine-grained zooming
+;; zooming with + and - than the default 25%, so I’ll set it to 10%
+(setq pdf-view-resize-factor 1.1)
+
+;; used annotation tools
+;; (adding a highlight, adding a text note and deleting an annotation)
+(define-key pdf-view-mode-map (kbd "h") 'pdf-annot-add-highlight-markup-annotation)
+(define-key pdf-view-mode-map (kbd "t") 'pdf-annot-add-text-annotation)
+(define-key pdf-view-mode-map (kbd "D") 'pdf-annot-delete)
+
+;; (use-package pdf-tools
+;;  :config
+;;  ;; open pdfs scaled to fit page
+;;  (setq-default pdf-view-display-size 'fit-page)
+;;  ;; automatically annotate highlights
+;;  (setq pdf-annot-activate-created-annotations t)
+;;  ;; use normal isearch
+;;  (define-key pdf-view-mode-map (kbd "C-s") 'isearch-forward)
+;;  ;; turn off cua so copy works
+;;  (add-hook 'pdf-view-mode-hook (lambda () (cua-mode 0)))
+;;  ;; more fine-grained zooming
+;;  (setq pdf-view-resize-factor 1.1)
+;;  ;; keyboard shortcuts
 
 ;; Org directory config
 (setq org-directory "~/org"
