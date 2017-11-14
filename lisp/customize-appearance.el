@@ -51,6 +51,21 @@
  )
 (provide-theme 'my-theme)
 
+;; Set faces
+;;
+;; Set default font
+;; (set-frame-font "Cousine-14" nil t)
+;; (set-frame-font "Source Code Pro-14" nil t)
+;; (set-frame-font "DejaVu Sans Mono-14" nil t)
+;; (set-frame-font "Ubuntu Mono-14" nil t)
+(require 'cl)
+(defun font-candidate (&rest fonts)
+  "Return existing font which first match."
+  (find-if (lambda (f) (find-font (font-spec :name f))) fonts))
+
+;; Emacs25 style font setting.
+(set-face-attribute 'default nil :font (font-candidate '"Cousine-14:weight=normal" "Source Code Pro-14:weight=normal" "DejaVu Sans Mono-14:weight=normal" "Ubuntu Mono-14:weight=normal"))
+
 ;; http://www.emacswiki.org/emacs/FullScreen
 (defun ome-toggle-fullscreen ()
   "Toggle full screen"
