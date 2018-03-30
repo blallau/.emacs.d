@@ -20,6 +20,7 @@
 ;;   :bind
 ;;   (("<f2>" . pop-tag-mark))
 ;;   (("<f3>" . jump-to-file-and-line)))
+(setq logview-show-ellipses t)
 
 (setq logview-additional-submodes
       (quote
