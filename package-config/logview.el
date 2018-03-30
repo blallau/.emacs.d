@@ -21,6 +21,38 @@
 ;;   (("<f2>" . pop-tag-mark))
 ;;   (("<f3>" . jump-to-file-and-line)))
 
+(setq logview-additional-submodes
+      (quote
+       (("Openstack"
+         (format . "TIMESTAMP THREAD LEVEL NAME ")
+         (levels . "OSLO_LOG")
+         (timestamp)
+         (aliases)))))
+
+(setq logview-additional-level-mappings
+      (quote
+       (
+        ("SLF4J"
+         (error "ERROR")
+         (warning "WARN")
+         (information "INFO")
+         (debug "DEBUG")
+         (trace "TRACE")
+         (aliases "Log4j" "Log4j2" "Logback"))
+        ("OSLO_LOG"
+         (error "ERROR")
+         (warning "WARNING")
+         (information "INFO")
+         (debug "DEBUG")
+         (trace "TRACE")
+         (aliases "OSLOLOG"))
+        ("JUL"
+         (error "SEVERE")
+         (warning "WARNING")
+         (information "INFO")
+         (debug "CONFIG" "FINE")
+         (trace "FINER" "FINEST")))))
+
 (defun jump-to-file-and-line ()
   "Reads a line in the form .* FILENAME:LINE, opens that file in
 another window and jumps to the line."
