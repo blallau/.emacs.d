@@ -69,7 +69,6 @@ another window and jumps to the line."
             (and lnum (goto-line (string-to-number lnum))))
         (user-error "File '%s' not found" file)))))
 
-(setq logview-show-ellipses nil)
 (add-hook 'logview-mode-hook
           (lambda ()
             ;; (local-set-key (kbd "<f2>") #'pop-tag-mark)
