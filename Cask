@@ -97,6 +97,7 @@
 (depends-on "terraform-mode")
 (depends-on "restclient")
 (depends-on "robe")
+(depends-on "vlf")
 (depends-on "stacktest" :git "https://github.com/sdague/stacktest")
 ;(depends-on "swiper" :git "https://github.com/abo-abo/swiper")
 (depends-on "swiper-helm" :git "https://github.com/abo-abo/swiper-helm")
