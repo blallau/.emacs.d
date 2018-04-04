@@ -1,4 +1,4 @@
-(use-package ansible-doc-mode
+(use-package ansible-doc
   :defer t
   ;; :bind
   ;; (("<f1>" . ansible-doc)))
