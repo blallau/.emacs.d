@@ -1,7 +1,7 @@
 (source "elpy" "http://jorgenschaefer.github.io/packages/")
 (source "gnu" "http://elpa.gnu.org/packages/")
 (source "marmalade" "http://marmalade-repo.org/packages/")
-;; (source "melpa" "http://melpa.milkbox.net/packages/")
+(source "melpa" "https://stable.melpa.org/packages/")
 
 (depends-on "ac-helm")
 (depends-on "adoc-mode")
@@ -18,6 +18,9 @@
 (depends-on "cask")
 (depends-on "circe")
 (depends-on "couette" :git "https://github.com/blallau/couette")
+(depends-on "counsel")
+(depends-on "counsel-projectile")
+(depends-on "counsel-tramp")
 (depends-on "dim")
 (depends-on "dired-narrow")
 (depends-on "dired-quick-sort")
