@@ -41,11 +41,11 @@
          (trace "TRACE")
          (aliases "Log4j" "Log4j2" "Logback"))
         ("OSLO_LOG"
-         (error "ERROR")
+         (error "CRITICAL" "ERROR" "TRACE")
          (warning "WARNING")
-         (information "INFO")
+         (information "INFO" "AUDIT")
          (debug "DEBUG")
-         (trace "TRACE")
+         (trace "")
          (aliases "OSLOLOG"))
         ("JUL"
          (error "SEVERE")
