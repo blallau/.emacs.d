@@ -30,11 +30,30 @@
 (require 'pallet)
 (pallet-mode t)
 
-;; packages installed via package.el (Cask) MUST be initalized before tweaking them
-(package-initialize)
-
+;; packages installed via package.el (Cask)
+;; MUST be initalized before tweaking them
+(package-initialize t)
 ;; Load use-package, used for loading packages
 (require 'use-package)
+
+(setq package-check-signature nil)
+(setq package-enable-at-startup nil)
+
+;; Bootstrap `use-package'
+(unless (package-installed-p 'use-package)
+  ;; update packages index
+  (package-refresh-contents)
+  ;; install fresh use-package
+  (package-install 'use-package))
+(eval-when-compile (require 'use-package))
+
+;; bootstrap `quelpa'
+(use-package quelpa
+  :load-path "~/.emacs.d/private/quelpa"
+  :config
+  (setq quelpa-update-melpa-p nil)
+  (use-package quelpa-use-package
+    :load-path "~/.emacs.d/private/quelpa-use-package"))
 
 (require 'benchmark-init)
 
@@ -60,7 +79,9 @@
 (mapc 'load-library (directory-files (expand-file-name "package-config" user-emacs-directory) t ".elc$"))
 
 ;; Start Emacs in server mode
-(server-start)
+(use-package server
+  :config
+  (unless (server-running-p) (server-start)))
 
 ;; Start emacs on org-agenda
 ;;(add-hook 'after-init-hook '(lambda ()
