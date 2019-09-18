@@ -81,8 +81,9 @@
 ;; Appearance
 ;;
 (setq org-startup-indented t
+      ;; hide the multiple asterisks at the sub-section level
       org-hide-leading-stars nil
-      ;; render text with delimiters
+      ;; render text with delimiters [*/_]
       org-hide-emphasis-markers t
       ;; leave a blank line at the end of the content of each task entry
       org-blank-before-new-entry (quote ((heading) (plain-list-item)))
@@ -219,14 +220,6 @@
         ("[Tr]rip" "~/.emacs.d/icons/org/trip.png" nil nil :ascent center)
         ("[Aa]nniv" "~/.emacs.d/icons/org/anniversary.png" nil nil :ascent center)
         ("\\([Hh]olidays\\|[Vv]acation\\)" "~/.emacs.d/icons/org/holidays.png" nil nil :ascent center)
-        (".*cinder" "~/.emacs.d/icons/org/openstack.png" nil nil :ascent center)
-        ("designate" "~/.emacs.d/icons/org/openstack.png" nil nil :ascent center)
-        ("glance" "~/.emacs.d/icons/org/openstack.png" nil nil :ascent center)
-        ("heat" "~/.emacs.d/icons/org/openstack.png" nil nil :ascent center)
-        ("keystone" "~/.emacs.d/icons/org/openstack.png" nil nil :ascent center)
-        (".*neutron" "~/.emacs.d/icons/org/openstack.png" nil nil :ascent center)
-        (".*nova" "~/.emacs.d/icons/org/openstack.png" nil nil :ascent center)
-        ("octavia" "~/.emacs.d/icons/org/openstack.png" nil nil :ascent center)
         (".*" '(space . (:width (16)))))
 
       ;; How to identify stuck projects

@@ -1,8 +1,10 @@
 (use-package flycheck
-  :defer t
+  :ensure t
+  :diminish (flycheck-mode . "ⓕ")
   :init
   (add-hook 'after-init-hook #'global-flycheck-mode)
   :config
+  (setq flycheck-highlighting-mode 'symbols)
   (setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc))
   ;; make Emacs display buffers in a sane way.
   ;; Emacs 24.1 with the new display-buffer-alist

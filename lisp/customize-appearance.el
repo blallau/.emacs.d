@@ -122,22 +122,22 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Which function in header
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(which-function-mode 1)
+;; (which-function-mode 1)
 
-(add-to-list 'which-func-modes 'c-mode)
-(add-to-list 'which-func-modes 'emacs-lisp-mode)
-(add-to-list 'which-func-modes 'java-lisp-mode)
-(add-to-list 'which-func-modes 'python-mode)
-(add-to-list 'which-func-modes 'ruby-mode)
-(add-to-list 'which-func-modes 'sh-mode)
+;; (add-to-list 'which-func-modes 'c-mode)
+;; (add-to-list 'which-func-modes 'emacs-lisp-mode)
+;; (add-to-list 'which-func-modes 'java-lisp-mode)
+;; (add-to-list 'which-func-modes 'python-mode)
+;; (add-to-list 'which-func-modes 'ruby-mode)
+;; (add-to-list 'which-func-modes 'sh-mode)
 
-;; Show the current function name in the header line
-(setq-default header-line-format
-              '((which-func-mode ("" which-func-format " "))))
-(setq mode-line-misc-info
-      ;; We remove Which Function Mode from the mode line,
-      ;; because it's mostly invisible here anyway.
-      (assq-delete-all 'which-func-mode mode-line-misc-info))
+;; ;; Show the current function name in the header line
+;; (setq-default header-line-format
+;;               '((which-func-mode ("" which-func-format " "))))
+;; (setq mode-line-misc-info
+;;       ;; We remove Which Function Mode from the mode line,
+;;       ;; because it's mostly invisible here anyway.
+;;       (assq-delete-all 'which-func-mode mode-line-misc-info))
 
 ;;;;;;;;;;
 ;; Others

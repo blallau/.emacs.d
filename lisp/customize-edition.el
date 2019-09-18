@@ -74,28 +74,28 @@
 
 ;; Quickly ediff files from dired
 ;; press 'e' in dired-mode to immediately ediff two marked files
-(define-key dired-mode-map "e" 'ora-ediff-files)
+;;(define-key dired-mode-map "e" 'ora-ediff-files)
 
-;; -*- lexical-binding: t -*-
-(defun ora-ediff-files ()
-  (interactive)
-  (let ((files (dired-get-marked-files))
-        (wnd (current-window-configuration)))
-    (if (<= (length files) 2)
-        (let ((file1 (car files))
-              (file2 (if (cdr files)
-                         (cadr files)
-                       (read-file-name
-                        "file: "
-                        (dired-dwim-target-directory)))))
-          (if (file-newer-than-file-p file1 file2)
-              (ediff-files file2 file1)
-            (ediff-files file1 file2))
-          (add-hook 'ediff-after-quit-hook-internal
-                    (lambda ()
-                      (setq ediff-after-quit-hook-internal nil)
-                      (set-window-configuration wnd))))
-      (error "no more than 2 files should be marked"))))
+;; ;; -*- lexical-binding: t -*-
+;; (defun ora-ediff-files ()
+;;   (interactive)
+;;   (let ((files (dired-get-marked-files))
+;;         (wnd (current-window-configuration)))
+;;     (if (<= (length files) 2)
+;;         (let ((file1 (car files))
+;;               (file2 (if (cdr files)
+;;                          (cadr files)
+;;                        (read-file-name
+;;                         "file: "
+;;                         (dired-dwim-target-directory)))))
+;;           (if (file-newer-than-file-p file1 file2)
+;;               (ediff-files file2 file1)
+;;             (ediff-files file1 file2))
+;;           (add-hook 'ediff-after-quit-hook-internal
+;;                     (lambda ()
+;;                       (setq ediff-after-quit-hook-internal nil)
+;;                       (set-window-configuration wnd))))
+;;       (error "no more than 2 files should be marked"))))
 
 (defun dos2unix (buffer)
   "Automate M-% C-q C-m RET C-q C-j RET"
@@ -104,3 +104,13 @@
     (goto-char (point-min))
     (while (search-forward (string ?\C-m) nil t)
       (replace-match (string ?\C-j) nil t))))
+
+(defun aj-toggle-fold ()
+  "Toggle fold all lines larger than indentation on current line"
+  (interactive)
+  (let ((col 1))
+    (save-excursion
+      (back-to-indentation)
+      (setq col (+ 1 (current-column)))
+      (set-selective-display
+       (if selective-display nil (or col 1))))))
