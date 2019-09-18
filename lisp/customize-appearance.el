@@ -36,12 +36,12 @@
 ;; Set faces
 (custom-theme-set-faces
  'my-theme ;; you must use the same theme name here...
- '(default ((t (:family "Ubuntu Mono" :foundry "unknown" :slant normal :weight normal :height 113 :width normal))))
-; '(cursor  ((t (:background ,color-4))))
-; '(fringe  ((t (:background ,color-3))))
-       ;;; etc...
-       ;;; don't use these settings of course,
-       ;;; they're horrible.
+;;  '(default ((t (:family "Ubuntu Mono" :foundry "unknown" :slant normal :weight normal :height 113 :width normal))))
+;; ; '(cursor  ((t (:background ,color-4))))
+;; ; '(fringe  ((t (:background ,color-3))))
+;;        ;;; etc...
+;;        ;;; don't use these settings of course,
+;;        ;;; they're horrible.
  '(dired-subtree-depth-1-face ((t (:background "gray21"))))
  '(dired-subtree-depth-2-face ((t (:background "gray24"))))
  '(dired-subtree-depth-3-face ((t (:background "gray27"))))

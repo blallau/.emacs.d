@@ -1,3 +1,3 @@
-(use-package puppet-mode
-  :defer t
-  :mode ("\\.pp\\'" . puppet-mode))
+;; (use-package puppet-mode
+;;   :defer t
+;;   :mode ("\\.pp\\'" . puppet-mode))

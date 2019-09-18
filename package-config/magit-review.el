@@ -1,1 +1,1 @@
-(use-package magit-review)
+;;(use-package magit-review)
