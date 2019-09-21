@@ -1,6 +1,10 @@
 ;;; This file bootstraps the configuration, which is divided into
 ;;; a number of other files.
 
+(defvar default-gc-cons-threshold 16777216 ; 16mb
+  "The default value to use for `gc-cons-threshold'. If you experience freezing,
+decrease this. If you experience stuttering, increase this.")
+
 ;; Turn on debugging, it will be turned off at the end.
 (setq debug-on-error t
       debug-on-quit t)
@@ -12,13 +16,33 @@
   (message "Your Emacs is old, and some functionality in this config will be disabled. Please upgrade if possible."))
 
 ;;----------------------------------------------------------------------------
-;; Temporarily reduce garbage collection during startup
+;; A big contributor to startup times is garbage collection. We up the gc
+;; threshold to temporarily prevent it from running, then reset it later with
+;; `restore-garbage-collection-h'. Not resetting it will cause stuttering/freezes.
+
+;; To speed up minibuffer commands (like helm and ivy), we defer garbage
+;; collection while the minibuffer is active.
+(defun defer-garbage-collection-h ()
+  "TODO"
+  (setq gc-cons-threshold most-positive-fixnum))
+
+(defun restore-garbage-collection-h ()
+  "TODO"
+  ;; Defer it so that commands launched immediately after will enjoy the
+  ;; benefits.
+  (run-at-time
+   1 nil (lambda () (setq gc-cons-threshold default-gc-cons-threshold))))
+
+(add-hook 'minibuffer-setup-hook #'defer-garbage-collection-h)
+(add-hook 'minibuffer-exit-hook #'restore-garbage-collection-h)
+
+;; Not restoring these to their defaults will cause stuttering/freezes.
+(add-hook 'emacs-startup-hook #'restore-garbage-collection-h)
+
+;; When Emacs loses focus seems like a great time to do some garbage collection
+;; all sneaky breeky like, so we can return a fresh(er) Emacs.
+(add-hook 'focus-out-hook #'garbage-collect)
 ;;----------------------------------------------------------------------------
-(defconst sanityinc/initial-gc-cons-threshold gc-cons-threshold
-  "Initial value of `gc-cons-threshold' at start-up time.")
-(setq gc-cons-threshold (* 128 1024 1024))
-(add-hook 'after-init-hook
-          (lambda () (setq gc-cons-threshold sanityinc/initial-gc-cons-threshold)))
 
 (eval-and-compile
   (require 'cask "~/.cask/cask.el")
