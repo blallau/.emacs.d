@@ -5,9 +5,9 @@
   (add-hook 'after-init-hook #'global-flycheck-mode)
   :config
   ;; controls how Flycheck indicates errors in buffers.
-  (flycheck-indication-mode 'right-fringe)
+  (setq flycheck-indication-mode 'right-fringe)
   ;; Removed checks on idle/change for snappiness
-  (flycheck-check-syntax-automatically '(save mode-enabled))
+  (setq flycheck-check-syntax-automatically '(save mode-enabled))
   (setq flycheck-highlighting-mode 'symbols)
   (setq-default flycheck-disabled-checkers '(emacs-lisp emacs-lisp-checkdoc make))
 

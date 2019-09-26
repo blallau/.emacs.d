@@ -13,6 +13,8 @@
 (depends-on "calfw-gcal")
 (depends-on "cask")
 (depends-on "circe")
+(depends-on "company")
+(depends-on "company-statistics")
 (depends-on "counsel")
 (depends-on "counsel-projectile")
 (depends-on "counsel-tramp")
