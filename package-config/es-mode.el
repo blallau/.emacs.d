@@ -1,3 +1,7 @@
-(autoload 'es-mode "es-mode.el"
-  "Major mode for editing Elasticsearch queries" t)
-(add-to-list 'auto-mode-alist '("\\.es$" . es-mode))
+;; Major mode for editing Elasticsearch queries" t)
+(use-package es-mode
+  :ensure t
+  :mode ("\\.es$" . es-mode)
+  :config
+  (setq es-always-pretty-print t
+        es-warn-on-delete-query nil))
