@@ -21,10 +21,8 @@
   ;;  -G : Do not print group names like 'users'
   ;;  -h : Human-readable sizes like 1K, 234M, ..
   ;;  -v : Do natural sort .. so the file names starting with . will show up first.
-  ;;  -F : Classify filenames by appending '*' to executables,
-  ;;       '/' to directories, etc.
   ;; default value for dired: "-al"
-  (setq dired-listing-switches "-alGhvF --group-directories-first")
+  (setq dired-listing-switches "-alGhv --group-directories-first")
 
   ;; auto-revert dired
   (setq dired-auto-revert-buffer t)
@@ -79,4 +77,4 @@ It added extra strings at the front and back of the default dired buffer name."
       (setq dired-omit-files
             (concat dired-omit-files "\\|^.DS_STORE$\\|^.projectile$\\|^.git$"))
       (setq dired-omit-files
-            (concat dired-omit-files "\\|\\.pyc$")))))
+            (concat dired-omit-files "\\|\\.pyc$|\\.elc$")))))
