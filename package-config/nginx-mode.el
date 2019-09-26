@@ -1,1 +1,1 @@
-(require 'nginx-mode)
+(use-package nginx-mode)
