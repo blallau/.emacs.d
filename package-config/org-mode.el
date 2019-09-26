@@ -1,7 +1,21 @@
 (require 'org)
 
-;; activate ODT export
-(require 'ox-odt)
+;; ODT export
+(use-package ox-odt)
+
+;; AsciiDoc Export
+(use-package ox-asciidoc)
+
+;; RST Export
+(use-package ox-rst)
+
+;; Reveal Export
+(use-package ox-reveal
+  :config
+  ;; directory within which js/reveal.js is."
+  ;; (setq org-reveal-root "http://cdn.jsdelivr.net/reveal.js/2.5.0/")
+  (setq org-reveal-root (substitute-in-file-name "$HOME/work/pres/reveal.js/")
+        org-reveal-title-slide 'nil))
 
 ;; activate PDF view on page
 ;; [[pdfview:file.pdf::52]]

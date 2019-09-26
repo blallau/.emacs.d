@@ -98,7 +98,6 @@
 (depends-on "robe")
 (depends-on "smart-shift")
 (depends-on "sphinx-mode")
-(depends-on "swiper-helm" :git "https://github.com/abo-abo/swiper-helm")
 (depends-on "systemd")
 (depends-on "terraform-mode")
 (depends-on "undo-tree")

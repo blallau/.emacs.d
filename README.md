@@ -7,7 +7,6 @@ Emacs 24.5 Configuration (using Cask)
 Configure emacs for:
  * Ansible
  * Cask
- * Dropbox
  * GIT
  * GoLang
  * IRC
@@ -34,7 +33,7 @@ Configure emacs for:
     # Add to ~/.bashrc or ~/.bash_aliases
     export PATH=$PATH:~/.cask/bin
 
-## Configure Emacs
+## Install Emacs config
 
     git clone https://github.com/blallau/.emacs.d ~/.emacs.d/
     cd ~/.emacs.d/; cask install
@@ -56,7 +55,7 @@ Configure emacs for:
 
 ## PlantUML
 
-    http://sourceforge.net/projects/plantuml/files/plantuml.jar
+    curl -LO  http://sourceforge.net/projects/plantuml/files/plantuml.jar
 
 # Language Configuration
 

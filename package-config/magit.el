@@ -29,3 +29,8 @@
    ("<f6>" . magit-status)
    ("C-<f6>" . magit-checkout)
    ("S-<f6>" . magit-log-buffer-file)))
+
+
+;; Magit interfaces for GitHub
+(use-package magithub
+  :after magit)
