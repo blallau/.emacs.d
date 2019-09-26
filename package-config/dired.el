@@ -77,4 +77,11 @@ It added extra strings at the front and back of the default dired buffer name."
       (setq dired-omit-files
             (concat dired-omit-files "\\|^.DS_STORE$\\|^.projectile$\\|^.git$"))
       (setq dired-omit-files
-            (concat dired-omit-files "\\|\\.pyc$|\\.elc$")))))
+            (concat dired-omit-files "\\|\\.pyc$|\\.elc$"))))
+
+  ;;preview files in dired
+  (use-package peep-dired
+    :ensure t
+    :defer t ; don't access `dired-mode-map' until `peep-dired' is loaded
+    :bind (:map dired-mode-map
+                ("P" . peep-dired))))
