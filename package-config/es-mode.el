@@ -1,4 +1,4 @@
-;; Major mode for editing Elasticsearch queries" t)
+;; Major mode for editing Elasticsearch queries
 (use-package es-mode
   :ensure t
   :mode ("\\.es$" . es-mode)

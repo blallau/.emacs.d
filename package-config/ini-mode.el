@@ -1,2 +1,4 @@
-(autoload 'ini-mode "ini-mode" nil t)
-(add-to-list 'auto-mode-alist '("\\.ini\\'" . ini-mode))
+;; Major mode for editing ini files
+(use-package ini-mode
+  :ensure t
+  :mode ("\\.ini$" . ini-mode))
