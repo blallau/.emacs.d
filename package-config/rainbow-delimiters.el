@@ -1,3 +1,4 @@
+;; Lisp: Highlight brackets according to their depth
 (use-package rainbow-delimiters
   :config
   (set-face-attribute 'rainbow-delimiters-depth-1-face nil
