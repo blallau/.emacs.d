@@ -1,5 +1,13 @@
+(use-package ag
+  :commands (ag)
+  :ensure-system-package ag)
+
 (use-package projectile
   :ensure t
+  :bind (
+         ("<f4>" . projectile-grep)
+         ("<C-f4>" . projectile-ag)
+         ("<S-f4>" . projectile-ripgrep))
   :config
   (setq projectile-switch-project-action #'projectile-dired
         projectile-indexing-method 'alien
@@ -8,6 +16,7 @@
         projectile-use-git-grep t
         projectile-completion-system 'ivy
 
+        projectile-sort-order 'recently-active
         projectile-project-search-path '("~/.emacs.d/" "~/work/GIT")
 
         projectile-globally-ignored-files (append '("*.pyc" "*._flymake.*") projectile-globally-ignored-files)
@@ -15,6 +24,12 @@
                                                         projectile-globally-ignored-directories))
   (projectile-mode +1)
   (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map))
+
+(use-package projectile-ripgrep
+  :ensure-system-package rg
+  :after projectile
+  :config
+  (add-hook 'ripgrep-search-mode-hook 'hl-line-mode))
 
       ;; ;; Fix https://github.com/bbatsov/projectile/issues/1183
       ;; projectile-mode-line '(:eval (format " Projectile[%s]"
