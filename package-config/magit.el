@@ -2,7 +2,7 @@
   :config
   ;; Configure git-commit
   (setq git-commit-summary-max-length 50
-        git-commit-fill-column 72)
+        fill-column 72)
 
   ;; Configure Magit
   ;; Disable the `highlight` face that Magit uses to highlight diffs. It's unreadable with my color scheme.

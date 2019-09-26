@@ -93,3 +93,7 @@ Configure emacs for:
 # License
 
 Emacs-config is licensed under the [MIT License](http://www.opensource.org/licenses/mit-license.php).
+
+# Inspired by
+
+https://github.com/rakanalh/dotemacs

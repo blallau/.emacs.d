@@ -4,10 +4,11 @@
 
 (use-package projectile
   :ensure t
-  :bind (
-         ("<f4>" . projectile-grep)
-         ("<C-f4>" . projectile-ag)
-         ("<S-f4>" . projectile-ripgrep))
+;; see ivy.el file
+;;  :bind (
+;;         ("<f4>" . projectile-grep)
+;;         ("<C-f4>" . projectile-ag)
+;;         ("<S-f4>" . projectile-ripgrep))
   :config
   (setq projectile-switch-project-action #'projectile-dired
         projectile-indexing-method 'alien

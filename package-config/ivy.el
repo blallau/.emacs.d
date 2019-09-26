@@ -91,5 +91,9 @@
 
 (use-package counsel-projectile
   :ensure t
+  :bind (
+         ("<f4>" . counsel-projectile-git-grep)
+         ("<C-f4>" . counsel-projectile-ag)
+         ("<S-f4>" . counsel-projectile-rg))
   :config
   (counsel-projectile-mode))
