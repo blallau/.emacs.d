@@ -153,23 +153,3 @@
      ediff-diff-options "-w")))
 
 (defalias 'yes-or-no-p 'y-or-n-p)
-
-(require 'dired-x)
-(setq-default dired-omit-files-p t)
-;; To toggle the mode
-(define-key dired-mode-map (kbd "C-o") 'dired-omit-mode)
-
-(setq-default dired-omit-verbose nil)
-(setq dired-omit-files (concat dired-omit-files "\\|\\.pyc$"))
-
-;; Stop asking me whether I want to recursively delete or copy
-(setq dired-recursive-deletes 'always)
-(setq dired-recursive-copies 'always)
-
-;; Print sizes in human readable format (e.g., 1K 234M 2G)
-(setq dired-listing-switches "-alh")
-
-;; Enables "Do What I Mean" mode
-;; If I'm in a split frame with two dired buffers,
-;; the default target to copy (and rename) will be the other window.
-(setq dired-dwim-target t)
