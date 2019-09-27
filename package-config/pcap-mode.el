@@ -1,4 +1,4 @@
 ;; Major mode for editing pcap file
 (use-package pcap-mode
-  :ensure t
-  :mode ("\\.pcap$" . es-mode))
+  :defer t
+  :mode ("\\.pcap\\'" . pcap-mode))

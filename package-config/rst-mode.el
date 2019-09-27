@@ -1,5 +1,5 @@
 (use-package rst-mode
-  :ensure t
+  :defer t
   :mode (("\\.rst\\'" . rst-mode))
   :config
   (defun my-keybindings-rst-hook ()
