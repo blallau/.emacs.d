@@ -1,4 +1,5 @@
 (use-package iedit
+  :defer t
   :config
   (defun iedit-dwim (arg)
     "Starts iedit but uses \\[narrow-to-defun] to limit its scope."
