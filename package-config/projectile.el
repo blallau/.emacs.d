@@ -4,11 +4,6 @@
 
 (use-package projectile
   :ensure t
-;; see ivy.el file
-;;  :bind (
-;;         ("<f4>" . projectile-grep)
-;;         ("<C-f4>" . projectile-ag)
-;;         ("<S-f4>" . projectile-ripgrep))
   :config
   (setq projectile-switch-project-action #'projectile-dired
         projectile-indexing-method 'alien
@@ -18,7 +13,7 @@
         projectile-completion-system 'ivy
 
         projectile-sort-order 'recently-active
-        projectile-project-search-path '("~/.emacs.d/" "~/work/GIT")
+        projectile-project-search-path '("~/work/GIT")
 
         projectile-globally-ignored-files (append '("*.pyc" "*._flymake.*") projectile-globally-ignored-files)
         projectile-globally-ignored-directories (append '("doc" ".testrepository" "*.egg-info" "specs" "tests")
