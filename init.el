@@ -9,12 +9,6 @@ decrease this. If you experience stuttering, increase this.")
 (setq debug-on-error t
       debug-on-quit t)
 
-(let ((minver "24"))
-  (when (version<= emacs-version "24.5")
-    (error "Your Emacs is too old -- this config requires v%s or higher" minver)))
-(when (version<= emacs-version "24.5")
-  (message "Your Emacs is old, and some functionality in this config will be disabled. Please upgrade if possible."))
-
 ;;----------------------------------------------------------------------------
 ;; A big contributor to startup times is garbage collection. We up the gc
 ;; threshold to temporarily prevent it from running, then reset it later with
@@ -71,14 +65,6 @@ decrease this. If you experience stuttering, increase this.")
   (package-install 'use-package))
 (eval-when-compile (require 'use-package))
 
-;; bootstrap `quelpa'
-(use-package quelpa
-  :load-path "~/.emacs.d/private/quelpa"
-  :config
-  (setq quelpa-update-melpa-p nil)
-  (use-package quelpa-use-package
-    :load-path "~/.emacs.d/private/quelpa-use-package"))
-
 (require 'benchmark-init)
 
 ;; Recompile .emacs.d/lisp & .emacs.d/lisp-config
@@ -86,7 +72,7 @@ decrease this. If you experience stuttering, increase this.")
 (byte-recompile-directory "~/.emacs.d/package-config" 0)
 
 ;; load proxy conf
-(load-library "proxy")
+;; (load-library "proxy")
 
 ;; customize init
 (load-library "customize-init")
@@ -107,20 +93,9 @@ decrease this. If you experience stuttering, increase this.")
   :config
   (unless (server-running-p) (server-start)))
 
-;; Start emacs on org-agenda
-;;(add-hook 'after-init-hook '(lambda ()
-;;                              (org-agenda-list)
-;;                              (get-buffer "*Org Agenda*")))
-
-(provide 'init)
-
-;; Finalizers
-
 ;; Turn off debugging, now that initialization has ended
 (setq debug-on-error nil
       debug-on-quit nil)
 
-;; Local Variables:
-;; coding: utf-8
-;; no-byte-compile: t
-;; End:
+(provide 'init)
+;; Finalizers

@@ -83,7 +83,7 @@
 ;   ("<f2> u"  . counsel-unicode-char)
    ("C-c C-r" . ivy-resume)        ; Resume last Ivy-based completion
    ("C-c o"   . counsel-find-file-extern)
-   )
+   ("C-S-s"   . swiper-thing-at-point))
   :config
   (setq counsel-find-file-at-point t)
   (setq counsel-locate-cmd 'counsel-locate-cmd-default)

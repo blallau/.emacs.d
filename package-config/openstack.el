@@ -17,37 +17,37 @@
 ;; You should have received a copy of the GNU General Public License
 ;; along with this program.  If not, see http://www.gnu.org/licenses/.
 
-(require 'projectile)
+;; (require 'projectile)
 
-(defvar launchpad-url "https://bugs.launchpad.net/" "launchpad URL")
-(defvar openstack-review-url "https://review.openstack.org/#q,%s,n,z" "Openstack review URL")
-(defvar openstack-irc-logs-url "http://eavesdrop.openstack.org/irclogs/%23openstack-" "Openstack irc logs URL")
+;; (defvar launchpad-url "https://bugs.launchpad.net/" "launchpad URL")
+;; (defvar openstack-review-url "https://review.openstack.org/#q,%s,n,z" "Openstack review URL")
+;; (defvar openstack-irc-logs-url "http://eavesdrop.openstack.org/irclogs/%23openstack-" "Openstack irc logs URL")
 
-(defun open-openstack-ID-at-point ()
-  (interactive)
-  (when (projectile-project-p)
-    (let ((identifiant (thing-at-point 'line))
-          (project-name (projectile-project-name))
-          (case-fold-search t))
-      (cond
-       ((string-match "[[:alpha:]]+-Bug:[[:space:]]*#?\\([[:digit:]]+\\)" identifiant)
-        (browse-url (concat launchpad-url project-name "/+bug/" (match-string 1 identifiant))))
-       ((string-match "Change-Id: \\([[:alnum:]]+\\)" identifiant)
-        (browse-url (format openstack-review-url (match-string 1 identifiant))))
-       (t
-        (message "Not an Openstack ID (Closes-Bug or Change-Id)"))))))
+;; (defun open-openstack-ID-at-point ()
+;;   (interactive)
+;;   (when (projectile-project-p)
+;;     (let ((identifiant (thing-at-point 'line))
+;;           (project-name (projectile-project-name))
+;;           (case-fold-search t))
+;;       (cond
+;;        ((string-match "[[:alpha:]]+-Bug:[[:space:]]*#?\\([[:digit:]]+\\)" identifiant)
+;;         (browse-url (concat launchpad-url project-name "/+bug/" (match-string 1 identifiant))))
+;;        ((string-match "Change-Id: \\([[:alnum:]]+\\)" identifiant)
+;;         (browse-url (format openstack-review-url (match-string 1 identifiant))))
+;;        (t
+;;         (message "Not an Openstack ID (Closes-Bug or Change-Id)"))))))
 
-(global-set-key (kbd "<f12>") 'open-openstack-ID-at-point)
+;; (global-set-key (kbd "<f12>") 'open-openstack-ID-at-point)
 
-(defun open-openstack-irc-logs-on-project ()
-  (interactive)
-  (when (projectile-project-p)
-    (let ((project-name (projectile-project-name)))
-      (cond
-       ((string-match "[[:alpha:]]+-\\([[:alpha:]]+\\)" project-name)
-        (browse-url (concat openstack-irc-logs-url (match-string 1 project-name) "/latest.log.html")))
-       (t
-        (browse-url (concat openstack-irc-logs-url project-name "/latest.log.html")))))))
+;; (defun open-openstack-irc-logs-on-project ()
+;;   (interactive)
+;;   (when (projectile-project-p)
+;;     (let ((project-name (projectile-project-name)))
+;;       (cond
+;;        ((string-match "[[:alpha:]]+-\\([[:alpha:]]+\\)" project-name)
+;;         (browse-url (concat openstack-irc-logs-url (match-string 1 project-name) "/latest.log.html")))
+;;        (t
+;;         (browse-url (concat openstack-irc-logs-url project-name "/latest.log.html")))))))
 
 
-(global-set-key (kbd "<C-f12>") 'open-openstack-irc-logs-on-project)
+;; (global-set-key (kbd "<C-f12>") 'open-openstack-irc-logs-on-project)
