@@ -13,6 +13,11 @@
    ivy-height 12
    ;; no regexp by default
    ivy-initial-inputs-alist nil
+   ;; How to enter an input that matches one of the candidates instead
+   ;; of this candidate C-M-j
+   ;; OR
+   ;; make the prompt line selectable
+   ivy-use-selectable-prompt t
    )
 
   (setq ivy-re-builders-alist
