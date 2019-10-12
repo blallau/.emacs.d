@@ -57,6 +57,7 @@
 (depends-on "jedi")
 (depends-on "jinja2-mode")
 (depends-on "json-mode")
+(depends-on "keycast")
 (depends-on "kubernetes")
 (depends-on "kubernetes-tramp")
 (depends-on "logview")
