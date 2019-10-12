@@ -4,6 +4,9 @@
   (setq git-commit-summary-max-length 50
         fill-column 72)
 
+  ;; Disable mode-line lighter of the Magit-Blame mode
+  (setq magit-blame-mode-lighter "")
+
   ;; Configure Magit
   ;; Disable the `highlight` face that Magit uses to highlight diffs. It's unreadable with my color scheme.
   ;; An unreadable highlight face is a common issue on the Magit tracker.
