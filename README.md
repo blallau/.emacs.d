@@ -38,13 +38,13 @@ Configure emacs for:
     git clone https://github.com/blallau/.emacs.d ~/.emacs.d/
     cd ~/.emacs.d/; cask install
 
-## Launch Emacs
-
-    emacs
-
-# Tools configuration
+# Tools installation
 
 ## RG (ripgrep)
+
+    sudo apt-get install ripgrep
+
+    OR
 
     curl -LO https://github.com/BurntSushi/ripgrep/releases/download/11.0.2/ripgrep_11.0.2_amd64.deb
     sudo dpkg -i ripgrep_11.0.2_amd64.deb
@@ -56,6 +56,10 @@ Configure emacs for:
 ## PlantUML
 
     curl -LO  http://sourceforge.net/projects/plantuml/files/plantuml.jar
+
+## Launch Emacs
+
+    emacs
 
 # Language Configuration
 
