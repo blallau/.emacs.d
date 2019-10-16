@@ -1,8 +1,7 @@
 (use-package ansible-doc
-  :defer t
+  :ensure t
   :config
   (add-hook 'yaml-mode-hook #'ansible-doc-mode)
   (add-hook 'yaml-mode-hook
             (lambda ()
-              (local-set-key (kbd "<f1>") 'ansible-doc)
-              (ansible 1))))
+              (local-set-key (kbd "<f1>") 'ansible-doc))))
