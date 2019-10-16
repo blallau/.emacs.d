@@ -1,60 +1,71 @@
 ;; Make IPython the default shell
-(require 'python)
 
-(setq python-shell-interpreter "ipython"
-      python-shell-interpreter-args ""
-      python-shell-prompt-regexp "In \\[[0-9]+\\]: "
-      python-shell-prompt-output-regexp "Out\\[[0-9]+\\]: "
-      python-shell-completion-setup-code "from IPython.core.completerlib import module_completion"
-;;      python-shell-completion-module-string-code "';'.join(module_completion('''%s'''))\n"
-      python-shell-completion-string-code "';'.join(get_ipython().Completer.all_completions('''%s'''))\n")
+;; (use-package anaconda-mode
+;;   :bind (:map anaconda-mode-map
+;;               ("M-[" . python-nav-backward-block)
+;;               ("M-]" . python-nav-forward-block)
+;;               ("M-'" . anaconda-mode-find-references)
+;;               ))
 
-;; IPython command line args
-;; use –colors=LightBG if you have a white background
-(add-hook 'python-mode-hook
-          (lambda ()
-	    (setq py-python-command-args (quote ("--colors=Linux" "-i")))))
+;; (use-package company-anaconda
+;;   :config
+;;   (eval-after-load "company"
+;;     '(add-to-list 'company-backends 'company-anaconda)))
 
-(eval-when-compile
-  (require 'jinja2-mode))
+(use-package python
+  :init
+  (add-to-list 'auto-mode-alist '("\\.py$" . python-mode))
+  :config
+  (setq python-shell-interpreter "ipython"
+        python-shell-interpreter-args ""
+        python-shell-prompt-regexp "In \\[[0-9]+\\]: "
+        python-shell-prompt-output-regexp "Out\\[[0-9]+\\]: "
+        python-shell-completion-setup-code "from IPython.core.completerlib import module_completion"
+        ;;      python-shell-completion-module-string-code "';'.join(module_completion('''%s'''))\n"
+        python-shell-completion-string-code "';'.join(get_ipython().Completer.all_completions('''%s'''))\n")
 
-(add-to-list 'auto-mode-alist '("\\.j2\\'" . jinja2-mode))
-(add-to-list 'auto-mode-alist '("\\.template$" . jinja2-mode))
+  (add-hook 'python-mode-hook 'anaconda-mode)
+  (add-hook 'python-mode-hook 'anaconda-eldoc-mode)
 
-;; Python hook to Highlight TODO, FIXME, ...
-(add-hook 'python-mode-hook #'fic-mode)
+  ;; IPython command line args
+  ;; use –colors=LightBG if you have a white background
+  (add-hook 'python-mode-hook
+            (lambda ()
+              (setq py-python-command-args (quote ("--colors=Linux" "-i")))))
 
-;; Delete trailing whitespace when saving (compliance with PEP8)
-(add-hook 'before-save-hook #'delete-trailing-whitespace)
+  ;; Python hook to Highlight TODO, FIXME, ...
+  (add-hook 'python-mode-hook #'fic-mode)
 
-;;----------------------------------------------------------------------------
-;; ipdb
-;; Highlight ipdb lines:
-(defun annotate-pdb ()
-  (interactive)
-  (highlight-lines-matching-regexp "import pdb")
-  (highlight-lines-matching-regexp "pdb.set_trace()"))
+  ;; Delete trailing whitespace when saving (compliance with PEP8)
+  (add-hook 'before-save-hook #'delete-trailing-whitespace)
 
-(add-hook 'python-mode-hook 'annotate-pdb)
+  ;;----------------------------------------------------------------------------
+  ;; ipdb
+  ;; Highlight ipdb lines:
+  (defun annotate-pdb ()
+    (interactive)
+    (highlight-lines-matching-regexp "import pdb")
+    (highlight-lines-matching-regexp "pdb.set_trace()"))
+  (add-hook 'python-mode-hook 'annotate-pdb)
 
-;;----------
-;; Keybinding to add breakpoint:
-(defun python-add-breakpoint ()
-  (interactive)
-  (newline-and-indent)
-  (insert "import pdb; pdb.set_trace()")
-  (highlight-lines-matching-regexp "^[ ]*import pdb; pdb.set_trace()"))
+  ;;----------
+  ;; Keybinding to add breakpoint:
+  (defun python-add-breakpoint ()
+    (interactive)
+    (newline-and-indent)
+    (insert "import pdb; pdb.set_trace()")
+    (highlight-lines-matching-regexp "^[ ]*import pdb; pdb.set_trace()"))
 
-(defun python-add-stacktrace ()
-  (interactive)
-  (newline-and-indent)
-  (insert "import traceback; traceback.print_stack()")
-  (highlight-lines-matching-regexp "^[ ]*import traceback; traceback.print_stack()"))
+  (defun python-add-stacktrace ()
+    (interactive)
+    (newline-and-indent)
+    (insert "import traceback; traceback.print_stack()")
+    (highlight-lines-matching-regexp "^[ ]*import traceback; traceback.print_stack()"))
 
-(add-hook 'python-mode-hook
-          (lambda ()
-            (local-set-key (kbd "C-c C-b") 'python-add-breakpoint)
-            (local-set-key (kbd "C-c C-t") 'python-add-stacktrace)))
+  (add-hook 'python-mode-hook
+            (lambda ()
+              (local-set-key (kbd "C-c C-b") 'python-add-breakpoint)
+              (local-set-key (kbd "C-c C-t") 'python-add-stacktrace))))
 
 ;; ;; column witdh indicator
 ;; (require 'fill-column-indicator)
