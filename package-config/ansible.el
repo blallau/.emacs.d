@@ -19,4 +19,3 @@
 (use-package jinja2-mode
   :defer t
   :mode ("\\.j2\\'" . jinja2-mode))
->>>>>>> Stashed changes
