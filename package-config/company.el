@@ -2,7 +2,7 @@
   :defer t
   :bind
   ("M-TAB" . company-complete)
-  ("M-;" . company-yasnippet)
+;;  ("M-;" . company-yasnippet)
   :custom
   (company-begin-commands '(self-insert-command))
   (company-idle-delay .1)
