@@ -1,2 +1,2 @@
-(use-package iedit                                      ;
+(use-package iedit
   :defer t)
