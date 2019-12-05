@@ -53,12 +53,12 @@ It added extra strings at the front and back of the default dired buffer name."
 
   ;; dired-ranger: copy paste like in GUI applications
   ;; https://github.com/Fuco1/dired-hacks#dired-ranger
-  (use-package dired-ranger
-    :ensure t
-    :bind (:map dired-mode-map
-                ("C" . dired-ranger-copy)
-                ("R" . dired-ranger-move)
-                ("Y" . dired-ranger-paste)))
+  ;; (use-package dired-ranger
+  ;;   :ensure t
+  ;;   :bind (:map dired-mode-map
+  ;;               ("C" . dired-ranger-copy)
+  ;;               ("R" . dired-ranger-move)
+  ;;               ("Y" . dired-ranger-paste)))
 
   (use-package dired-subtree
     :config

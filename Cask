@@ -21,7 +21,7 @@
 (depends-on "dim")
 (depends-on "dired-narrow")
 (depends-on "dired-quick-sort")
-(depends-on "dired-ranger")
+;;(depends-on "dired-ranger")
 (depends-on "dired-subtree")
 (depends-on "docker")
 (depends-on "docker-tramp")
