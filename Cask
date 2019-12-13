@@ -95,6 +95,7 @@
 (depends-on "projectile-ripgrep")
 (depends-on "python-environment")
 (depends-on "rainbow-delimiters")
+(depends-on "restart-emacs")
 (depends-on "restclient")
 (depends-on "robe")
 (depends-on "smart-shift")
